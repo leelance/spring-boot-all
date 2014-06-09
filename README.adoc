@@ -1,14 +1,11 @@
 spring-boot-all
 ===============
-:sources: https://github.com/asciidoctor/asciidoctor-chrome-extension
-:license: https://github.com/asciidoctor/asciidoctor-chrome-extension/blob/master/LICENSE
-:webstore: https://chrome.google.com/webstore/detail/asciidoctorjs-live-previe/iaalpfgpbocpdfblpnhhgllgbdbchmia
 
-
-用来整理spring-boot关联的知识 
+用来整理spring-boot关联的知识.     
 可以参考http://docs.spring.io/spring-boot/docs/1.1.0.RC1/reference/htmlsingle/官方参考文档
 
 ===== 说明
+
 项目依赖于官方spring-boot, 在pom.xml文件里面配置
 [source,java,indent=0]
 ----
