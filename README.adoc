@@ -16,3 +16,9 @@ spring-boot-all
 	<version>1.1.0.RC1</version>
 </parent>
 ----
+
+==== spring boot location static js/css, 默认路径如下, 详见项目jsp文件
+* /META-INF/resources/ 
+* /resources/ 
+* /static/ 
+* /public/ 
