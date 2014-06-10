@@ -4,6 +4,7 @@ package com.lance.web;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * 
@@ -43,9 +44,20 @@ public class IndexController {
 	 * @param name
 	 * @param password
 	 * @return
-	 
+	 */
 	@RequestMapping(value="login",method=RequestMethod.POST)
 	public String login(@RequestParam String name, @RequestParam String password){
 		return "login.jsp";
-	}*/
+	}
+	
+	/**
+	 * 测试拦截器
+	 * @param name
+	 * @param password
+	 * @return
+	 */
+	@RequestMapping("user/home")
+	public String home(@RequestParam String name, @RequestParam String password){
+		return "user/home.jsp";
+	}
 }
