@@ -3,12 +3,17 @@ package com.lance.web;
 
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.lance.entity.UserEntity;
+import com.lance.service.LoginService;
+import com.lance.utils.ServiceException;
 
 /**
  * 
@@ -17,8 +22,11 @@ import com.lance.entity.UserEntity;
  */
 @Controller
 public class IndexController {
+	private Logger logger = LoggerFactory.getLogger(getClass());
 	@Autowired
 	private HttpSession session;
+	@Autowired
+	private LoginService loginService;
 	
 	/**
 	 * 跳转登录页面
@@ -40,7 +48,16 @@ public class IndexController {
 	 * @return
 	 */
 	@RequestMapping(value="login",method=RequestMethod.POST)
-	public String login(UserEntity user){
+	public String login(UserEntity user, RedirectAttributes redirect){
+		try {
+			user = loginService.login(user);
+		} catch (ServiceException e) {
+			logger.debug(e.getMessage());
+			redirect.addFlashAttribute("err_code", e.getMessage());
+			redirect.addFlashAttribute("user", user);
+			return "redirect:/login";
+		}
+		
 		session.setAttribute("cur_user", user);
 		return "redirect:user/home";
 	}

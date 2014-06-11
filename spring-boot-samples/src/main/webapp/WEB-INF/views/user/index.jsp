@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+This is a list page.
 </body>
 </html>

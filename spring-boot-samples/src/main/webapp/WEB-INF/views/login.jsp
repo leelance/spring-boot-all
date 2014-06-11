@@ -19,8 +19,9 @@
 	<div class="container">
 		<form class="form-signin" action="login" method="post">
 			<h2 class="form-signin-heading">Please sign in</h2>
-			<input type="text" class="form-control" placeholder="Email address" required autofocus name="userName"> 
-			<input type="password" class="form-control" placeholder="Password" required name="password"> 
+			<div class="error-code">${err_code}</div>
+			<input type="text" class="form-control" placeholder="Email address" required autofocus name="email" value="${user.email}"> 
+			<input type="password" class="form-control" placeholder="Password" required name="password" value="${user.password}"> 
 			<button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
 		</form>
 	</div>

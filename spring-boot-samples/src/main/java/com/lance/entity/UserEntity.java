@@ -11,7 +11,9 @@ import javax.persistence.Table;
 @Table(name="user")
 public class UserEntity extends BaseEntity {
 	//用户名
-	private String userName;
+	private String name;
+	
+	private String email;
 	
 	//性别 0: 女 1: 男 2:其他
 	private int sex;
@@ -25,14 +27,6 @@ public class UserEntity extends BaseEntity {
 	//地址信息
 	@OneToMany(mappedBy="user")
 	private List<AddressEntity> addresses = new LinkedList<AddressEntity>();
-
-	public String getUserName() {
-		return userName;
-	}
-
-	public void setUserName(String userName) {
-		this.userName = userName;
-	}
 
 	public int getSex() {
 		return sex;
@@ -64,5 +58,21 @@ public class UserEntity extends BaseEntity {
 
 	public void setAddresses(List<AddressEntity> addresses) {
 		this.addresses = addresses;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}	
 }

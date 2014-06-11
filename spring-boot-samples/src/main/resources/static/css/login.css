@@ -1,6 +1,6 @@
 @CHARSET "UTF-8";
 body {
-  padding-top: 170px;
+  padding-top: 150px;
   padding-bottom: 40px;
   background-color: #eee;
 }
@@ -35,4 +35,8 @@ body {
   margin-bottom: 10px;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
+}
+.error-code{
+	color: red;
+	margin: 5px 0;
 }
