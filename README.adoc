@@ -22,3 +22,14 @@ spring-boot-all
 * /resources/ 
 * /static/ 
 * /public/ 
+
+
+spring boot 增加InterceptorRegistry拦截器, 拦截路径user/下所有路径
+[source,java,indent=0]
+----
+public void addInterceptors(InterceptorRegistry registry) {
+    registry.addInterceptor(new UserSecurityInterceptor()).addPathPatterns("/user/**");
+}
+----
+
+增加加密EncryptUtils操作, 处理MD5加密, 盐值加密, SHA加密, PBKDF2加密
