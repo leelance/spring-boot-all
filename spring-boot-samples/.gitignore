@@ -1,7 +1,7 @@
 *.class
 
 # Mobile Tools for Java (J2ME)
-.mtj.tmp/
+.mtj.tmp/**
 
 # Package Files #
 *.jar
@@ -13,18 +13,18 @@ hs_err_pid*
 *.pydevproject
 .metadata
 .gradle
-bin/
-tmp/
+bin/**
+tmp/**
 *.tmp
 *.bak
 *.swp
 *~.nib
 local.properties
-.settings/
+.settings/**
 .loadpath
 
 # External tool builders
-.externalToolBuilders/
+.externalToolBuilders/**
 
 # Locally stored "Eclipse launch configurations"
 *.launch
@@ -44,7 +44,7 @@ local.properties
 *.pydevproject
 .project
 .metadata
-.metadata/
+.metadata/**
 bin/**
 tmp/**
 tmp/**/*
@@ -54,7 +54,7 @@ tmp/**/*
 *~.nib
 local.properties
 .classpath
-.settings/
+.settings/**
 .loadpath
 
 # External tool builders
