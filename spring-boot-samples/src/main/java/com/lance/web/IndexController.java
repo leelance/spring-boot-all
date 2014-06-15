@@ -13,6 +13,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.lance.entity.UserEntity;
 import com.lance.service.LoginService;
+import com.lance.utils.CurrentUserUtils;
 import com.lance.utils.ServiceException;
 
 /**
@@ -58,7 +59,7 @@ public class IndexController {
 			return "redirect:/login";
 		}
 		
-		session.setAttribute("cur_user", user);
+		CurrentUserUtils.getInstance().serUser(user);
 		return "redirect:user/home";
 	}
 	
