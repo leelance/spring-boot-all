@@ -1,0 +1,86 @@
+@CHARSET "UTF-8";
+
+body {
+	margin: 0;
+	font-family: "Varela Round", sans-serif;
+	color: #34302d;
+	background-color: #f1f1f1;
+}
+
+.navbar-fixed-top {
+	border-width: 0;
+	border-top: 4px solid #6db33f;
+	z-index: 999;
+	background-image: none;
+	filter: none;
+	background-color: #34302d;
+	border: 0;
+	border-top: 4px solid #6db33f;
+	box-shadow: none;
+	position: relative;
+	border-radius: 0;
+	padding: 0;
+	margin-bottom: 0;
+}
+
+.navbar-nav li a {
+	font-weight: 400;
+	padding: 28px 20px;
+	color: #eee;
+	text-transform: uppercase;
+	text-shadow: none;
+	-webkit-transition: all .15s;
+	-moz-transition: all .15s;
+	-o-transition: all .15s;
+	-ms-transition: all .15s;
+}
+
+.navbar-inverse .navbar-nav>.active>a,.navbar-inverse .navbar-nav>li>a:hover,.navbar-inverse .navbar-nav>li>a:focus,.navbar-inverse .navbar-nav>.active>a:hover,.navbar-inverse .navbar-nav>.active>a:focus
+	{
+	background-color: #6db33f;
+	box-shadow: none;
+}
+
+.navbar-brand span {
+	width: 162px;
+	height: 46px;
+	display: block;
+}
+
+a.spring-logo span {
+	width: 162px;
+	background: url(/images/spring-logo.png) -1px 0px no-repeat;
+	-moz-transition: opacity .12s ease-in-out;
+	-webkit-transition: opacity .12s ease-in-out;
+	-o-transition: opacity .12s ease-in-out;
+}
+
+a.spring-logo span:hover,a.spring-logo span:focus {
+	width: 162px;
+	background: url(/images/spring-logo.png) -1px -47px no-repeat;
+}
+/* 以上是头部分 */
+.billboard {
+	background-image: url(/images/homepage-bg.jpg);
+	background-size: cover;
+	background-repeat: no-repeat;
+	height: 527px;
+	text-align: center;
+	color: #f1f1f1;
+	margin-bottom: 0;
+}
+
+.billboard h2 {
+	margin-top: 220px;
+}
+/* 以上是中间广告牌部分 */
+.key-wrapper {
+	background-color: #6db33f;
+	padding: 60px 0;
+	margin-bottom: 0；
+}
+/* 以上是中间关键字部分 */
+#footer {
+	height: 40px;
+	background-color: #f5f5f5;
+}
