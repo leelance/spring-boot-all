@@ -33,3 +33,16 @@ public void addInterceptors(InterceptorRegistry registry) {
 ----
 
 增加加密EncryptUtils操作, 处理MD5加密, 盐值加密, SHA加密, PBKDF2加密
+
+==== 添加CurrentUserUtils对当前session的管理, 方便在servie里面引用
+[source,java,indent=0]
+----
+/**
+ * 获取当前Request
+ * @return
+ */
+private HttpServletRequest getRequest() {  
+   ServletRequestAttributes requestAttributes = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();  
+   return requestAttributes.getRequest();  
+} 
+----
