@@ -27,6 +27,9 @@ public class UserEntity extends BaseEntity {
 	//地址信息
 	@OneToMany(mappedBy="user")
 	private List<AddressEntity> addresses = new LinkedList<AddressEntity>();
+	
+	@OneToMany(mappedBy="blongUser")
+	private List<BlogEntity> blogs = new LinkedList<BlogEntity>();
 
 	public int getSex() {
 		return sex;

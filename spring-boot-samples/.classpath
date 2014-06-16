@@ -279,8 +279,12 @@
       <attribute value="jar:file:/Users/lihao/.m2/repository/org/eclipse/jetty/jetty-http/8.1.15.v20140411/jetty-http-8.1.15.v20140411-javadoc.jar!/" name="javadoc_location"/>
     </attributes>
   </classpathentry>
-  <classpathentry kind="var" path="M2_REPO/org/eclipse/jetty/jetty-io/8.1.15.v20140411/jetty-io-8.1.15.v20140411.jar"/>
-  <classpathentry kind="var" path="M2_REPO/org/eclipse/jetty/jetty-jsp/8.1.15.v20140411/jetty-jsp-8.1.15.v20140411.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/eclipse/jetty/jetty-io/8.1.15.v20140411/jetty-io-8.1.15.v20140411.jar" sourcepath="M2_REPO/org/eclipse/jetty/jetty-io/8.1.15.v20140411/jetty-io-8.1.15.v20140411-sources.jar">
+    <attributes>
+      <attribute value="jar:file:/Users/lihao/.m2/repository/org/eclipse/jetty/jetty-io/8.1.15.v20140411/jetty-io-8.1.15.v20140411-javadoc.jar!/" name="javadoc_location"/>
+    </attributes>
+  </classpathentry>
+  <classpathentry kind="var" path="M2_REPO/org/eclipse/jetty/jetty-jsp/8.1.15.v20140411/jetty-jsp-8.1.15.v20140411.jar" sourcepath="M2_REPO/org/eclipse/jetty/jetty-jsp/8.1.15.v20140411/jetty-jsp-8.1.15.v20140411-sources.jar"/>
   <classpathentry kind="var" path="M2_REPO/org/eclipse/jetty/orbit/javax.servlet.jsp/2.2.0.v201112011158/javax.servlet.jsp-2.2.0.v201112011158.jar" sourcepath="M2_REPO/org/eclipse/jetty/orbit/javax.servlet.jsp/2.2.0.v201112011158/javax.servlet.jsp-2.2.0.v201112011158-sources.jar">
     <attributes>
       <attribute value="jar:file:/Users/lihao/.m2/repository/org/eclipse/jetty/orbit/javax.servlet.jsp/2.2.0.v201112011158/javax.servlet.jsp-2.2.0.v201112011158-javadoc.jar!/" name="javadoc_location"/>
@@ -314,6 +318,11 @@
   <classpathentry kind="var" path="M2_REPO/org/eclipse/jetty/orbit/org.eclipse.jdt.core/3.7.1/org.eclipse.jdt.core-3.7.1.jar" sourcepath="M2_REPO/org/eclipse/jetty/orbit/org.eclipse.jdt.core/3.7.1/org.eclipse.jdt.core-3.7.1-sources.jar">
     <attributes>
       <attribute value="jar:file:/Users/lihao/.m2/repository/org/eclipse/jetty/orbit/org.eclipse.jdt.core/3.7.1/org.eclipse.jdt.core-3.7.1-javadoc.jar!/" name="javadoc_location"/>
+    </attributes>
+  </classpathentry>
+  <classpathentry kind="var" path="M2_REPO/org/jsoup/jsoup/1.7.3/jsoup-1.7.3.jar" sourcepath="M2_REPO/org/jsoup/jsoup/1.7.3/jsoup-1.7.3-sources.jar">
+    <attributes>
+      <attribute value="jar:file:/Users/lihao/.m2/repository/org/jsoup/jsoup/1.7.3/jsoup-1.7.3-javadoc.jar!/" name="javadoc_location"/>
     </attributes>
   </classpathentry>
 </classpath>
