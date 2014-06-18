@@ -9,25 +9,28 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import com.lance.entity.BlogEntity;
 import com.lance.entity.UserEntity;
+import com.lance.repository.BlogRepository;
 
+@Component
 public class Crawler {
-	private String url = "http://www.oschina.net/blog?type=0&p=";
+	//地址
+	private String url = "http://************";
 	private Logger logger = LoggerFactory.getLogger(getClass());
 	private static int page = 1;
 	
-	public static void main(String[] args) {
-		new Crawler().getBlogList(page);
-	}
+	@Autowired
+	private BlogRepository blogRepository;
 	/**
 	 * 获取Elements
 	 * @param page
 	 */
-	private void getBlogList(int page) {
-		url = url+page+"#catalogs";
-		String css = "#RecentBlogs .BlogList > li";
+	public void getBlogList(int page) {
+		String css = "#blogs .blog_list > li";
 		Elements elements = getElements(url, css);
 		
 		parseElements(elements);
@@ -44,7 +47,7 @@ public class Crawler {
 		
 		for(Element element: elements){
 			handlerElement(element);
-			return;
+			//return;
 		}
 		
 		getBlogList(page++);
@@ -75,30 +78,32 @@ public class Crawler {
 	 * @return
 	 */
 	private void getBlogDetail(String href, BlogEntity blogEntity){
-		String css = ".BlogEntity";
+		String css = ".blog_detail";
 		Element element = getElements(href, css).first();
 		
 		//获取摘要
-		String summary = element.select(".BlogAbstracts span").first().text();
+		String summary = element.select(".blog-title span").first().text();
 		blogEntity.setSummary(summary);
 		
 		//获取标签
-		Elements links = element.select(".BlogAbstracts a");
+		Elements links = element.select(".blog-content a");
 		String tags = null;
 		for(Element link: links){
 			tags+=link.text();
+			break;
 		}
 		blogEntity.setTags(tags);
 		
 		//获取内容
-		String content = element.select(".BlogContent").first().text();
+		String content = element.select(".blog-content").first().text();
 		blogEntity.setContent(content);
 		blogEntity.setCreateDate(new Date());
 		
 		UserEntity user = new UserEntity();
 		user.setId(1);
 		blogEntity.setBlongUser(user);
-		System.out.println(blogEntity.getContent());
+		
+		blogRepository.save(blogEntity);
 	}
 	
 	/**
