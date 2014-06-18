@@ -1,3 +1,5 @@
+content_assist_lru_history=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?><history maxLHS\="100" maxRHS\="10"><lhs name\="java.util.Collection"><rhs name\="java.util.ArrayList"/><rhs name\="java.util.LinkedList"/></lhs><lhs name\="java.lang.Iterable"><rhs name\="java.util.ArrayList"/><rhs name\="java.util.LinkedList"/></lhs><lhs name\="java.util.List"><rhs name\="java.util.ArrayList"/><rhs name\="java.util.LinkedList"/></lhs><lhs name\="com.lance.entity.BaseEntity"><rhs name\="com.lance.entity.UserEntity"/></lhs><lhs name\="com.lance.entity.UserEntity"><rhs name\="com.lance.entity.UserEntity"/></lhs></history>
+content_assist_number_of_computers=22
 content_assist_proposals_background=255,255,255
 content_assist_proposals_foreground=0,0,0
 eclipse.preferences.version=1
@@ -5,7 +7,12 @@ fontPropagated=true
 org.eclipse.jdt.ui.editor.tab.width=
 org.eclipse.jdt.ui.formatterprofiles.version=12
 org.eclipse.jdt.ui.javadoclocations.migrated=true
-org.eclipse.jface.textfont=1|Monaco|11.0|0|COCOA|1|;
+org.eclipse.jdt.ui.text.code_templates_migrated=true
+org.eclipse.jdt.ui.text.custom_code_templates=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?><templates/>
+org.eclipse.jdt.ui.text.custom_templates=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?><templates/>
+org.eclipse.jdt.ui.text.templates_migrated=true
+org.eclipse.jface.textfont=1|Monaco|12.0|0|COCOA|1|Monaco;
+proposalOrderMigrated=true
 spelling_locale_initialized=true
 tabWidthPropagated=true
 useAnnotationsPrefPage=true
