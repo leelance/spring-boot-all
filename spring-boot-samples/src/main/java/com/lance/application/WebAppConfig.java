@@ -41,7 +41,7 @@ public class WebAppConfig extends WebMvcConfigurerAdapter{
     /**
      * spring boot 定时任务
      */
-    @Scheduled(cron="0 41 21 * * ?")
+    @Scheduled(cron="0 0 22 * * ?")
     public void reportCurrentTime() {
     	crawler.getBlogList(1);
     }

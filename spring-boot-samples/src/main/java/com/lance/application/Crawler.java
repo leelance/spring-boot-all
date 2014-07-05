@@ -18,8 +18,8 @@ import com.lance.repository.BlogRepository;
 
 @Component
 public class Crawler {
-	//地址
-	private String url = "http://************";
+	//private String url = "http://www.oschina.net/blog?type=0&p=";
+	private String url = "http://****";
 	private Logger logger = LoggerFactory.getLogger(getClass());
 	private static int page = 1;
 	
@@ -30,7 +30,8 @@ public class Crawler {
 	 * @param page
 	 */
 	public void getBlogList(int page) {
-		String css = "#blogs .blog_list > li";
+		url = url+page+"#catalogs";
+		String css = "#RecentBlogs .BlogList > li";
 		Elements elements = getElements(url, css);
 		
 		parseElements(elements);
@@ -78,15 +79,15 @@ public class Crawler {
 	 * @return
 	 */
 	private void getBlogDetail(String href, BlogEntity blogEntity){
-		String css = ".blog_detail";
+		String css = ".BlogEntity";
 		Element element = getElements(href, css).first();
 		
 		//获取摘要
-		String summary = element.select(".blog-title span").first().text();
+		String summary = element.select(".BlogTitle span").first().text();
 		blogEntity.setSummary(summary);
 		
 		//获取标签
-		Elements links = element.select(".blog-content a");
+		Elements links = element.select(".BlogContent a");
 		String tags = null;
 		for(Element link: links){
 			tags+=link.text();
@@ -95,7 +96,7 @@ public class Crawler {
 		blogEntity.setTags(tags);
 		
 		//获取内容
-		String content = element.select(".blog-content").first().text();
+		String content = element.select(".BlogContent").first().text();
 		blogEntity.setContent(content);
 		blogEntity.setCreateDate(new Date());
 		

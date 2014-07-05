@@ -71,6 +71,6 @@ public class IndexController {
 	 */
 	@RequestMapping("user/home")
 	public String home(){
-		return "user/index.jsp";
+		return "user/home.jsp";
 	}
 }
