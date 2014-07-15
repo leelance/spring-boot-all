@@ -46,4 +46,8 @@ private HttpServletRequest getRequest() {
    return requestAttributes.getRequest();  
 } 
 ----
-==== Add 首页
+==== Add Holder一个可以生成简单图像的前端JavaScript库
+[source,java,indent=0]
+----
+&lt;img src="holder.js/200x300/sky"&gt;
+----
