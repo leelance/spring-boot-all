@@ -96,3 +96,7 @@ body {
   display: inline-block;
   border-radius: 50%;
 }
+.img-radius{
+	display: inline-block;
+  	border-radius: 50%;
+}
