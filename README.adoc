@@ -49,5 +49,7 @@ private HttpServletRequest getRequest() {
 ==== Add Holder一个可以生成简单图像的前端JavaScript库
 [source,java,indent=0]
 ----
-&lt;img src="holder.js/200x300/sky"&gt;
+<img src="holder.js/200x300/sky">
+
+demo: http://localhost:8080/user/home/holder
 ----
