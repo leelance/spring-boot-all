@@ -58,5 +58,5 @@ demo: http://localhost:8080/user/home/holder
 ----
 基本语法: jQuery.tmpl( template [, data] [, options] )
 
-demo: http://localhost:8080/user/home/holder
+demo: http://localhost:8080/user/home/tmpl
 ----
