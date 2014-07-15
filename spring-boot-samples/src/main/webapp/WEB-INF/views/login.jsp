@@ -12,7 +12,7 @@
 </head>
 <!-- CSS件 -->
 <link rel="stylesheet" href="/css/bootstrap.min.css">
-<link rel="stylesheet" href="/css/login.css">
+<link rel="stylesheet" href="/css/customer/login.css">
 <body>
 	<div class="container">
 		<form class="form-signin" action="login" method="post">
@@ -24,7 +24,7 @@
 		</form>
 	</div>
 
-	<script src="http://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
+	<script src="http://code.jquery.com/jquery.js"></script>
 	<script src="/js/bootstrap.min.js"></script>
 </body>
 </html>

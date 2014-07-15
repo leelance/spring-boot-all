@@ -64,12 +64,19 @@
 			<artifactId>spring-boot-starter-jetty</artifactId>
 			<scope>provided</scope>
 		</dependency>
-		
-		<!-- Jsoup -->
+
+		<!-- JSOUP -->
 		<dependency>
 			<groupId>org.jsoup</groupId>
 			<artifactId>jsoup</artifactId>
 			<version>1.7.3</version>
+		</dependency>
+		
+		<!-- JSON -->
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>fastjson</artifactId>
+			<version>1.1.41</version>
 		</dependency>
 	</dependencies>
 

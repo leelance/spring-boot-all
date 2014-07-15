@@ -325,4 +325,9 @@
       <attribute value="jar:file:/Users/lihao/.m2/repository/org/jsoup/jsoup/1.7.3/jsoup-1.7.3-javadoc.jar!/" name="javadoc_location"/>
     </attributes>
   </classpathentry>
+  <classpathentry kind="var" path="M2_REPO/com/alibaba/fastjson/1.1.41/fastjson-1.1.41.jar" sourcepath="M2_REPO/com/alibaba/fastjson/1.1.41/fastjson-1.1.41-sources.jar">
+    <attributes>
+      <attribute value="jar:file:/Users/lihao/.m2/repository/com/alibaba/fastjson/1.1.41/fastjson-1.1.41-javadoc.jar!/" name="javadoc_location"/>
+    </attributes>
+  </classpathentry>
 </classpath>

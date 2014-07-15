@@ -17,22 +17,19 @@
 </head>
 <body>
 <!-- header -->
-<jsp:include page="common/header.jsp"></jsp:include>
+<jsp:include page="../common/header.jsp"></jsp:include>
 <!-- content -->
 <div class="container-fluid">
 	<div class="row">
 		<!-- left -->
 		<div class="col-sm-3 col-md-2 sidebar">
-			<jsp:include page="common/home-left.jsp"></jsp:include>
+			<jsp:include page="../common/home-left.jsp"></jsp:include>
 		</div>
 		
 		<!-- center content -->
 		<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 			<div class="row placeholders">
-				 <div class="col-xs-6 col-sm-3 placeholder">
-		              <img data-src="holder.js/200x200/auto/sky/text:Client side image">
-		              <span class="text-muted">Holder uses SVG and canvas</span>
-	             </div>
+				 center
 			</div>
 		</div>
 	</div>
@@ -43,7 +40,7 @@
 <script src="/js/plugins/holder.js"></script>
 <script type="text/javascript">
 	$(function(){
-		$('#home-left li').removeClass("active").eq(0).prop('class', 'active');
+		$('#home-left li').removeClass("active").eq(1).prop('class', 'active');
 	});
 </script>
 </body>

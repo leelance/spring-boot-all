@@ -8,7 +8,7 @@
 </head>
 <!-- CSS件 -->
 <link rel="stylesheet" href="/css/bootstrap.min.css">
-<link rel="stylesheet" href="/css/index.css">
+<link rel="stylesheet" href="/css/customer/index.css">
 <body>
 	<div class="navbar navbar-fixed-top navbar-inverse" role="navigation">
 		<div class="container">
