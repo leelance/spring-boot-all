@@ -28,19 +28,34 @@
 		
 		<!-- center content -->
 		<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-			<div class="row placeholders">
-				 <div class="col-xs-6 col-sm-3 placeholder">
-		              <img data-src="holder.js/200x200/auto/sky/text:Client side image">
-		              <span class="text-muted">Holder uses SVG and canvas</span>
-	             </div>
+			<div class="row">
+				<div class="col-6 col-sm-6 col-lg-4">
+	              <h2>Holder.js</h2>
+	              <p class="text-muted">
+	              	一个可以生成简单图像的前端JavaScript库, Holder 可直接在客户端渲染图片的占位。支持在线和离线，提供一个链式 API 对图像占位进行样式处理.
+	              </p>
+	              <p><a class="btn btn-default" href="/user/home/holder" role="button">View details »</a></p>
+	            </div>
+	            <div class="col-6 col-sm-6 col-lg-4">
+	              <h2>jQuery.tmpl.js</h2>
+	              <p class="text-muted">
+	              	基于jQuery的jquery.tmpl, 用更加直观方面的HTML代码, 和JSON变量来占位的方式来填充数据, 使html代码和js代码分离处理, 维护成本大大降低.
+	              </p>
+	              <p><a class="btn btn-default" href="/user/home/tmpl" role="button">View details »</a></p>
+	            </div>
+	            <div class="col-6 col-sm-6 col-lg-4">
+	              <h2>Holder.js</h2>
+	              <p class="text-muted">
+	              	一个可以生成简单图像的前端JavaScript库, Holder 可直接在客户端渲染图片的占位。支持在线和离线，提供一个链式 API 对图像占位进行样式处理.
+	              </p>
+	              <p><a class="btn btn-default" href="/user/home/holder" role="button">View details »</a></p>
+	            </div>
 			</div>
 		</div>
 	</div>
 </div>
 
 <!-- JS file -->
-<script src="/js/plugins/jquery.tmpl.min.js"></script>
-<script src="/js/plugins/holder.js"></script>
 <script type="text/javascript">
 	$(function(){
 		$('#home-left li').removeClass("active").eq(0).prop('class', 'active');

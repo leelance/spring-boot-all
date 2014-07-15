@@ -10,11 +10,11 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">Project name</a>
+      <a class="navbar-brand" href="/user/home">Project name</a>
     </div>
     <div class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Home</a></li>
+        <li class="active"><a href="/user/home">Home</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
          <li><span class="nav-span">欢迎, ${cur_user.email}</span></li>

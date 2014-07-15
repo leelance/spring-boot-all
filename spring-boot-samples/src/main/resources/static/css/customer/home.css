@@ -100,3 +100,13 @@ body {
 	display: inline-block;
   	border-radius: 50%;
 }
+
+blockquote p{
+	font-size: 14px;
+	color: #999999;
+}
+blockquote p span{
+	color: #333333;
+	font-weight: bolder;
+	line-height: 22px;
+}

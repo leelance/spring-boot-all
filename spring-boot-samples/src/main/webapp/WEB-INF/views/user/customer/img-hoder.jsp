@@ -39,11 +39,14 @@
 					<img src="holder.js/100x100/industrial">
 					<img src="holder.js/100x100/social/text:color:social">
 					<img src="holder.js/100x100/sky" class="img-radius">
-					<p>
-					一个可以生成简单图像的前端JavaScript库, Holder 可直接在客户端渲染图片的占位。支持在线和离线，提供一个链式 API 对图像占位进行样式处理。
-					这是一个比较有用的插件,可以是你的缩略图,以及不显示图片时占位图片,比较好看.当然他的用法不仅仅使这些.我还利用这个插件绘制了一些小图标,为网站增色不少,而且速度也比图片的好很多.
-					Git: <a href="https://github.com/imsky/holder" target="_blank">https://github.com/imsky/holder</a>
-					</p>
+					<p>&nbsp;</p>
+					<blockquote>
+						<p>
+						一个可以生成简单图像的前端JavaScript库, Holder 可直接在客户端渲染图片的占位。支持在线和离线，提供一个链式 API 对图像占位进行样式处理。
+						这是一个比较有用的插件,可以是你的缩略图,以及不显示图片时占位图片,比较好看.当然他的用法不仅仅使这些.我还利用这个插件绘制了一些小图标,为网站增色不少,而且速度也比图片的好很多.<br/>
+						Git: <a href="https://github.com/imsky/holder" target="_blank">https://github.com/imsky/holder</a>
+						</p>
+					</blockquote>
 					<pre>
 <code class="xml">&lt;script src="holder.js"&gt;&lt;/script &gt;
 &lt;img src="holder.js/200x300" &gt;
