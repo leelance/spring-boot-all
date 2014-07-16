@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class HomeController {
 	
 	/**
-	 * 处理图片生成
+	 * 澶勭悊鍥剧墖鐢熸垚
 	 * @return
 	 */
 	@RequestMapping("holder")
@@ -17,11 +17,16 @@ public class HomeController {
 	}
 	
 	/**
-	 * 处理模板方法
+	 * 澶勭悊妯℃澘鏂规硶
 	 * @return
 	 */
 	@RequestMapping("tmpl")
 	public String tmpl(){
 		return "user/customer/template.jsp";
+	}
+	
+	@RequestMapping("adduser")
+	public String addUser(){
+		return "user/customer/user-add.jsp";
 	}
 }
