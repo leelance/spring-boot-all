@@ -20,9 +20,9 @@ public abstract class BaseEntity {
 	//0:无效 1:有效
 	protected int status;
 	//创建信息
-	protected String createById;
+	protected long createById;
 	protected Date createDate;
-	protected String updateById;
+	protected long updateById;
 	protected Date updateDate;
 	
 	public long getId() {
@@ -31,10 +31,10 @@ public abstract class BaseEntity {
 	public void setId(long id) {
 		this.id = id;
 	}
-	public String getCreateById() {
+	public long getCreateById() {
 		return createById;
 	}
-	public void setCreateById(String createById) {
+	public void setCreateById(long createById) {
 		this.createById = createById;
 	}
 	public Date getCreateDate() {
@@ -43,10 +43,10 @@ public abstract class BaseEntity {
 	public void setCreateDate(Date createDate) {
 		this.createDate = createDate;
 	}
-	public String getUpdateById() {
+	public long getUpdateById() {
 		return updateById;
 	}
-	public void setUpdateById(String updateById) {
+	public void setUpdateById(long updateById) {
 		this.updateById = updateById;
 	}
 	public Date getUpdateDate() {

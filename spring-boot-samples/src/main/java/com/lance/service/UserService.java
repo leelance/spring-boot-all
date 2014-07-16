@@ -10,4 +10,10 @@ public interface UserService {
 	 * @return
 	 */
 	List<UserEntity> findAll();
+	
+	/**
+	 * save user
+	 * @param user
+	 */
+	void save(UserEntity user) ;
 }

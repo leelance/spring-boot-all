@@ -13,9 +13,6 @@
 <link rel="stylesheet" href="/css/customer/home.css">
 <link rel="stylesheet" href="/css/customer/user.css">
 
-<!-- JS file -->
-<script src="http://code.jquery.com/jquery.js"></script>
-
 </head>
 <body>
 	<!-- header -->
@@ -67,7 +64,7 @@
 	          <h4 class="modal-title" id="myLargeModalLabel">Add User</h4>
 	        </div>
 	        <div class="modal-body">
-	           <form class="form-horizontal" role="form">
+	           <form class="form-horizontal" role="form" action="/user/post" method="post" id="user-form">
 	           	<div class="form-group">
 	           		<span class="col-sm-1"></span>
 				    <label for="inputName3" class="col-sm-2 control-label">Name</label>
@@ -100,12 +97,39 @@
 				    <div class="col-sm-6">
 				      <input type="tel" class="form-control" id="inputPhone3" placeholder="Phone" name="tel">
 				    </div>
+				  </div>
+				  <!-- Address -->
+				  <div class="form-group addr-group-border">
+				  	<div class="row user-addr-row">
+				  		<span class="col-sm-1"></span>
+					    <label class="col-sm-2 control-label">City</label>
+					    <div class="col-sm-6">
+					      <input type="text" class="form-control" placeholder="City" name="addresses[0].city">
+					    </div>
+					    <div class="col-sm-1 address-btn">
+					    	<a href="#" class="btn btn-primary" id="add-address">add</a>
+					    </div>
+				  	</div>
+				  	<div class="row user-addr-row">
+				  		<span class="col-sm-1"></span>
+					    <label class="col-sm-2 control-label">Province</label>
+					    <div class="col-sm-6">
+					      <input type="text" class="form-control" placeholder="Province" name="addresses[0].province">
+					    </div>
+				  	</div>
+				  	<div class="row user-addr-row">
+				  		<span class="col-sm-1"></span>
+					    <label class="col-sm-2 control-label">Address</label>
+					    <div class="col-sm-6">
+					      <input type="text" class="form-control" placeholder="Address" name="addresses[0].address">
+					    </div>
+				  	</div>
 				  </div>			
 				</form>
 	        </div>
 	        <div class="modal-footer">
 	          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-	          <button type="button" class="btn btn-primary">Save changes</button>
+	          <button type="button" class="btn btn-primary" id="saveBtn">Save changes</button>
 	        </div>
 	    </div>
 	  </div>
@@ -115,7 +139,20 @@
 	<script id="user-tmpl" type="text/x-jquery-tmpl">
     	<tr>
 			<td><input type="checkbox"></td>
-			<td>\${name}</td>
+			<td>
+				<a href="#" class="user-name-hide">\${name}</a>
+				<div style="display: none;">
+					<table class="table table-bordered table-striped">
+						{{each addresses}}
+							<tr>
+								<td>\${city}</td>
+								<td>\${province}</td>
+								<td>\${address}</td>
+							</tr>
+						{{/each}}
+					</table>
+				</div>
+			</td>
 			<td>\${email}</td>
 			<td>
 				{{if sex == 1}}
@@ -125,11 +162,41 @@
 				{{/if}}
 			</td>
 			<td>\${tel}</td>
-			<td><a href="#">Del<input type="hidden" value="\${id}"></a></td>
+			<td><a href="/user/del/\${id}" class="user-del">Del</a></td>
 		</tr>
+	</script>
+	<!-- 地址模板 -->
+	<script id="user-addr-tmpl" type="text/x-jquery-tmpl">
+	 <div class="form-group addr-group-border">
+	  	<div class="row user-addr-row">
+	  		<span class="col-sm-1"></span>
+		    <label class="col-sm-2 control-label">City</label>
+		    <div class="col-sm-6">
+		      <input type="text" class="form-control" placeholder="City" name="\${cityName}">
+		    </div>
+			<div class="col-sm-1 address-del-btn">
+				<a href="#" class="btn btn-primary">del</a>
+			</div>
+	  	</div>
+	  	<div class="row user-addr-row">
+	  		<span class="col-sm-1"></span>
+		    <label class="col-sm-2 control-label">Province</label>
+		    <div class="col-sm-6">
+		      <input type="text" class="form-control" placeholder="Province" name="\${proName}">
+		    </div>
+	  	</div>
+	  	<div class="row user-addr-row">
+	  		<span class="col-sm-1"></span>
+		    <label class="col-sm-2 control-label">Address</label>
+		    <div class="col-sm-6">
+		      <input type="text" class="form-control" placeholder="Address" name="\${addName}">
+		    </div>
+	  	</div>
+	  </div>	
 	</script>
 	
 	<!-- JS file -->
+	<script src="http://code.jquery.com/jquery.js"></script>
 	<script src="/js/bootstrap.min.js"></script>
 	<script src="/js/plugins/jquery.tmpl.min.js"></script>
 	<script src="/js/customer/AddUser.js"></script>

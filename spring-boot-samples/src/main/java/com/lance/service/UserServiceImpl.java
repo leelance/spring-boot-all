@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.lance.entity.AddressEntity;
 import com.lance.entity.UserEntity;
 import com.lance.repository.UserRepository;
 
@@ -19,5 +20,16 @@ public class UserServiceImpl implements UserService{
 	 */
 	public List<UserEntity> findAll(){
 		return userRepository.findAll();
+	}
+	
+	/**
+	 * save user
+	 * @param user
+	 */
+	public void save(UserEntity user) {
+		for(AddressEntity address: user.getAddresses()) {
+			address.setUser(user);
+		}
+		userRepository.save(user);
 	}
 }

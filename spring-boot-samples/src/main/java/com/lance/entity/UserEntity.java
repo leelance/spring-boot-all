@@ -3,6 +3,7 @@ package com.lance.entity;
 import java.util.LinkedList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -25,7 +26,7 @@ public class UserEntity extends BaseEntity {
 	private String password;
 	
 	//地址信息
-	@OneToMany(mappedBy="user")
+	@OneToMany(mappedBy="user",cascade=CascadeType.ALL)
 	private List<AddressEntity> addresses = new LinkedList<AddressEntity>();
 	
 	@OneToMany(mappedBy="blongUser")

@@ -46,4 +46,10 @@ public class AddressEntity extends BaseEntity {
 	public void setProvince(String province) {
 		this.province = province;
 	}
+	public UserEntity getUser() {
+		return user;
+	}
+	public void setUser(UserEntity user) {
+		this.user = user;
+	}
 }

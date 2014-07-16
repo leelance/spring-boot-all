@@ -3,3 +3,9 @@
 	line-height: 40px;
 	font-weight: bold;
 }
+.user-addr-row{
+	padding: 5px;
+}
+.addr-group-border{
+	border-top: 1px solid #ccc;
+}
