@@ -10,15 +10,10 @@
 	</parent>
 	<artifactId>spring-boot-hello</artifactId>
 	<packaging>war</packaging>
-	<name>spring-boot-hello Maven Webapp</name>
+	<name>spring-boot-hello</name>
 	<url>http://maven.apache.org</url>
 
-	<dependencies>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-jetty</artifactId>
-		</dependency>
-	</dependencies>
+	
 	<build>
 		<finalName>spring-boot-hello</finalName>
 	</build>
