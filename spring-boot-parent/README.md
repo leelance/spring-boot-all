@@ -8,10 +8,9 @@
 	<version>1.3.5.RELEASE</version>
 </parent>
 ```
-Name	Description
-spring-boot-starter
+* spring-boot-starter
 The core Spring Boot starter, including auto-configuration support, logging and YAML.
-spring-boot-starter-actuator
+* spring-boot-starter-actuator
 Production ready features to help you monitor and manage your application.
 spring-boot-starter-amqp
 Support for the “Advanced Message Queuing Protocol” via spring-rabbit.
