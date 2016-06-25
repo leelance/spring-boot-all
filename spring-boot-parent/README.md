@@ -8,9 +8,8 @@
 	<version>1.3.5.RELEASE</version>
 </parent>
 ```
-##### Table of Contents  
-[Headers](#headers)  
-[Emphasis](#emphasis)  
-...snip...    
-<a name="headers"/>
-## Headers
+| Name          			| Description           |
+| ------------- 			|:---------------------:|
+| spring-boot-starter      		| The core Spring Boot starter, including auto-configuration support, logging and YAML	|
+| spring-boot-starter-actuator      	| Production ready features to help you monitor and manage your application.      	|
+| zebra stripes 			| are neat      	|
