@@ -1,4 +1,8 @@
 # spring-boot-mybatis, 依赖spring-boot-parent
+* spring-boot
+* mybatis
+* druid
+
 ```xml
 <dependency>
 	<groupId>org.mybatis.spring.boot</groupId>
