@@ -102,5 +102,6 @@
 	<modules>
 		<module>../spring-boot-hello</module>
     	<module>../spring-boot-devtools</module>
+    	<module>../spring-boot-mybatis</module>
   </modules>
 </project>
