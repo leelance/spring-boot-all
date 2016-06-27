@@ -1,7 +1,7 @@
 # spring-boot-mybatis, 依赖spring-boot-parent
-* spring-boot
-* mybatis
-* druid
+* [spring-boot](http://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/)
+* [mybatis](https://github.com/mybatis/spring-boot-starter)
+* [druid](https://github.com/alibaba/druid)
 
 ```xml
 <dependency>
