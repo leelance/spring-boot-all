@@ -52,7 +52,7 @@
 	
 	<Loggers>
 		<!-- 全局配置，默认所有的Logger都继承此配置 -->
-		<AsyncRoot level="DEBUG" additivity="false">
+		<AsyncRoot level="info" additivity="false">
 			<AppenderRef ref="console"/>
 			<AppenderRef ref="rollingInfoFile"/>
 			<AppenderRef ref="rollingErrorFile"/>
