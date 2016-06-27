@@ -9,6 +9,14 @@
 ```
 ###application.properties
 ```
+#MYBATIS
+mybatis.type-aliases-package=com.lance.mybatis.domain
+mybatis.mapper-locations=classpath*:/mapper/*Mapper.xml
+mybatis.configuration.map-underscore-to-camel-case=true
+mybatis.configuration.use-generated-keys=true
+mybatis.configuration.default-fetch-size=100
+mybatis.configuration.default-statement-timeout=30
+
 spring.datasource.type=com.alibaba.druid.pool.DruidDataSource
 spring.datasource.url=jdbc:mysql://localhost/demo-schema
 spring.datasource.username=root
