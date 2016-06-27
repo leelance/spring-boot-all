@@ -1,28 +1,63 @@
-# spring-boot-hello, 依赖spring-boot-parent,集成log4j2
-```
-@Configuration
-@ComponentScan
-@EnableAutoConfiguration
-public class Application {
-	public static void main(String[] args) throws Exception {
-        SpringApplication.run(Application.class, args);
-    }
-}
+# spring-boot-mybatis, 依赖spring-boot-parent
+```xml
+<dependency>
+	<groupId>org.mybatis.spring.boot</groupId>
+	<artifactId>mybatis-spring-boot-starter</artifactId>
+	<version>1.1.1</version>
+</dependency>
 
 ```
 ###application.properties
 ```
-# IDENTITY (ContextIdApplicationContextInitializer)
-spring.application.index=Hello.v1.1
-spring.application.name=Hello Boot
+spring.datasource.type=com.alibaba.druid.pool.DruidDataSource
+spring.datasource.url=jdbc:mysql://localhost/demo-schema
+spring.datasource.username=root
+spring.datasource.password=123456
+spring.datasource.driver-class-name=com.mysql.jdbc.Driver
 
-#Server
-server.port=80
-server.jsp-servlet.class-name=org.apache.jasper.servlet.JspServlet
+# see https://github.com/alibaba/druid
+spring.datasource.initialSize=5
+spring.datasource.minIdle=5
+spring.datasource.maxActive=20
+spring.datasource.maxWait=60000
+spring.datasource.timeBetweenEvictionRunsMillis=60000
+spring.datasource.validationQuery=SELECT 1 FROM DUAL
+spring.datasource.testWhileIdle=true
+spring.datasource.testOnBorrow=false
+spring.datasource.testOnReturn=false
+spring.datasource.poolPreparedStatements=true
+spring.datasource.maxPoolPreparedStatementPerConnectionSize=20
+spring.datasource.filters=stat,wall
+spring.datasource.connectionProperties=druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+```
 
-#MVC
-spring.mvc.view.prefix=/WEB-INF/views/
+```java
+@Mapper
+public interface UserMapper
 
-#LOG
-logging.config=classpath:log4j2.xml
+@SpringBootApplication
+public class SimpleApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(SimpleApplication.class, args);
+	}
+	
+	/**
+	 * ServletRegistrationBean,
+	 * @see com.alibaba.druid.support.http.ResourceServlet
+	 * @return
+	 */
+	@Bean
+	public ServletRegistrationBean druidServlet() {
+		ServletRegistrationBean druid = new ServletRegistrationBean();
+		druid.setServlet(new StatViewServlet());
+		druid.setUrlMappings(Arrays.asList("/druid/*"));
+		
+		Map<String,String> params = new HashMap<>();
+		params.put("loginUsername", "admin");
+		params.put("loginPassword", "admin");
+		druid.setInitParameters(params);
+		return druid;
+	}
+}
 ```
