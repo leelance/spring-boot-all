@@ -26,9 +26,9 @@ public class URLPermissionsFilter extends PermissionsAuthorizationFilter{
 		String curUrl = getRequestUrl(request);
 		Subject subject = SecurityUtils.getSubject();
 		if(subject.getPrincipal() == null 
-				|| curUrl.endsWith(".js")
+				|| StringUtils.endsWithAny(curUrl, ".js",".css",".html")
 				|| StringUtils.endsWithAny(curUrl, ".jpg",".png",".gif", ".jpeg")
-				|| curUrl.endsWith(".css")) {
+				|| StringUtils.equals(curUrl, "/unauthor")) {
 			return true;
 		}
 		List<String> urls = userService.findPermissionUrl(subject.getPrincipal().toString());
