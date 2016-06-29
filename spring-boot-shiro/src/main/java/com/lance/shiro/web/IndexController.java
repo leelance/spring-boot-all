@@ -16,12 +16,12 @@ public class IndexController {
 	}
 	
 	/**
-	 * Unauthorized
+	 * unauthor
 	 * @return
 	 */
-	@RequestMapping("unauthorized")
-	public String unauthorized() {
-		return "unauthorized.jsp";
+	@RequestMapping("unauthor")
+	public String unauthor() {
+		return "unauthor.jsp";
 	}
 	
 	/**

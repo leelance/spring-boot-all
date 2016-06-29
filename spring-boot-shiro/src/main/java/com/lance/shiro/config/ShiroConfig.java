@@ -45,16 +45,16 @@ public class ShiroConfig {
 		ShiroFilterFactoryBean bean = new ShiroFilterFactoryBean();
 		bean.setSecurityManager(securityManager());
 		bean.setLoginUrl("/login");
-		bean.setUnauthorizedUrl("/unauthorized");
+		bean.setUnauthorizedUrl("/unauthor");
 		
 		Map<String, Filter>filters = Maps.newHashMap();
-		filters.put("perms", urlPermissionsFilter());
+		//filters.put("perms", urlPermissionsFilter());
 		filters.put("anon", new AnonymousFilter());
 		bean.setFilters(filters);
 		
 		Map<String, String> chains = Maps.newHashMap();
 		chains.put("/login", "anon");
-		chains.put("/unauthorized", "anon");
+		chains.put("/unauthor", "anon");
 		chains.put("/logout", "logout");
 		chains.put("/base/**", "anon");
 		chains.put("/css/**", "anon");
@@ -72,7 +72,7 @@ public class ShiroConfig {
 	public DefaultWebSecurityManager securityManager() {
 		DefaultWebSecurityManager manager = new DefaultWebSecurityManager();
 		manager.setRealm(userRealm());
-		//manager.setCacheManager(cacheManager());
+		manager.setCacheManager(cacheManager());
 		manager.setSessionManager(defaultWebSessionManager());
 		return manager;
 	}
@@ -84,7 +84,7 @@ public class ShiroConfig {
 	@Bean(name="sessionManager")
 	public DefaultWebSessionManager defaultWebSessionManager() {
 		DefaultWebSessionManager sessionManager = new DefaultWebSessionManager();
-		//sessionManager.setCacheManager(cacheManager());
+		sessionManager.setCacheManager(cacheManager());
 		sessionManager.setGlobalSessionTimeout(1800000);
 		sessionManager.setDeleteInvalidSessions(true);
 		sessionManager.setSessionValidationSchedulerEnabled(true);
