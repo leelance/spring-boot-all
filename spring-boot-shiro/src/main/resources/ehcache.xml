@@ -1,0 +1,13 @@
+<ehcache name="spring_boot_shiro_ehcache">
+    <diskStore path="java.io.tmpdir"/>
+
+    <defaultCache
+            maxElementsInMemory="100000"
+            eternal="false"
+            overflowToDisk="true"
+            timeToIdleSeconds="0"
+            timeToLiveSeconds="0"
+            diskPersistent="false"
+            diskExpiryThreadIntervalSeconds="120"/>
+    <!-- See http://ehcache.sourceforge.net/documentation/#mozTocId258426 for how to configure caching for your objects -->
+</ehcache>
