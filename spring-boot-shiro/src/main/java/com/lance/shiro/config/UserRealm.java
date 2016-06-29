@@ -22,7 +22,7 @@ import com.lance.shiro.service.UserService;
  * 
  * @author Administrator
  */
-@Component
+@Component("userRealm")
 public class UserRealm extends AuthorizingRealm {
 	@Autowired
 	private UserService userService;
