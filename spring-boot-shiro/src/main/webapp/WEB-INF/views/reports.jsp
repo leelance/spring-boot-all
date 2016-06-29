@@ -93,9 +93,9 @@
     </div>
 	
 	
-	<script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+	<script src="/base/js/jquery.min.js"></script>
     <script src="/base/js/bootstrap.min.js"></script>
     <script src="/layer/layer.js"></script>
-    <script src="//cdn.bootcss.com/holder/2.9.3/holder.min.js"></script>
+    <script src="/base/js/holder.min.js"></script>
   </body>
 </html>

@@ -8,7 +8,6 @@
     <title>首页</title>
 
     <!-- Bootstrap -->
-    <link href="/base/css/bootstrap.min.css" rel="stylesheet">
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -19,8 +18,5 @@
   <body>
     <h1>Unauthorized！</h1>
 	
-	<script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
-    <script src="/base/js/bootstrap.min.js"></script>
-    <script src="/layer/layer.js"></script>
   </body>
 </html>
