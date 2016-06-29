@@ -1,15 +1,33 @@
-# spring-boot-mybatis, 依赖spring-boot-parent
+# spring-boot-shiro, 依赖spring-boot-parent
 * [spring-boot](http://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/)
 * [mybatis](https://github.com/mybatis/spring-boot-starter)
 * [druid](https://github.com/alibaba/druid)
+* [shiro](http://shiro.apache.org/)
+该项目中, 增加了对url的拦截[URLPermissionsFilter](https://github.com/leelance/spring-boot-all/blob/master/spring-boot-shiro/src/main/java/com/lance/shiro/config/URLPermissionsFilter.java)，用admin/123456,拥有index权限reports未任何权限, lance/123456尚未分配任何权限.
+参考[schema.sql](https://github.com/leelance/spring-boot-all/blob/master/spring-boot-shiro/src/main/resources/init-sql/schema.sql)
 
 ```xml
+<shiro.version>1.2.5</shiro.version>
 <dependency>
-	<groupId>org.mybatis.spring.boot</groupId>
-	<artifactId>mybatis-spring-boot-starter</artifactId>
-	<version>1.1.1</version>
+	<groupId>org.apache.shiro</groupId>
+	<artifactId>shiro-core</artifactId>
+	<version>${shiro.version}</version>
 </dependency>
-
+<dependency>
+	<groupId>org.apache.shiro</groupId>
+	<artifactId>shiro-web</artifactId>
+	<version>${shiro.version}</version>
+</dependency>
+<dependency>
+	<groupId>org.apache.shiro</groupId>
+	<artifactId>shiro-ehcache</artifactId>
+	<version>${shiro.version}</version>
+</dependency>
+<dependency>
+	<groupId>org.apache.shiro</groupId>
+	<artifactId>shiro-spring</artifactId>
+	<version>${shiro.version}</version>
+</dependency>
 ```
 ###application.properties
 ```
@@ -44,32 +62,106 @@ spring.datasource.connectionProperties=druid.stat.mergeSql=true;druid.stat.slowS
 ```
 
 ```java
-@Mapper
-public interface UserMapper
-
-@SpringBootApplication
-public class SimpleApplication {
-
-	public static void main(String[] args) {
-		SpringApplication.run(SimpleApplication.class, args);
-	}
+@Configuration
+public class ShiroConfig {
 	
 	/**
-	 * ServletRegistrationBean,
-	 * @see com.alibaba.druid.support.http.ResourceServlet
+	 * FilterRegistrationBean
 	 * @return
 	 */
 	@Bean
-	public ServletRegistrationBean druidServlet() {
-		ServletRegistrationBean druid = new ServletRegistrationBean();
-		druid.setServlet(new StatViewServlet());
-		druid.setUrlMappings(Arrays.asList("/druid/*"));
+	public FilterRegistrationBean filterRegistrationBean() {
+		FilterRegistrationBean filterRegistration = new FilterRegistrationBean();
+        filterRegistration.setFilter(new DelegatingFilterProxy("shiroFilter")); 
+        filterRegistration.setEnabled(true);
+        filterRegistration.addUrlPatterns("/*"); 
+        filterRegistration.setDispatcherTypes(DispatcherType.REQUEST);
+        return filterRegistration;
+	}
+	
+	/**
+	 * @see org.apache.shiro.spring.web.ShiroFilterFactoryBean
+	 * @return
+	 */
+	@Bean(name = "shiroFilter")
+	public ShiroFilterFactoryBean shiroFilter(){
+		ShiroFilterFactoryBean bean = new ShiroFilterFactoryBean();
+		bean.setSecurityManager(securityManager());
+		bean.setLoginUrl("/login");
+		bean.setUnauthorizedUrl("/unauthor");
 		
-		Map<String,String> params = new HashMap<>();
-		params.put("loginUsername", "admin");
-		params.put("loginPassword", "admin");
-		druid.setInitParameters(params);
-		return druid;
+		Map<String, Filter>filters = Maps.newHashMap();
+		filters.put("perms", urlPermissionsFilter());
+		filters.put("anon", new AnonymousFilter());
+		bean.setFilters(filters);
+		
+		Map<String, String> chains = Maps.newHashMap();
+		chains.put("/login", "anon");
+		chains.put("/unauthor", "anon");
+		chains.put("/logout", "logout");
+		chains.put("/base/**", "anon");
+		chains.put("/css/**", "anon");
+		chains.put("/layer/**", "anon");
+		chains.put("/**", "authc,perms");
+		bean.setFilterChainDefinitionMap(chains);
+		return bean;
+	}
+	
+	/**
+	 * @see org.apache.shiro.mgt.SecurityManager
+	 * @return
+	 */
+	@Bean(name="securityManager")
+	public DefaultWebSecurityManager securityManager() {
+		DefaultWebSecurityManager manager = new DefaultWebSecurityManager();
+		manager.setRealm(userRealm());
+		manager.setCacheManager(cacheManager());
+		manager.setSessionManager(defaultWebSessionManager());
+		return manager;
+	}
+	
+	/**
+	 * @see DefaultWebSessionManager
+	 * @return
+	 */
+	@Bean(name="sessionManager")
+	public DefaultWebSessionManager defaultWebSessionManager() {
+		DefaultWebSessionManager sessionManager = new DefaultWebSessionManager();
+		sessionManager.setCacheManager(cacheManager());
+		sessionManager.setGlobalSessionTimeout(1800000);
+		sessionManager.setDeleteInvalidSessions(true);
+		sessionManager.setSessionValidationSchedulerEnabled(true);
+		sessionManager.setDeleteInvalidSessions(true);
+		return sessionManager;
+	}
+	
+	/**
+	 * @see UserRealm--->AuthorizingRealm
+	 * @return
+	 */
+	@Bean
+	@DependsOn(value="lifecycleBeanPostProcessor")
+	public UserRealm userRealm() {
+		UserRealm userRealm = new UserRealm();
+		userRealm.setCacheManager(cacheManager());
+		return userRealm;
+	}
+	
+	@Bean
+	public URLPermissionsFilter urlPermissionsFilter() {
+		return new URLPermissionsFilter();
+	}
+	
+	@Bean
+	public EhCacheManager cacheManager() {
+		EhCacheManager cacheManager = new EhCacheManager();
+		cacheManager.setCacheManagerConfigFile("classpath:ehcache.xml");
+		return cacheManager;
+	}
+	
+	@Bean
+	public LifecycleBeanPostProcessor lifecycleBeanPostProcessor() {
+		return new LifecycleBeanPostProcessor();
 	}
 }
 ```
