@@ -9,6 +9,7 @@
 > * 用admin/123456,拥有index权限reports未任何权限, lance/123456尚未分配任何权限.
 > * 参考[schema.sql](https://github.com/leelance/spring-boot-all/blob/master/spring-boot-shiro/src/main/resources/init-sql/schema.sql)
 
+1. Add dependencies to pom.
 ```xml
 <shiro.version>1.2.5</shiro.version>
 <dependency>
@@ -32,7 +33,7 @@
 	<version>${shiro.version}</version>
 </dependency>
 ```
-###application.properties
+2. application.properties
 ```
 #MYBATIS
 mybatis.type-aliases-package=com.lance.mybatis.domain
@@ -63,7 +64,7 @@ spring.datasource.maxPoolPreparedStatementPerConnectionSize=20
 spring.datasource.filters=stat,wall
 spring.datasource.connectionProperties=druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
 ```
-
+3.Shiro configuration
 ```java
 @Configuration
 public class ShiroConfig {
