@@ -64,7 +64,7 @@ spring.datasource.maxPoolPreparedStatementPerConnectionSize=20
 spring.datasource.filters=stat,wall
 spring.datasource.connectionProperties=druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
 ```
-3.Shiro configuration
+3. Shiro configuration
 ```java
 @Configuration
 public class ShiroConfig {
