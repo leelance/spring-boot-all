@@ -16,7 +16,7 @@ import org.springframework.stereotype.Component;
 
 import com.lance.shiro.service.UserService;
 
-@Component("urlPermissionsFilter")
+@Component
 public class URLPermissionsFilter extends PermissionsAuthorizationFilter{
 	@Autowired
 	private UserService userService;
