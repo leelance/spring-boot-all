@@ -104,5 +104,6 @@
     	<module>../spring-boot-devtools</module>
     	<module>../spring-boot-mybatis</module>
     	<module>../spring-boot-shiro</module>
+    	<module>../spring-boot-shiro-redis</module>
   </modules>
 </project>
