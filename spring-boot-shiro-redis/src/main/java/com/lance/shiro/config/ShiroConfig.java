@@ -5,7 +5,6 @@ import java.util.Map;
 import javax.servlet.DispatcherType;
 import javax.servlet.Filter;
 
-import org.apache.shiro.cache.ehcache.EhCacheManager;
 import org.apache.shiro.spring.LifecycleBeanPostProcessor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.filter.authc.AnonymousFilter;
@@ -15,6 +14,8 @@ import org.springframework.boot.context.embedded.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.DependsOn;
+import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.filter.DelegatingFilterProxy;
 
 import com.google.common.collect.Maps;
@@ -72,7 +73,7 @@ public class ShiroConfig {
 	public DefaultWebSecurityManager securityManager() {
 		DefaultWebSecurityManager manager = new DefaultWebSecurityManager();
 		manager.setRealm(userRealm());
-		manager.setCacheManager(cacheManager());
+		manager.setCacheManager(redisCacheManager());
 		manager.setSessionManager(defaultWebSessionManager());
 		return manager;
 	}
@@ -84,7 +85,7 @@ public class ShiroConfig {
 	@Bean(name="sessionManager")
 	public DefaultWebSessionManager defaultWebSessionManager() {
 		DefaultWebSessionManager sessionManager = new DefaultWebSessionManager();
-		sessionManager.setCacheManager(cacheManager());
+		sessionManager.setCacheManager(redisCacheManager());
 		sessionManager.setGlobalSessionTimeout(1800000);
 		sessionManager.setDeleteInvalidSessions(true);
 		sessionManager.setSessionValidationSchedulerEnabled(true);
@@ -97,10 +98,13 @@ public class ShiroConfig {
 	 * @return
 	 */
 	@Bean
-	@DependsOn(value="lifecycleBeanPostProcessor")
+	@DependsOn(value={"lifecycleBeanPostProcessor", "shrioRedisCacheManager"})
 	public UserRealm userRealm() {
 		UserRealm userRealm = new UserRealm();
-		userRealm.setCacheManager(cacheManager());
+		userRealm.setCacheManager(redisCacheManager());
+		userRealm.setCachingEnabled(true);
+		userRealm.setAuthenticationCachingEnabled(true);
+		userRealm.setAuthorizationCachingEnabled(true);
 		return userRealm;
 	}
 	
@@ -109,11 +113,29 @@ public class ShiroConfig {
 		return new URLPermissionsFilter();
 	}
 	
-	@Bean
-	public EhCacheManager cacheManager() {
-		EhCacheManager cacheManager = new EhCacheManager();
-		cacheManager.setCacheManagerConfigFile("classpath:ehcache.xml");
+	@Bean(name="shrioRedisCacheManager")
+	@DependsOn(value="redisTemplate")
+	public ShrioRedisCacheManager redisCacheManager() {
+		ShrioRedisCacheManager cacheManager = new ShrioRedisCacheManager(redisTemplate());
 		return cacheManager;
+	}
+	
+	@Bean(name="redisTemplate")
+	public RedisTemplate<byte[], Object> redisTemplate() {
+	    RedisTemplate<byte[], Object> template = new RedisTemplate<>();
+	    template.setConnectionFactory(connectionFactory());
+	    return template;
+	}
+	
+	@Bean
+	public JedisConnectionFactory connectionFactory(){
+		JedisConnectionFactory conn = new JedisConnectionFactory();
+		conn.setDatabase(3);
+		conn.setHostName("127.0.0.1");
+		conn.setPassword("123456");
+		conn.setPort(6379);
+		conn.setTimeout(3000);
+		return conn;
 	}
 	
 	@Bean
