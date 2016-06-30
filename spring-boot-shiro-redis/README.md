@@ -20,7 +20,7 @@ Add dependencies to pom
 </dependency>
 ```
 
-Shiro configuration
+Shiro-Redis configuration
 ```java
 @Bean(name="shrioRedisCacheManager")
 @DependsOn(value="redisTemplate")
