@@ -1,4 +1,4 @@
-# spring-boot-cache-ehcache, 依赖spring-boot-parent
+# spring-boot-cache-redis, 依赖spring-boot-parent
 * [spring-boot](http://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/)
 * [redis](http://redis.io/)
 * [jedis](https://github.com/xetorthio/jedis)
