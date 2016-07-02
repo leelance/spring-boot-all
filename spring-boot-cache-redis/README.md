@@ -1,6 +1,18 @@
 # spring-boot-cache-ehcache, 依赖spring-boot-parent
 * [spring-boot](http://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/)
-* [Ehcache2.10.*](http://www.ehcache.org/generated/2.10.2/html/ehc-all/)
+* [redis](http://redis.io/)
+* [jedis](https://github.com/xetorthio/jedis)
+
+```
+<dependency>
+	<groupId>org.springframework.boot</groupId>
+	<artifactId>spring-boot-starter-redis</artifactId>
+</dependency>
+<dependency>
+	<groupId>redis.clients</groupId>
+	<artifactId>jedis</artifactId>
+</dependency>
+```
 
 ```
 @EnableCaching
@@ -37,6 +49,14 @@ server.port=80
 #LOG
 logging.config=classpath:log4j2.xml
 
-spring.cache.type=ehcache
-spring.cache.ehcache.config=classpath:ehcache.xml
+# REDIS (RedisProperties)
+spring.redis.database=4
+spring.redis.host=127.0.0.1
+spring.redis.password=123456
+spring.redis.pool.max-active=8
+spring.redis.pool.max-idle=8
+spring.redis.pool.max-wait=-1
+spring.redis.pool.min-idle=0
+spring.redis.port=6379
+spring.redis.timeout=0
 ```
