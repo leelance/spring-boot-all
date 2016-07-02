@@ -2,6 +2,16 @@
 * [spring-boot](http://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/)
 * [Ehcache2.10.*](http://www.ehcache.org/generated/2.10.2/html/ehc-all/)
 
+```xml
+<dependency>
+	<groupId>org.springframework.boot</groupId>
+	<artifactId>spring-boot-starter-cache</artifactId>
+</dependency>
+<dependency>
+	<groupId>net.sf.ehcache</groupId>
+	<artifactId>ehcache</artifactId>
+</dependency>
+```
 ```
 @EnableCaching
 @EnableScheduling
