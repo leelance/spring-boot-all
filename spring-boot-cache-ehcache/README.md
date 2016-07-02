@@ -13,6 +13,17 @@ public class SimpleApplication {
 	}
 }
 
+@Component
+@CacheConfig(cacheNames="CityService")
+public class CityService {
+	Logger logger = LogManager.getLogger(getClass());
+
+	@Cacheable
+	public CityInfo getCity(int id, String city) {
+		logger.info("id: {}, city: {}", id, city);
+		return new CityInfo(id, city);
+	}
+}
 ```
 ###application.properties
 ```
