@@ -12,7 +12,7 @@
 	<artifactId>ehcache</artifactId>
 </dependency>
 ```
-```
+```java
 @EnableCaching
 @EnableScheduling
 @SpringBootApplication
@@ -36,7 +36,7 @@ public class CityService {
 }
 ```
 ###application.properties
-```
+```properties
 # IDENTITY (ContextIdApplicationContextInitializer)
 spring.application.index=Cache.v1.1
 spring.application.name=Cache Boot
