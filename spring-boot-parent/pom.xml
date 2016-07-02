@@ -105,6 +105,6 @@
     	<module>../spring-boot-mybatis</module>
     	<module>../spring-boot-shiro</module>
     	<module>../spring-boot-shiro-redis</module>
-    	<module>../spring-boot-cache</module>
+    	<module>../spring-boot-cache-ehcache</module>
   </modules>
 </project>

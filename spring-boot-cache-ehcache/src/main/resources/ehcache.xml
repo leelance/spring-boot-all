@@ -1,0 +1,5 @@
+<ehcache name="spring_boot_auto_ehcache">
+    <diskStore path="java.io.tmpdir"/>
+
+   	<cache name="CityService" maxElementsInMemory="10" eternal="true" overflowToDisk="false"/>
+</ehcache>

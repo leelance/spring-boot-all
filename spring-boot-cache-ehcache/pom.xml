@@ -10,7 +10,7 @@
 		<relativePath>../spring-boot-parent/pom.xml</relativePath>
 	</parent>
 
-	<artifactId>spring-boot-cache</artifactId>
+	<artifactId>spring-boot-cache-ehcache</artifactId>
 	<packaging>war</packaging>
 	<name>spring-boot-cache</name>
 	<url>http://maven.apache.org</url>
@@ -28,9 +28,14 @@
 			<groupId>net.sf.ehcache</groupId>
 			<artifactId>ehcache</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>fastjson</artifactId>
+			<version>1.2.12</version>
+		</dependency>
 	</dependencies>
 
 	<build>
-		<finalName>spring-boot-cache</finalName>
+		<finalName>spring-boot-cache-ehcache</finalName>
 	</build>
 </project>
