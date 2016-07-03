@@ -11,6 +11,7 @@
 > * 用admin/123456,拥有index权限reports未任何权限, lance/123456尚未分配任何权限.
 > * 参考[schema.sql](https://github.com/leelance/spring-boot-all/blob/master/spring-boot-shiro/src/main/resources/init-sql/schema.sql)
 > * shiro Cache交于Redis进行管理
+> * springmvc-shiro采用xml配置, 参考[demo-springmvc-shiro](https://github.com/leelance/demo/tree/master/demo-springmvc-shiro)
 
 Add dependencies to pom
 ```xml
