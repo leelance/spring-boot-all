@@ -107,5 +107,6 @@
     	<module>../spring-boot-shiro-redis</module>
     	<module>../spring-boot-cache-ehcache</module>
     	<module>../spring-boot-cache-redis</module>
+    	<module>../spring-boot-activemq-producer</module>
   </modules>
 </project>
