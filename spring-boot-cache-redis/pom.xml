@@ -12,7 +12,7 @@
 
 	<artifactId>spring-boot-cache-redis</artifactId>
 	<packaging>war</packaging>
-	<name>spring-boot-cache-redis Maven Webapp</name>
+	<name>spring-boot-cache-redis</name>
 	<url>http://maven.apache.org</url>
 
 	<dependencies>
