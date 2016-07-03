@@ -1,5 +1,5 @@
 # spring-boot-hello, 依赖spring-boot-parent,集成log4j2
-```
+```java
 @Configuration
 @ComponentScan
 @EnableAutoConfiguration
@@ -11,7 +11,7 @@ public class Application {
 
 ```
 ###application.properties
-```
+```properties
 # IDENTITY (ContextIdApplicationContextInitializer)
 spring.application.index=Hello.v1.1
 spring.application.name=Hello Boot
