@@ -2,6 +2,8 @@
 * [spring-boot](http://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/)
 * [ActiveMQ](http://activemq.apache.org/)
 
+> * springmvc集成ActiveMQ,采用XML配置消费者[demo-springmvc-activemq-consumer](https://github.com/leelance/demo/tree/master/demo-springmvc-activemq-consumer)
+
 ```xml
 <dependency>
 	<groupId>org.springframework</groupId>
