@@ -1,4 +1,4 @@
-# spring-boot-cache-redis, 依赖spring-boot-parent
+# spring-boot-activemq-producer, 依赖spring-boot-parent
 * [spring-boot](http://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/)
 * [ActiveMQ](http://activemq.apache.org/)
 
