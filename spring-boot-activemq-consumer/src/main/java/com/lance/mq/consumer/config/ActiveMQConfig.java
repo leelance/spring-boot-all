@@ -7,7 +7,9 @@ import org.apache.activemq.command.ActiveMQQueue;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Description;
-import org.springframework.jms.core.JmsTemplate;
+import org.springframework.jms.listener.DefaultMessageListenerContainer;
+import org.springframework.jms.listener.MessageListenerContainer;
+import org.springframework.jms.listener.adapter.MessageListenerAdapter;
 import org.springframework.jms.support.converter.SimpleMessageConverter;
 
 @Configuration
@@ -20,11 +22,25 @@ public class ActiveMQConfig {
 		return new ActiveMQQueue(QUEUE_HELLO);
 	}
 	
-	@Bean(name="jmsTemplate")
-	public JmsTemplate jmsTemplate(ActiveMQConnectionFactory connectionFactory ) {
-		JmsTemplate template = new JmsTemplate(connectionFactory);
-		template.setDefaultDestination(helloQueue());
-		template.setMessageConverter(new SimpleMessageConverter());
-		return template;
+	@Bean(name="textMessageListenerAdapter")
+	public MessageListenerAdapter messageListenerAdapter() {
+		MessageListenerAdapter adapter = new MessageListenerAdapter();
+		adapter.setMessageConverter(new SimpleMessageConverter());
+		adapter.setDelegate(textConsumerListener());
+		return adapter;
+	}
+	
+	@Bean
+	public MessageListenerContainer messageListenerContainer(ActiveMQConnectionFactory connectionFactory) {
+		DefaultMessageListenerContainer container = new DefaultMessageListenerContainer();
+		container.setConnectionFactory(connectionFactory);
+		container.setDestination(helloQueue());
+		container.setMessageListener(messageListenerAdapter());
+		return container;
+	}
+	
+	@Bean
+	public ConsumerListener textConsumerListener() {
+		return new ConsumerListener();
 	}
 }
