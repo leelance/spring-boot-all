@@ -9,6 +9,6 @@ public class ConsumerListener{
 	Logger log = LogManager.getLogger(getClass());
 	
 	public void handleMessage(String message) {
-		log.info("Message: {}", message);
+		log.info("TextMessage: {}", message);
 	}
 }
