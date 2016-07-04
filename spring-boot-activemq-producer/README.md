@@ -1,6 +1,7 @@
 # spring-boot-activemq-producer, 依赖spring-boot-parent
 * [spring-boot](http://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/)
 * [ActiveMQ](http://activemq.apache.org/)
+> * springmvc集成ActiveMQ,采用XML配置[demo-springmvc-activemq](https://github.com/leelance/demo/tree/master/demo-springmvc-activemq)
 
 ```xml
 <dependency>
