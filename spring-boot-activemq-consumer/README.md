@@ -1,4 +1,4 @@
-# spring-boot-activemq-producer, 依赖spring-boot-parent
+# spring-boot-activemq-consumer, 依赖spring-boot-parent
 * [spring-boot](http://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/)
 * [ActiveMQ](http://activemq.apache.org/)
 
@@ -28,18 +28,32 @@ public class ActiveMQConfig {
 		return new ActiveMQQueue(QUEUE_HELLO);
 	}
 	
-	public PooledConnectionFactory connectionFactory(ActiveMQConnectionFactory connectionFactory) {
-		PooledConnectionFactory pool = new PooledConnectionFactory(connectionFactory);
-		pool.setMaxConnections(5);
-		return pool;
+	@Bean(name="textMessageListenerAdapter")
+	public MessageListenerAdapter messageListenerAdapter() {
+		MessageListenerAdapter adapter = new MessageListenerAdapter();
+		adapter.setMessageConverter(new SimpleMessageConverter());
+		adapter.setDelegate(textConsumerListener());
+		return adapter;
 	}
 	
-	@Bean(name="jmsTemplate")
-	public JmsTemplate jmsTemplate(ActiveMQConnectionFactory connectionFactory) {
-		JmsTemplate template = new JmsTemplate(connectionFactory(connectionFactory));
-		template.setDefaultDestination(helloQueue());
-		template.setMessageConverter(new SimpleMessageConverter());
-		return template;
+	public CachingConnectionFactory connectionFactory(ActiveMQConnectionFactory connectionFactory) {
+		CachingConnectionFactory factory = new CachingConnectionFactory(connectionFactory);
+		return factory;
+	}
+	
+	@Bean
+	public MessageListenerContainer messageListenerContainer(ActiveMQConnectionFactory connectionFactory) {
+		DefaultMessageListenerContainer container = new DefaultMessageListenerContainer();
+		container.setConnectionFactory(connectionFactory(connectionFactory));
+		container.setDestination(helloQueue());
+		container.setMessageListener(messageListenerAdapter());
+		container.setConcurrency("10-50");
+		return container;
+	}
+	
+	@Bean
+	public ConsumerListener textConsumerListener() {
+		return new ConsumerListener();
 	}
 }
 ```
