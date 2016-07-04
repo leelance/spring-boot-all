@@ -108,5 +108,6 @@
     	<module>../spring-boot-cache-ehcache</module>
     	<module>../spring-boot-cache-redis</module>
     	<module>../spring-boot-activemq-producer</module>
+    	<module>../spring-boot-activemq-consumer</module>
   </modules>
 </project>
