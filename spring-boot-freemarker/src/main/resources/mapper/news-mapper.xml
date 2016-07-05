@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lance.freemaker.mapper.NewsMapper">
+	
+	<!-- findAll -->
+	<select id="findAll" resultType="NewsInfo">
+		select *from t_news ORDER BY create_time desc limit #{value},10
+	</select>
+	
+	<!-- findCount -->
+	<select id="findCount" resultType="int" >
+		select count(1) from t_news
+	</select>
+	
+	<!-- findOne -->
+	<select id="findOne" resultType="NewsInfo">
+		select *from t_news where id=#{value}
+	</select>
+	
+	<!-- save -->
+	<insert id="save" parameterType="NewsInfo">
+		insert into t_news(title,summary,author,content,status,create_time)
+		values(#{title}, #{summary}, #{author}, #{content}, #{status}, now())
+	</insert>
+</mapper>
