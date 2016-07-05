@@ -5,7 +5,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-@MapperScan("com.lance.freemaker.mapper")
+@MapperScan(basePackages="com.lance.freemaker.mapper")
 public class SimpleApplication {
 
 	public static void main(String[] args) {
