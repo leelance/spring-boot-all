@@ -109,5 +109,6 @@
     	<module>../spring-boot-cache-redis</module>
     	<module>../spring-boot-activemq-producer</module>
     	<module>../spring-boot-activemq-consumer</module>
+    	<module>../spring-boot-email</module>
   </modules>
 </project>
