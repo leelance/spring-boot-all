@@ -1,68 +1,90 @@
-# spring-boot-activemq-consumer, 依赖spring-boot-parent
+# spring-boot-email, 依赖spring-boot-parent
 * [spring-boot](http://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/)
-* [ActiveMQ](http://activemq.apache.org/)
-
-> * springmvc集成ActiveMQ,采用XML配置消费者[demo-springmvc-activemq-consumer](https://github.com/leelance/demo/tree/master/demo-springmvc-activemq-consumer)
 
 ```xml
 <dependency>
-	<groupId>org.springframework</groupId>
-	<artifactId>spring-jms</artifactId>
-</dependency>
-<dependency>
-	<groupId>org.apache.activemq</groupId>
-	<artifactId>activemq-client</artifactId>
-</dependency>
-<dependency>
-	<groupId>org.apache.activemq</groupId>
-	<artifactId>activemq-spring</artifactId>
+	<groupId>org.springframework.boot</groupId>
+	<artifactId>spring-boot-starter-mail</artifactId>
 </dependency>
 ```
 
 ```java
-@Configuration
-@Description(value = "ActiveMQ Configuration")
-public class ActiveMQConfig {
-	public static final String QUEUE_HELLO = "queue.hello";
+@Component("emailSender")
+public class EmailSender {
+	private Logger logger = LogManager.getLogger(getClass());
+	private String defaultFrom = "server1@qq.com";
+	@Autowired
+	private JavaMailSender javaMailSender;
 	
-	@Bean(name="helloQueue")
-	public Queue helloQueue() {
-		return new ActiveMQQueue(QUEUE_HELLO);
+	/**
+	 * 发送邮件
+	 * @param to			收件人地址
+	 * @param subject		邮件主题
+	 * @param content		邮件内容
+	 * @author lance
+	 */
+	public boolean sender(String to, String subject, String content) {
+		return sender(to, subject, content, true);
 	}
 	
-	@Bean(name="textMessageListenerAdapter")
-	public MessageListenerAdapter messageListenerAdapter() {
-		MessageListenerAdapter adapter = new MessageListenerAdapter();
-		adapter.setMessageConverter(new SimpleMessageConverter());
-		adapter.setDelegate(textConsumerListener());
-		return adapter;
+	/**
+	 * 发送邮件
+	 * @param to			收件人地址
+	 * @param subject		邮件主题
+	 * @param content		邮件内容
+	 * @param html			是否格式内容为HTML
+	 * @author lance
+	 */
+	public boolean sender(String to, String subject, String content, boolean html){
+		if(StringUtils.isBlank(to)) {
+			logger.error("邮件发送失败：收件人地址不能为空.");
+			return false;
+		}
+		return sender(new String[]{to}, subject, content, html);
 	}
 	
-	public CachingConnectionFactory connectionFactory(ActiveMQConnectionFactory connectionFactory) {
-		CachingConnectionFactory factory = new CachingConnectionFactory(connectionFactory);
-		return factory;
-	}
-	
-	@Bean
-	public MessageListenerContainer messageListenerContainer(ActiveMQConnectionFactory connectionFactory) {
-		DefaultMessageListenerContainer container = new DefaultMessageListenerContainer();
-		container.setConnectionFactory(connectionFactory(connectionFactory));
-		container.setDestination(helloQueue());
-		container.setMessageListener(messageListenerAdapter());
-		container.setConcurrency("10-50");
-		return container;
-	}
-	
-	@Bean
-	public ConsumerListener textConsumerListener() {
-		return new ConsumerListener();
+	/**
+	 * sender message
+	 * @param to
+	 * @param subject
+	 * @param content
+	 * @param html
+	 * @return
+	 */
+	public boolean sender(String[] to, String subject, String content, boolean html){
+		if(to == null || to.length == 0) {
+			logger.error("批量邮件发送失败：收件人地址不能为空.");
+			return false;
+		}
+		
+		SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
+		simpleMailMessage.setFrom(defaultFrom);
+		simpleMailMessage.setTo(to);
+		simpleMailMessage.setSubject(subject);
+		simpleMailMessage.setText(content);
+		
+		try {
+			javaMailSender.send(simpleMailMessage);
+			return true;
+		} catch (MailException e) {
+			logger.error("发送邮件错误：{}, TO:{}, Subject:{},Content:{}.", e, to, subject, content);
+			return false;
+		}
 	}
 }
 ```
 ###application.properties
 ```properties
-# ACTIVEMQ (ActiveMQProperties)
-spring.activemq.broker-url=tcp://10.0.2.95:61616
-spring.activemq.in-memory=true
-spring.activemq.pooled=false
+# Email (MailProperties)
+spring.mail.default-encoding=UTF-8
+spring.mail.host=smtp.qq.com
+spring.mail.password=123456
+spring.mail.port=25
+spring.mail.protocol=smtp
+spring.mail.test-connection=false
+spring.mail.username=server1@qq.com
+spring.mail.properties.mail.smtp.auth=true
+spring.mail.properties.mail.smtp.starttls.enable=true
+spring.mail.properties.mail.transport.protocol=smtps
+spring.mail.properties.mail.smtps.quitwait=false
 ```
