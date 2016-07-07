@@ -8,23 +8,9 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Jumbotron Template for Bootstrap</title>
+    <title>FreeMarker Index</title>
 
-    <!-- Bootstrap core CSS -->
     <link href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Custom styles for this template -->
-    <link href="jumbotron.css" rel="stylesheet">
-
-    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
-    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-    <script src="../../assets/js/ie-emulation-modes-warning.js"></script>
-
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-      <script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
   </head>
 
   <body>
@@ -83,9 +69,9 @@
 	                  	<a href="/detail/${info.id}" title="${info.title}">
 							<#if info.summary?length &gt; 20>
 						  		${info.title?substring(0,20)} ...
-						  <#else>
+						    <#else>
 								${info.title}
-						  </#if>
+						    </#if>
 			            </a>
 	                  </td>
 	                  <td title="${info.summary}">
@@ -111,23 +97,48 @@
 	                </tr>
        	 	  	  </#list>
        	 	  </tbody>
+       	 	  <tfoot>
+	       	 	  <tr>
+	   	 	  		<td colspan="6" class="text-center">
+	   	 	  			  <ul class="pagination" style="margin:0px;">
+	   	 	  			  	<!-- First Page -->
+	   	 	  			  	<#if page.isFirstPage()>
+	   	 	  			  		<li><span aria-hidden="true">&laquo;</span></li>
+						    <#else>
+								<li>
+							      <a href="/index?page=${page.pageNumber-1}" aria-label="Previous">
+							        <span aria-hidden="true">&laquo;</span>
+							      </a>
+							    </li>
+						    </#if>
+						    
+						    <#list page.navigatePageNumbers as index>
+						    	<li><a href="/index?page=${index}">${index}</a></li>
+						    </#list>
+
+							<!-- Last Page -->
+							<#if page.isLastPage()>
+	   	 	  			  		<li><span aria-hidden="true">&raquo;</span></li>
+						    <#else>
+								<li>
+							      <a href="/index?page=${page.pageNumber+1}" aria-label="Previous">
+							        <span aria-hidden="true">&raquo;</span>
+							      </a>
+							    </li>
+						    </#if>
+						  </ul>
+	   	 	  		</td>
+	       	 	  </tr>
+       	 	  </tfoot>
        	 </table>	
       </div>
-
-      <hr>
-
-      <footer>
-        <p>&copy; Company 2014</p>
-      </footer>
+	
+	  <#include "/footer.ftl">
     </div> <!-- /container -->
 
 
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
+    <!-- Bootstrap core JavaScript -->
     <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
     <script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
   </body>
 </html>
