@@ -15,7 +15,7 @@ public class PageInfo<T> implements Serializable {
 	// 总记录数
 	private int total = 0; 
 	// 每页显示记录数
-	private int pageSize = 10; 
+	private int pageSize = 5; 
 	//针对查询开始记录数量, 如select *from table limit pageStart,pageSize
 	@SuppressWarnings("unused")
 	private int pageStart = 0;
