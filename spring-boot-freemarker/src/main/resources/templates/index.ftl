@@ -38,7 +38,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">Project name</a>
+          <a class="navbar-brand" href="/index">Project name</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <form class="navbar-form navbar-right">
@@ -80,7 +80,7 @@
        	 	  	  	<tr>
 	                  <td>${info.id}</td>
 	                  <td>
-	                  	<a href="/system/admin/news/detail/${info.id}" title="${info.title}">
+	                  	<a href="/detail/${info.id}" title="${info.title}">
 							<#if info.summary?length &gt; 20>
 						  		${info.title?substring(0,20)} ...
 						  <#else>

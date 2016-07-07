@@ -44,7 +44,7 @@ public class IndexController {
 	 */
 	@RequestMapping("detail/{id}")
 	public String detail(Model model, @PathVariable int id) {		
-		model.addAttribute("detail", newService.findOne(id));
+		model.addAttribute("info", newService.findOne(id));
 		return "detail";
 	}
 }
