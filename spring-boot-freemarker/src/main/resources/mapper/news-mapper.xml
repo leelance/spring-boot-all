@@ -4,7 +4,7 @@
 	
 	<!-- findAll -->
 	<select id="findAll" resultType="NewsInfo">
-		select *from t_news ORDER BY create_time desc limit #{value},10
+		select *from t_news ORDER BY create_time desc limit #{value},5
 	</select>
 	
 	<!-- findCount -->
