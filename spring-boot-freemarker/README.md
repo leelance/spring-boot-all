@@ -2,6 +2,10 @@
 * [spring-boot](http://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/)
 * [freemarker](http://freemarker.org/)
 
+> 1.http://localhost/system/login展示后台发布新闻列表
+> 2.http://localhost/前端Freemark模板展示
+> 3.中间用到了Mysql, Mybatis, druid
+
 ```xml
 <dependency>
 	<groupId>org.springframework.boot</groupId>
@@ -16,6 +20,14 @@ public class SimpleApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(SimpleApplication.class, args);
+	}
+}
+@Configuration
+public class WebMvcConfig extends WebMvcConfigurerAdapter{
+
+	@Override
+	public void addInterceptors(InterceptorRegistry registry) {
+		registry.addInterceptor(new AdminInterceptor()).addPathPatterns("/system/admin/**");
 	}
 }
 
