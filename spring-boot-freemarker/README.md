@@ -1,90 +1,43 @@
 # spring-boot-email, 依赖spring-boot-parent
 * [spring-boot](http://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/)
+* [freemarker](http://freemarker.org/)
 
 ```xml
 <dependency>
 	<groupId>org.springframework.boot</groupId>
-	<artifactId>spring-boot-starter-mail</artifactId>
+	<artifactId>spring-boot-starter-freemarker</artifactId>
 </dependency>
 ```
 
 ```java
-@Component("emailSender")
-public class EmailSender {
-	private Logger logger = LogManager.getLogger(getClass());
-	private String defaultFrom = "server1@qq.com";
-	@Autowired
-	private JavaMailSender javaMailSender;
-	
-	/**
-	 * 发送邮件
-	 * @param to			收件人地址
-	 * @param subject		邮件主题
-	 * @param content		邮件内容
-	 * @author lance
-	 */
-	public boolean sender(String to, String subject, String content) {
-		return sender(to, subject, content, true);
-	}
-	
-	/**
-	 * 发送邮件
-	 * @param to			收件人地址
-	 * @param subject		邮件主题
-	 * @param content		邮件内容
-	 * @param html			是否格式内容为HTML
-	 * @author lance
-	 */
-	public boolean sender(String to, String subject, String content, boolean html){
-		if(StringUtils.isBlank(to)) {
-			logger.error("邮件发送失败：收件人地址不能为空.");
-			return false;
-		}
-		return sender(new String[]{to}, subject, content, html);
-	}
-	
-	/**
-	 * sender message
-	 * @param to
-	 * @param subject
-	 * @param content
-	 * @param html
-	 * @return
-	 */
-	public boolean sender(String[] to, String subject, String content, boolean html){
-		if(to == null || to.length == 0) {
-			logger.error("批量邮件发送失败：收件人地址不能为空.");
-			return false;
-		}
-		
-		SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
-		simpleMailMessage.setFrom(defaultFrom);
-		simpleMailMessage.setTo(to);
-		simpleMailMessage.setSubject(subject);
-		simpleMailMessage.setText(content);
-		
-		try {
-			javaMailSender.send(simpleMailMessage);
-			return true;
-		} catch (MailException e) {
-			logger.error("发送邮件错误：{}, TO:{}, Subject:{},Content:{}.", e, to, subject, content);
-			return false;
-		}
+@SpringBootApplication
+@MapperScan(basePackages="com.lance.freemaker.mapper")
+public class SimpleApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(SimpleApplication.class, args);
 	}
 }
+
 ```
 ###application.properties
 ```properties
-# Email (MailProperties)
-spring.mail.default-encoding=UTF-8
-spring.mail.host=smtp.qq.com
-spring.mail.password=123456
-spring.mail.port=25
-spring.mail.protocol=smtp
-spring.mail.test-connection=false
-spring.mail.username=server1@qq.com
-spring.mail.properties.mail.smtp.auth=true
-spring.mail.properties.mail.smtp.starttls.enable=true
-spring.mail.properties.mail.transport.protocol=smtps
-spring.mail.properties.mail.smtps.quitwait=false
+# FREEMARKER (FreeMarkerAutoConfiguration)
+spring.freemarker.allow-request-override=false
+spring.freemarker.allow-session-override=false
+spring.freemarker.cache=true
+spring.freemarker.charset=UTF-8
+spring.freemarker.check-template-location=true
+spring.freemarker.content-type=text/html
+spring.freemarker.enabled=true
+spring.freemarker.expose-request-attributes=false
+spring.freemarker.expose-session-attributes=false
+spring.freemarker.expose-spring-macro-helpers=true
+spring.freemarker.prefer-file-system-access=true
+spring.freemarker.suffix=.ftl
+spring.freemarker.template-loader-path=classpath:/templates/
+spring.freemarker.settings.template_update_delay=0
+spring.freemarker.settings.default_encoding=UTF-8
+spring.freemarker.settings.classic_compatible=true
+spring.freemarker.order=1
 ```
