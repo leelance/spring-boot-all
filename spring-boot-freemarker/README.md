@@ -1,4 +1,4 @@
-# spring-boot-email, 依赖spring-boot-parent
+# spring-boot-freemarker, 依赖spring-boot-parent
 * [spring-boot](http://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/)
 * [freemarker](http://freemarker.org/)
 
