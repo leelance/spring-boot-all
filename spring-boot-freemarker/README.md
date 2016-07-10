@@ -4,7 +4,7 @@
 
 > * http://localhost/system/login展示后台发布新闻列表
 > * http://localhost/前端Freemark模板展示
-> * 中间用到了Mysql, Mybatis, druid
+> * 中间用到了Mysql, Mybatis, druid;可以参考spring-boot相关的demo
 
 ```xml
 <dependency>
