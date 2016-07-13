@@ -13,6 +13,33 @@
 <link rel="stylesheet"
 	href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
 </head>
+<style type="text/css">
+#connect-container {
+	float: left;
+	width: 400px
+}
+#connect-container div {
+	padding: 5px;
+}
+#console-container {
+	float: left;
+	margin-left: 15px;
+	width: 400px;
+}
+#console {
+	border: 1px solid #CCCCCC;
+	border-right-color: #999999;
+	border-bottom-color: #999999;
+	height: 170px;
+	overflow-y: scroll;
+	padding: 5px;
+	width: 100%;
+}
+#console p {
+	padding: 0;
+	margin: 0;
+}
+</style>
 <body>
 
 	<div class="container-fluid">
@@ -53,7 +80,21 @@
 		<div class="row">
 			<div class="col-md-4"></div>
 			<div class="col-md-4 text-center">
-				Hello world.
+				<div id="connect-container">
+					<div>
+						<button id="connect" onclick="connect();">Connect</button>
+						<button id="disconnect" disabled="disabled" onclick="disconnect();">Disconnect</button>
+					</div>
+					<div>
+						<textarea id="message" style="width: 350px">Welcome to you!</textarea>
+					</div>
+					<div>
+						<button id="echo" onclick="echo();" disabled="disabled">Send</button>
+					</div>
+				</div>
+				<div id="console-container">
+					<div id="console"></div>
+				</div>
 			</div>
 			<div class="col-md-4"></div>
 		</div>
@@ -61,5 +102,55 @@
 
 	<script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
 	<script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/sockjs/0.3.4/sockjs.min.js"></script>
+	<script type="text/javascript">
+	var ws = null;
+	function setConnected(connected) {
+		document.getElementById('connect').disabled = connected;
+		document.getElementById('disconnect').disabled = !connected;
+		document.getElementById('echo').disabled = !connected;
+	}
+	function connect() {
+		ws = new SockJS("/echo");
+		ws.onopen = function () {
+			setConnected(true);
+			log('Info: WebSocket connection opened.');
+		};
+		ws.onmessage = function (event) {
+			log('Received: ' + event.data);
+		};
+		ws.onclose = function () {
+			setConnected(false);
+			log('Info: WebSocket connection closed.');
+		};
+	}
+	function disconnect() {
+		if (ws != null) {
+			ws.close();
+			ws = null;
+		}
+		setConnected(false);
+	}
+	function echo() {
+		if (ws != null) {
+			var message = document.getElementById('message').value;
+			log('Sent: ' + message);
+			ws.send(message);
+		} else {
+			alert('WebSocket connection not established, please connect.');
+		}
+	}
+	function log(message) {
+		var console = document.getElementById('console');
+		var p = document.createElement('p');
+		p.style.wordWrap = 'break-word';
+		p.appendChild(document.createTextNode(message));
+		console.appendChild(p);
+		while (console.childNodes.length > 25) {
+			console.removeChild(console.firstChild);
+		}
+		console.scrollTop = console.scrollHeight;
+	}
+	</script>
 </body>
 </html>
