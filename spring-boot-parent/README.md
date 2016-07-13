@@ -2,6 +2,18 @@
 依赖1.3.5版本，http://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/
 ## xml
  ```
+<module>../spring-boot-hello</module>
+<module>../spring-boot-devtools</module>
+<module>../spring-boot-mybatis</module>
+<module>../spring-boot-shiro</module>
+<module>../spring-boot-shiro-redis</module>
+<module>../spring-boot-cache-ehcache</module>
+<module>../spring-boot-cache-redis</module>
+<module>../spring-boot-activemq-producer</module>
+<module>../spring-boot-activemq-consumer</module>
+<module>../spring-boot-email</module>
+<module>../spring-boot-freemarker</module>
+	    	
 <parent>
 	<groupId>org.springframework.boot</groupId>
 	<artifactId>spring-boot-starter-parent</artifactId>
