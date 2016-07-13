@@ -111,5 +111,6 @@
     	<module>../spring-boot-activemq-consumer</module>
     	<module>../spring-boot-email</module>
     	<module>../spring-boot-freemarker</module>
+    	<module>../spring-boot-websocket</module>
   </modules>
 </project>
