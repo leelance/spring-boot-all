@@ -71,7 +71,13 @@
 		<div class="row">
 			<div class="col-md-2"></div>
 			<div class="col-md-8 text-center">
-				<div id="connect-container">
+			   <div id="convo" data-from="Sonu Joshi">  
+					<ul class="chat-thread" id="convo-ul">
+						<li>Welcome to you!</li>
+					</ul>
+			   </div>
+			   <div style="text-align:center;clear:both"></div>
+			   <div id="connect-container">
 					<div>
 						<button id="connect" onclick="connect();">Connect</button>
 						<button id="disconnect" disabled="disabled" onclick="disconnect();">Disconnect</button>
@@ -83,16 +89,7 @@
 						<button id="echo" onclick="echo();" disabled="disabled">Send</button>
 					</div>
 				</div>
-				   <div id="convo" data-from="Sonu Joshi">  
-						<ul class="chat-thread" id="convo-ul">
-							<li>Welcome to you!</li>
-						</ul>
-					</div>
-					<div style="text-align:center;clear:both"></div>
-				<!-- <div id="console-container">
-					<div id="console"></div>
-				</div> -->
-			</div>
+			</div> -->
 			<div class="col-md-2"></div>
 		</div>
 	</div>
