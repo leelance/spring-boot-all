@@ -28,7 +28,7 @@ public class EchoWebSocketHandler extends TextWebSocketHandler {
 		String echoMessage = this.echoService.getMessage(message.getPayload());
 		logger.info("payLoad: {}, message: {}", echoMessage, JSON.toJSONString(message));
 		
-		//logger.info("sessionId: {}, session: {}", session.getId(), JSON.toJSONString(session));
+		logger.info("sessionId: {}", session.getId());
 		session.sendMessage(new TextMessage(echoMessage));
 	}
 
