@@ -7,6 +7,7 @@ import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
+import com.alibaba.fastjson.JSON;
 import com.lance.websocket.service.EchoService;
 
 public class EchoWebSocketHandler extends TextWebSocketHandler {
@@ -19,13 +20,15 @@ public class EchoWebSocketHandler extends TextWebSocketHandler {
 
 	@Override
 	public void afterConnectionEstablished(WebSocketSession session) {
-		logger.debug("Opened new session in instance " + this);
+		logger.info("Opened new session in instance " + this);
 	}
 
 	@Override
 	public void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
 		String echoMessage = this.echoService.getMessage(message.getPayload());
-		logger.debug(echoMessage);
+		logger.info("payLoad: {}, message: {}", echoMessage, JSON.toJSONString(message));
+		
+		//logger.info("sessionId: {}, session: {}", session.getId(), JSON.toJSONString(session));
 		session.sendMessage(new TextMessage(echoMessage));
 	}
 
