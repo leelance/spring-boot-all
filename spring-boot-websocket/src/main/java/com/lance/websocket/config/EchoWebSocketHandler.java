@@ -36,4 +36,9 @@ public class EchoWebSocketHandler extends TextWebSocketHandler {
 	public void handleTransportError(WebSocketSession session, Throwable exception) throws Exception {
 		session.close(CloseStatus.SERVER_ERROR);
 	}
+
+	@Override
+	public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
+		logger.info("Close session in instance, sessionId = " + session.getId());
+	}
 }
