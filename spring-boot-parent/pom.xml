@@ -112,5 +112,6 @@
     	<module>../spring-boot-email</module>
     	<module>../spring-boot-freemarker</module>
     	<module>../spring-boot-websocket</module>
+    	<module>../spring-boot-websocket-client</module>
   </modules>
 </project>
