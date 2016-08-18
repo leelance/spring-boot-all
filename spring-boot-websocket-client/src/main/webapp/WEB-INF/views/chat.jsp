@@ -96,7 +96,7 @@
 
 	<script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
 	<script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-	<script src="https://cdn.jsdelivr.net/sockjs/0.3.4/sockjs.min.js"></script>
+	<script src="//cdn.jsdelivr.net/sockjs/1/sockjs.min.js"></script>
 <script type="text/javascript">
 	var ws = null;
 	function setConnected(connected) {
@@ -105,7 +105,7 @@
 		document.getElementById('echo').disabled = !connected;
 	}
 	function connect() {
-		ws = new SockJS("http://127.0.0.1/echo");
+		ws = new SockJS("http://10.0.2.23/echo", false);
 		ws.onopen = function () {
 			setConnected(true);
 			log('Info: WebSocket connection opened.');
@@ -116,6 +116,12 @@
 		ws.onclose = function () {
 			setConnected(false);
 			log('Info: WebSocket connection closed.');
+		};
+		
+		//配置Sockjs Heartbeat
+		ws.onheartbeat = function(data) {
+			console.log(data);
+		    console.log('heartbeat'+new Date());
 		};
 	}
 	function disconnect() {
