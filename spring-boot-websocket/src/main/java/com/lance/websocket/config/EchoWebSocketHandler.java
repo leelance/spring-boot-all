@@ -21,14 +21,13 @@ public class EchoWebSocketHandler extends TextWebSocketHandler {
 	@Override
 	public void afterConnectionEstablished(WebSocketSession session) {
 		logger.info("Opened new session in instance " + this);
+		SocketSessionHandler.newInstance().addSession(session);
 	}
 
 	@Override
 	public void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
 		String echoMessage = this.echoService.getMessage(message.getPayload());
 		logger.info("payLoad: {}, message: {}", echoMessage, JSON.toJSONString(message));
-		
-		logger.info("sessionId: {}", session.getId());
 		session.sendMessage(new TextMessage(echoMessage));
 	}
 
@@ -40,5 +39,6 @@ public class EchoWebSocketHandler extends TextWebSocketHandler {
 	@Override
 	public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
 		logger.info("Close session in instance, sessionId = " + session.getId());
+		SocketSessionHandler.newInstance().removeSession(session.getId());
 	}
 }
