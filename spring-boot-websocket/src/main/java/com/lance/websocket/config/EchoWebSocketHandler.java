@@ -28,7 +28,9 @@ public class EchoWebSocketHandler extends TextWebSocketHandler {
 	public void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
 		String echoMessage = this.echoService.getMessage(message.getPayload());
 		logger.info("payLoad: {}, message: {}", echoMessage, JSON.toJSONString(message));
+		
 		session.sendMessage(new TextMessage(echoMessage));
+		SocketSessionHandler.newInstance().addSession(session);
 	}
 
 	@Override
