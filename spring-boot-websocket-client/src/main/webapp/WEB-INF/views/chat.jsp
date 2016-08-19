@@ -120,7 +120,6 @@
 		
 		//配置Sockjs Heartbeat
 		ws.onheartbeat = function(data) {
-			console.log(data);
 		    console.log('heartbeat'+new Date());
 		};
 	}
