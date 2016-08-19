@@ -14,7 +14,11 @@ public class WebSocketConfig implements WebSocketConfigurer{
 
 	@Override
 	public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
-		registry.addHandler(echoWebSocketHandler(), "/echo").setAllowedOrigins("*").withSockJS();
+		registry.addHandler(echoWebSocketHandler(), "/echo")
+				.setAllowedOrigins("*")
+				.withSockJS()
+				.setHeartbeatTime(30000)
+				.setSessionCookieNeeded(true);
 	}
 	
 	@Bean
