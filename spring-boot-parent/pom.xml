@@ -113,5 +113,6 @@
     	<module>../spring-boot-freemarker</module>
     	<module>../spring-boot-websocket</module>
     	<module>../spring-boot-websocket-client</module>
+    	<module>../spring-boot-sitemesh</module>
   </modules>
 </project>
