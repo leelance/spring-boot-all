@@ -24,9 +24,9 @@
 		<div class="easyui-accordion" data-options="fit:true,border:false,animate:true,plain:true" id="menu">
 			<div title="System" data-options="iconCls:'icon-ok'" style="overflow:auto;padding:10px;">
 				<ul class="easyui-tree">
-					<li>tomato</li>
-					<li>carrot</li>
-					<li>cabbage</li>
+					<li><a href="/admin/tab">Tab</a></li>
+					<li><a href="/admin/nestedlayout">nestedlayout</a></li>
+					<li><a href="/admin/datagrid">datagrid</a></li>
 					<li>potato</li>
 					<li>lettuce</li>
 				</ul>
@@ -70,8 +70,8 @@
 	</div>
 	
 	<!-- 中间内容页面  -->
-	<div id="mainPanle" data-options="region:'center'" style="overflow-y:hidden">
-		
+	<div id="mainPanle" data-options="region:'center'" style="overflow-y:hidden;padding: 5px 10px;">
+		<sitemesh:write property='body'/>
 	</div>
 </body>
 </html>
