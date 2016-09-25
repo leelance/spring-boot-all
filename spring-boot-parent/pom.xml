@@ -114,5 +114,6 @@
     	<module>../spring-boot-websocket</module>
     	<module>../spring-boot-websocket-client</module>
     	<module>../spring-boot-sitemesh</module>
+    	<module>../spring-boot-easyui-kindeditor</module>
   </modules>
 </project>
