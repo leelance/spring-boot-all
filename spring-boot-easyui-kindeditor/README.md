@@ -3,6 +3,8 @@
 * [Easyui](http://www.jeasyui.net/)
 * [Kindeditor](http://kindeditor.org/demo)
 
+![image](https://github.com/leelance/spring-boot-all/blob/master/spring-boot-easyui-kindeditor/easyui-kindeditor-dialog.jpg)
+
 > * 项目启动后输入：http://localhost/
 
 
