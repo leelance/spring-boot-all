@@ -1,172 +1,160 @@
-# spring-boot-shiro, 依赖spring-boot-parent
+# spring-boot-easyui-kindeditor, 依赖spring-boot-parent
 * [spring-boot](http://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/)
-* [mybatis](https://github.com/mybatis/spring-boot-starter)
-* [druid](https://github.com/alibaba/druid)
-* [shiro](http://shiro.apache.org/)
+* [Easyui](http://www.jeasyui.net/)
+* [Kindeditor](http://kindeditor.org/demo)
 
 > * 项目启动后输入：http://localhost/
-> * 该项目中, 增加了对url的拦截[URLPermissionsFilter](https://github.com/leelance/spring-boot-all/blob/master/spring-boot-shiro/src/main/java/com/lance/shiro/config/URLPermissionsFilter.java)，
-> * 用admin/123456,拥有index权限reports未任何权限, lance/123456尚未分配任何权限.
-> * 参考[schema.sql](https://github.com/leelance/spring-boot-all/blob/master/spring-boot-shiro/src/main/resources/init-sql/schema.sql)
-> * springmvc-shiro采用xml配置, 参考[demo-springmvc-shiro](https://github.com/leelance/demo/tree/master/demo-springmvc-shiro)
 
-Add dependencies to pom
-```xml
-<shiro.version>1.2.5</shiro.version>
-<dependency>
-	<groupId>org.apache.shiro</groupId>
-	<artifactId>shiro-core</artifactId>
-	<version>${shiro.version}</version>
-</dependency>
-<dependency>
-	<groupId>org.apache.shiro</groupId>
-	<artifactId>shiro-web</artifactId>
-	<version>${shiro.version}</version>
-</dependency>
-<dependency>
-	<groupId>org.apache.shiro</groupId>
-	<artifactId>shiro-ehcache</artifactId>
-	<version>${shiro.version}</version>
-</dependency>
-<dependency>
-	<groupId>org.apache.shiro</groupId>
-	<artifactId>shiro-spring</artifactId>
-	<version>${shiro.version}</version>
-</dependency>
-```
+
 application.properties
 ```
-#MYBATIS
-mybatis.type-aliases-package=com.lance.mybatis.domain
-mybatis.mapper-locations=classpath*:/mapper/*Mapper.xml
-mybatis.configuration.map-underscore-to-camel-case=true
-mybatis.configuration.use-generated-keys=true
-mybatis.configuration.default-fetch-size=100
-mybatis.configuration.default-statement-timeout=30
+# IDENTITY (ContextIdApplicationContextInitializer)
+spring.application.index=EasyUI-KindEditor-Dialog.v1.1
+spring.application.name=EasyUI-KindEditor-Dialog
 
-spring.datasource.type=com.alibaba.druid.pool.DruidDataSource
-spring.datasource.url=jdbc:mysql://localhost/demo-schema
-spring.datasource.username=root
-spring.datasource.password=123456
-spring.datasource.driver-class-name=com.mysql.jdbc.Driver
+#Server
+server.port=80
+server.jsp-servlet.class-name=org.apache.jasper.servlet.JspServlet
 
-# see https://github.com/alibaba/druid
-spring.datasource.initialSize=5
-spring.datasource.minIdle=5
-spring.datasource.maxActive=20
-spring.datasource.maxWait=60000
-spring.datasource.timeBetweenEvictionRunsMillis=60000
-spring.datasource.validationQuery=SELECT 1
-spring.datasource.testWhileIdle=true
-spring.datasource.testOnBorrow=false
-spring.datasource.testOnReturn=false
-spring.datasource.poolPreparedStatements=true
-spring.datasource.maxPoolPreparedStatementPerConnectionSize=20
-spring.datasource.filters=stat,wall
-spring.datasource.connectionProperties=druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+security.basic.enabled=false
+management.security.enabled=false
+
+#MVC
+spring.mvc.view.prefix=/WEB-INF/views/
+spring.resources.static-locations=classpath:/static/
+
+security.basic.enabled=false
+management.security.enabled=false
+
+#LOG
+logging.config=classpath:log4j2.xml
 ```
-Shiro configuration
+configuration
 ```java
-@Configuration
-public class ShiroConfig {
-	
-	/**
-	 * FilterRegistrationBean
-	 * @return
-	 */
-	@Bean
-	public FilterRegistrationBean filterRegistrationBean() {
-		FilterRegistrationBean filterRegistration = new FilterRegistrationBean();
-        filterRegistration.setFilter(new DelegatingFilterProxy("shiroFilter")); 
-        filterRegistration.setEnabled(true);
-        filterRegistration.addUrlPatterns("/*"); 
-        filterRegistration.setDispatcherTypes(DispatcherType.REQUEST);
-        return filterRegistration;
+@SpringBootApplication
+public class SimpleApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(SimpleApplication.class, args);
 	}
-	
-	/**
-	 * @see org.apache.shiro.spring.web.ShiroFilterFactoryBean
-	 * @return
-	 */
-	@Bean(name = "shiroFilter")
-	public ShiroFilterFactoryBean shiroFilter(){
-		ShiroFilterFactoryBean bean = new ShiroFilterFactoryBean();
-		bean.setSecurityManager(securityManager());
-		bean.setLoginUrl("/login");
-		bean.setUnauthorizedUrl("/unauthor");
+}
+```
+JS
+```js
+var Index = {
+	form: 'indexForm',
+	grid: 'index-grid',
+	init: function(){
 		
-		Map<String, Filter>filters = Maps.newHashMap();
-		filters.put("perms", urlPermissionsFilter());
-		filters.put("anon", new AnonymousFilter());
-		bean.setFilters(filters);
+	},
+	
+	//新增
+	addProduct: function(){
+		var d = this.createIndexDialog();
+		d.dialog({title: "新增产品"}).dialog('open');
+		this.openDialog();
+	},
+	
+	//修改
+	updateProduct: function(){
+		var message = Ext.getSingleSelected(this.grid);
+		if(message){
+			return Ext.alert(message);
+		}
+		this.update();
+	},
+	
+	//删除
+	deleteProduct: function(){
+		var message = Ext.getSingleSelected(this.grid);
+		if(message){
+			return Ext.alert(message);
+		}
 		
-		Map<String, String> chains = Maps.newHashMap();
-		chains.put("/login", "anon");
-		chains.put("/unauthor", "anon");
-		chains.put("/logout", "logout");
-		chains.put("/base/**", "anon");
-		chains.put("/css/**", "anon");
-		chains.put("/layer/**", "anon");
-		chains.put("/**", "authc,perms");
-		bean.setFilterChainDefinitionMap(chains);
-		return bean;
-	}
+		Ext.confirm('您确认要删除这条记录吗?', function(){
+			Ext.progress('正在删除数据...');
+			
+			setTimeout(function(){
+				Ext.alert("删除成功!");
+				Ext.progressClose();
+			}, 2500)
+		});
+	},
 	
-	/**
-	 * @see org.apache.shiro.mgt.SecurityManager
-	 * @return
-	 */
-	@Bean(name="securityManager")
-	public DefaultWebSecurityManager securityManager() {
-		DefaultWebSecurityManager manager = new DefaultWebSecurityManager();
-		manager.setRealm(userRealm());
-		manager.setCacheManager(cacheManager());
-		manager.setSessionManager(defaultWebSessionManager());
-		return manager;
-	}
+	//查询
+	searchProduct: function(){
+		$("#"+this.grid).datagrid("load", {productname: $('#name').val()})
+	},
 	
-	/**
-	 * @see DefaultWebSessionManager
-	 * @return
-	 */
-	@Bean(name="sessionManager")
-	public DefaultWebSessionManager defaultWebSessionManager() {
-		DefaultWebSessionManager sessionManager = new DefaultWebSessionManager();
-		sessionManager.setCacheManager(cacheManager());
-		sessionManager.setGlobalSessionTimeout(1800000);
-		sessionManager.setDeleteInvalidSessions(true);
-		sessionManager.setSessionValidationSchedulerEnabled(true);
-		sessionManager.setDeleteInvalidSessions(true);
-		return sessionManager;
-	}
+	//详情
+	detail: function(index){
+		$('#'+this.grid).datagrid('selectRow',index); 
+		var record = Ext.getRecord(this.grid);
+		if(!record){return;}
+		
+		//弹出Dialog, 并修改Title和隐藏Button
+		var d = this.createIndexDialog();
+		d.dialog({title: "查看产品--"+record.itemid}).dialog('open');
+		$(".dialog-button a").eq(0).hide();
+		
+		$('#content_detail').html(record.detail);
+		$("#"+this.form).form('load', record);
+		this.openDialog();
+	},
 	
-	/**
-	 * @see UserRealm--->AuthorizingRealm
-	 * @return
-	 */
-	@Bean
-	@DependsOn(value="lifecycleBeanPostProcessor")
-	public UserRealm userRealm() {
-		UserRealm userRealm = new UserRealm();
-		userRealm.setCacheManager(cacheManager());
-		return userRealm;
-	}
+	itemIdFormat: function(value, row, index){
+		return '<a href="javascript:void(0)" onclick="Index.detail('+index+')">'+value+'</a>';
+	},
 	
-	@Bean
-	public URLPermissionsFilter urlPermissionsFilter() {
-		return new URLPermissionsFilter();
-	}
+	//执行更新操作
+	update: function() {
+		var record = Ext.getRecord(this.grid);
+		var d = this.createIndexDialog();
+		d.dialog({title: "修改产品"+record.itemid}).dialog('open');
+		
+		//加载form表单
+		$('#content_detail').html(record.detail);
+		$("#"+this.form).form('load', record);
+		this.openDialog();
+	},
 	
-	@Bean
-	public EhCacheManager cacheManager() {
-		EhCacheManager cacheManager = new EhCacheManager();
-		cacheManager.setCacheManagerConfigFile("classpath:ehcache.xml");
-		return cacheManager;
-	}
+	//Dialog框
+	createIndexDialog: function() {
+		$('#'+this.form).form('clear');
+		$('#indexForm input[name=id]').val(0);
+		var d = $('#indexDialog').dialog({
+		    width:800,
+		    height: 500,
+		    minimizable: false,
+		    maximizable: false,
+		    collapsible: false,
+		    resizable: false,
+		    modal: true,
+		    iconCls: 'icon-win',
+		    buttons: [
+		       {text: '保 存'}, 
+		       {text: '关 闭', handler: function(){d.dialog('close');}}
+		    ],
+			onBeforeClose: function(event, ui) {
+				KindEditor.remove('#content_detail');
+			}
+		});
+		return d;
+	},
 	
-	@Bean
-	public LifecycleBeanPostProcessor lifecycleBeanPostProcessor() {
-		return new LifecycleBeanPostProcessor();
+	//打开Dialog
+	openDialog: function() {
+		KindEditor.create('textarea[name="attr1"]', {
+			resizeType: 1,
+			allowImageUpload: true,
+			items: [
+				'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold', 'italic', 'underline',
+				'removeformat', '|', 'justifyleft', 'justifycenter', 'justifyright', 'insertorderedlist',
+				'insertunorderedlist', '|', 'emoticons', 'image', 'link'],
+				afterChange:function(){
+					this.sync();
+				}
+		});
 	}
 }
 ```
