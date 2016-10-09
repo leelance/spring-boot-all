@@ -14,6 +14,15 @@
 
 	<name>spring-boot-parent</name>
 	<url>http://maven.apache.org</url>
+	
+	<developers>
+		<developer>
+			<id>1</id>
+			<name>lance</name>
+			<email>81222045@qq.com</email>
+			<url>https://github.com/leelance</url>
+		</developer>
+	</developers>
 
 	<properties>
 		<java.version>1.8</java.version>
@@ -115,5 +124,6 @@
     	<module>../spring-boot-websocket-client</module>
     	<module>../spring-boot-sitemesh</module>
     	<module>../spring-boot-easyui-kindeditor</module>
+    	<module>../spring-boot-quartz</module>
   </modules>
 </project>
