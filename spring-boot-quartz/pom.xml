@@ -24,6 +24,24 @@
 	</developers>
 
 	<dependencies>
+		<!-- MYSQL -->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>fastjson</artifactId>
+			<version>1.2.12</version>
+		</dependency>
+		
+		<!-- Commons -->
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>3.4</version>
+		</dependency>
+		
 		<!-- 任务调度quartz -->
 		<dependency>
 			<groupId>org.quartz-scheduler</groupId>
