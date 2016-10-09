@@ -10,7 +10,7 @@ var TaskInfo = {
 	//添加模块
 	addTaskInfo: function(){
 		var d = this.createTaskInfoDialog();
-		d.dialog({title: "新增定时任务"}).dialog('open');
+		d.dialog({title: "Add Job"}).dialog('open');
 	},
 	
 	//修改模块弹出修改框
@@ -27,7 +27,7 @@ var TaskInfo = {
 	update: function() {
 		var record = Ext.getRecord(TaskInfo.grid);
 		var d = this.createTaskInfoDialog();
-		d.dialog({title: "修改定时任务--"+record.moduleName}).dialog('open');
+		d.dialog({title: "Edit Job"}).dialog('open');
 		
 		//加载form表单
 		$(this.form).form('load', record);
@@ -42,9 +42,9 @@ var TaskInfo = {
 		}
 		
 		Ext.confirm('您确认要删除这条记录吗?', function(){
-			Ext.progress('正在删除数据...');
+			Ext.progress('Loading...');
 			var record = Ext.getRecord(TaskInfo.grid);
-			$.get("/admin/task/delete/"+record.jobName+"/"+record.jobGroup, function(result){
+			$.get("/delete/"+record.jobName+"/"+record.jobGroup, function(result){
 				if(result.errorCode==0){
 					$(TaskInfo.grid).datagrid("reload")
 				}else{
@@ -63,20 +63,19 @@ var TaskInfo = {
 		
 		//弹出Dialog, 并修改Title和隐藏Button
 		var d = this.createTaskInfoDialog();
-		d.dialog({title: "查看定时任务"}).dialog('open');
+		d.dialog({title: "Detail Job"}).dialog('open');
 		$(".dialog-button a").eq(0).hide();
-		
 		$(this.form).form('load', row)
 	},
 	
 	//保存模块
 	saveTaskInfo: function(){
 		$(TaskInfo.form).form('submit',{
-	        url: '/admin/task/save',
+	        url: '/save',
 	        onSubmit: function(){
 	        	var flag = $(this).form('enableValidation').form('validate');
 	        	if(flag) {
-	        		Ext.progress('正在保存数据...');
+	        		Ext.progress('Loading...');
 	        	}
 	            return flag;
 	        },
@@ -99,7 +98,7 @@ var TaskInfo = {
 	initGrid: function(){
 		$(this.grid).datagrid({
 			toolbar: '#taskinfo-tbar',
-		    url:'/admin/task/list',
+		    url:'/list',
 		    method: 'post',
 		    fitColumns: true,
 		    striped: true,
@@ -108,21 +107,22 @@ var TaskInfo = {
 	        rownumbers:true,
 	        ctrlSelect: false,
 	        singleSelect: true,
+	        border: false,
 		    columns:[[
 				{field:'id',title:'',checkbox:'true', width:20},
-				{field:'jobName',title:'任务类',width:120,formatter:function(v,r,i){return '<a href="javascript:void(0)" onclick="TaskInfo.detailTaskInfo('+i+')">'+v+'</a>';}},
-				{field:'jobGroup',title:'任务分组',width:50},
-				{field:'jobDescription',title:'描述',width:120},
-				{field:'jobStatus',title:'状态',width:50},
-				{field:'cronExpression',title:'表达式',width:60},
-				{field:'createTime',title:'创建时间',width:50}
+				{field:'jobName',title:'JobName',width:120,formatter:function(v,r,i){return '<a href="javascript:void(0)" onclick="TaskInfo.detailTaskInfo('+i+')">'+v+'</a>';}},
+				{field:'jobGroup',title:'JobGroup',width:50},
+				{field:'jobDescription',title:'JobDescription',width:120},
+				{field:'jobStatus',title:'JobStatus',width:50},
+				{field:'cronExpression',title:'CronExpression',width:60},
+				{field:'createTime',title:'CreateTime',width:70}
 		    ]]
 		});	
 	},
 	
 	//模块框
 	createTaskInfoDialog: function() {
-		$(this.form).form('reset');
+		$(this.form).form('clear');
 		$('#taskinfoForm input[name=id]').val(0);
 		
 		var d = $('#taskinfoDialog').dialog({
@@ -134,8 +134,8 @@ var TaskInfo = {
 		    modal: true,
 		    iconCls: 'icon-win',
 		    buttons: [
-		       {text: '保 存', handler: this.saveTaskInfo}, 
-		       {text: '关 闭', handler: function(){d.dialog('close');}}
+		       {text: 'Save', handler: this.saveTaskInfo}, 
+		       {text: 'Close', handler: function(){d.dialog('close');}}
 		    ] 
 		});
 		return d;
