@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.lance</groupId>
+		<artifactId>spring-boot-parent</artifactId>
+		<version>1.1</version>
+	</parent>
+	<artifactId>spring-boot-quartz</artifactId>
+	<packaging>war</packaging>
+	<name>spring-boot-quartz</name>
+	<url>http://maven.apache.org</url>
+
+	<developers>
+		<developer>
+			<id>1</id>
+			<name>lance</name>
+			<email>81222045@qq.com</email>
+			<url>https://github.com/leelance</url>
+		</developer>
+	</developers>
+
+	<dependencies>
+		<!-- 任务调度quartz -->
+		<dependency>
+			<groupId>org.quartz-scheduler</groupId>
+			<artifactId>quartz</artifactId>
+			<version>2.2.3</version>
+		</dependency>
+		<dependency>
+			<groupId>org.quartz-scheduler</groupId>
+			<artifactId>quartz-jobs</artifactId>
+			<version>2.2.3</version>
+		</dependency>
+	</dependencies>
+	
+	
+	<build>
+		<finalName>spring-boot-quartz</finalName>
+	</build>
+</project>
