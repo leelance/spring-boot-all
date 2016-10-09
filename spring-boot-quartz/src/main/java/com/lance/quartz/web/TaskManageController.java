@@ -1,4 +1,4 @@
-package com.lance.web.system.setting;
+package com.lance.quartz.web;
 
 import java.util.HashMap;
 import java.util.List;
@@ -11,29 +11,28 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.lance.common.exception.ServiceException;
-import com.lance.common.json.ResultInfo;
-import com.lance.domain.setting.TaskInfo;
-import com.lance.service.setting.TaskServiceImpl;
-import com.lance.utils.FastJsonUtils;
+import com.alibaba.fastjson.JSON;
+import com.lance.quartz.common.exception.ServiceException;
+import com.lance.quartz.common.json.ResultInfo;
+import com.lance.quartz.domain.TaskInfo;
+import com.lance.quartz.service.TaskServiceImpl;
 
 /**
  * 任务管理
  * @author lance
  */
 @Controller
-@RequestMapping("admin/task/")
 public class TaskManageController {
 	@Autowired
 	private TaskServiceImpl taskServiceImpl;
 
 	/**
-	 * 任务页面
+	 * Index.jsp
 	 * 2016年10月8日下午6:39:15
 	 */
-	@RequestMapping(value="info")
+	@RequestMapping(value={"", "/", "index"})
 	public String info(){
-		return "admin/setting/task-info.jsp";
+		return "index.jsp";
 	}
 	
 	/**
@@ -48,7 +47,7 @@ public class TaskManageController {
 		List<TaskInfo> infos = taskServiceImpl.list();
 		map.put("rows", infos);
 		map.put("total", infos.size());
-		return FastJsonUtils.toJson(map);
+		return JSON.toJSONString(map);
 	}
 	
 	/**
