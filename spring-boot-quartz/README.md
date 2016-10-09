@@ -6,7 +6,7 @@
 ![image](https://github.com/leelance/spring-boot-all/blob/master/spring-boot-quartz/spring-boot-quartz.jpg)
 
 > * 项目启动后输入：http://localhost/
-> *数据库文件: https://github.com/leelance/spring-boot-all/blob/master/spring-boot-quartz/src/main/resources/demo-schema.sql
+> * 数据库文件: https://github.com/leelance/spring-boot-all/blob/master/spring-boot-quartz/src/main/resources/demo-schema.sql
 
 application.properties
 ```
