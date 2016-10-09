@@ -7,6 +7,7 @@
 		<groupId>com.lance</groupId>
 		<artifactId>spring-boot-parent</artifactId>
 		<version>1.1</version>
+		<relativePath>../spring-boot-parent/pom.xml</relativePath>
 	</parent>
 	<artifactId>spring-boot-quartz</artifactId>
 	<packaging>war</packaging>

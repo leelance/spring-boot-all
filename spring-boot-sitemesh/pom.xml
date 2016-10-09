@@ -13,7 +13,7 @@
 
 	<artifactId>spring-boot-sitemesh</artifactId>
 	<packaging>war</packaging>
-	<name>spring-boot-sitemesh Maven Webapp</name>
+	<name>spring-boot-sitemesh</name>
 	<url>http://maven.apache.org</url>
 	
 	<dependencies>
