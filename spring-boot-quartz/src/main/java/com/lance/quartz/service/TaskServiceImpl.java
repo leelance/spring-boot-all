@@ -156,6 +156,43 @@ public class TaskServiceImpl {
 	}
 	
 	/**
+	 * 暂停定时任务
+	 * @param jobName
+	 * @param jobGroup
+	 * 2016年10月10日上午9:40:19
+	 */
+	public void pause(String jobName, String jobGroup){
+		TriggerKey triggerKey = TriggerKey.triggerKey(jobName, jobGroup);
+		try {
+			if (checkExists(jobName, jobGroup)) {
+				scheduler.pauseTrigger(triggerKey);
+			    logger.info("===> Pause success, triggerKey:{}", triggerKey);
+			}
+		} catch (SchedulerException e) {
+			throw new ServiceException(e.getMessage());
+		}
+	}
+	
+	/**
+	 * 重新开始任务
+	 * @param jobName
+	 * @param jobGroup
+	 * 2016年10月10日上午9:40:58
+	 */
+	public void resume(String jobName, String jobGroup){
+		TriggerKey triggerKey = TriggerKey.triggerKey(jobName, jobGroup);
+        
+        try {
+			if (checkExists(jobName, jobGroup)) {
+				scheduler.resumeTrigger(triggerKey);
+			    logger.info("===> Resume success, triggerKey:{}", triggerKey);
+			}
+		} catch (SchedulerException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	/**
 	 * 验证是否存在
 	 * @param jobName
 	 * @param jobGroup
