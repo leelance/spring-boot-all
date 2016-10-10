@@ -94,6 +94,46 @@ var TaskInfo = {
 	    });
 	},
 	
+	//暂停
+	pauseTaskInfo: function(index) {
+		$(TaskInfo.grid).datagrid('selectRow',index); 
+		var row = Ext.getRecord(this.grid);
+		if(!row){return;}
+		
+		Ext.confirm('您确认要暂停该任务吗?', function(){
+			Ext.progress('正在暂停任务...');
+			var record = Ext.getRecord(TaskInfo.grid);
+			$.get("/pause/"+record.jobName+"/"+record.jobGroup, function(result){
+				if(result.errorCode==0){
+					$(TaskInfo.grid).datagrid("reload")
+				}else{
+					Ext.alert(result.errorText);
+				}
+				Ext.progressClose();
+			});
+		});
+	},
+	
+	//开始
+	resumeTaskInfo: function(index) {
+		$(TaskInfo.grid).datagrid('selectRow',index); 
+		var row = Ext.getRecord(this.grid);
+		if(!row){return;}
+		
+		Ext.confirm('您确认要重新开始该任务吗?', function(){
+			Ext.progress('正在开始任务...');
+			var record = Ext.getRecord(TaskInfo.grid);
+			$.get("/resume/"+record.jobName+"/"+record.jobGroup, function(result){
+				if(result.errorCode==0){
+					$(TaskInfo.grid).datagrid("reload")
+				}else{
+					Ext.alert(result.errorText);
+				}
+				Ext.progressClose();
+			});
+		});
+	},
+	
 	//初始化表单
 	initGrid: function(){
 		$(this.grid).datagrid({
@@ -115,7 +155,17 @@ var TaskInfo = {
 				{field:'jobDescription',title:'JobDescription',width:120},
 				{field:'jobStatus',title:'JobStatus',width:50},
 				{field:'cronExpression',title:'CronExpression',width:60},
-				{field:'createTime',title:'CreateTime',width:70}
+				{field:'createTime',title:'CreateTime',width:70},
+				{field:'Opr',title:'Opr',width:40,formatter:function(v,r,i){
+						var val = '';
+						if(r.jobStatus == 'NORMAL') {
+							val = '<a href="javascript:void(0)" onclick="TaskInfo.pauseTaskInfo('+i+')">暂停</a>'
+						}else if(r.jobStatus == 'PAUSED'){
+							val = '<a href="javascript:void(0)" onclick="TaskInfo.resumeTaskInfo('+i+')">开始</a>'
+						}
+						return val;
+					}
+				}
 		    ]]
 		});	
 	},
