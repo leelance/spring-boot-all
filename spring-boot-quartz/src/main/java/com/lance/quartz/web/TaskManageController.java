@@ -86,4 +86,38 @@ public class TaskManageController {
 		}
 		return ResultInfo.success();
 	}
+	
+	/**
+	 * 暂停定时任务
+	 * @param jobName
+	 * @param jobGroup
+	 * 2016年10月10日上午9:41:25
+	 */
+	@ResponseBody
+	@RequestMapping(value="pause/{jobName}/{jobGroup}", produces = "application/json; charset=UTF-8")
+	public String pause(@PathVariable String jobName, @PathVariable String jobGroup){
+		try {
+			taskServiceImpl.pause(jobName, jobGroup);
+		} catch (ServiceException e) {
+			return ResultInfo.error(-1, e.getMessage());
+		}
+		return ResultInfo.success();
+	}
+	
+	/**
+	 * 重新开始定时任务
+	 * @param jobName
+	 * @param jobGroup
+	 * 2016年10月10日上午9:41:40
+	 */
+	@ResponseBody
+	@RequestMapping(value="resume/{jobName}/{jobGroup}", produces = "application/json; charset=UTF-8")
+	public String resume(@PathVariable String jobName, @PathVariable String jobGroup){
+		try {
+			taskServiceImpl.resume(jobName, jobGroup);
+		} catch (ServiceException e) {
+			return ResultInfo.error(-1, e.getMessage());
+		}
+		return ResultInfo.success();
+	}
 }
