@@ -13,6 +13,11 @@
 <module>../spring-boot-activemq-consumer</module>
 <module>../spring-boot-email</module>
 <module>../spring-boot-freemarker</module>
+<module>../spring-boot-websocket</module>
+<module>../spring-boot-websocket-client</module>
+<module>../spring-boot-sitemesh</module>
+<module>../spring-boot-easyui-kindeditor</module>
+<module>../spring-boot-quartz</module>
 	    	
 <parent>
 	<groupId>org.springframework.boot</groupId>
