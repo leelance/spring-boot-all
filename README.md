@@ -1,5 +1,9 @@
 # spring-boot
 依赖1.3.6版本，http://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/
+
+### spring-boot-parent
+所有Module均依赖[spring-boot-parent](https://github.com/leelance/spring-boot-all/tree/master/spring-boot-parent)
+
 ## xml
  ```
 <module>../spring-boot-hello</module>
