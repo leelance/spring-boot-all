@@ -22,6 +22,7 @@
 <module>../spring-boot-sitemesh</module>
 <module>../spring-boot-easyui-kindeditor</module>
 <module>../spring-boot-quartz</module>
+<module>../spring-boot-springfox</module>
 	    	
 <parent>
 	<groupId>org.springframework.boot</groupId>
