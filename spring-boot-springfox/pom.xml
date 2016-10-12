@@ -15,6 +15,10 @@
 	<name>spring-boot-springfox</name>
 	<url>http://maven.apache.org</url>
 
+	<properties>
+		<java.version>1.7</java.version>
+	</properties>
+
 	<dependencies>
 		<!-- API Tools -->
 		<dependency>
@@ -27,9 +31,51 @@
 			<artifactId>springfox-swagger-ui</artifactId>
 			<version>2.6.0</version>
 		</dependency>
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-staticdocs</artifactId>
+			<version>2.6.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>19.0</version>
+		</dependency>
 	</dependencies>
 
 	<build>
 		<finalName>spring-boot-springfox</finalName>
+
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<configuration>
+					<asciidoc>
+						<templateDirs>
+							<dir>src/site/asciidoc/templates</dir>
+						</templateDirs>
+						<requires>
+							<require>asciidoctor-diagram</require>
+						</requires>
+						<attributes>
+							<source-highlighter>coderay</source-highlighter>
+							<coderay-css>style</coderay-css>
+						</attributes>
+					</asciidoc>
+					<moduleExcludes>
+						<asciidoc>**/_*.adoc</asciidoc>
+					</moduleExcludes>
+				</configuration>
+				<dependencies>
+					<dependency>
+						<groupId>org.asciidoctor</groupId>
+						<artifactId>asciidoctor-maven-plugin</artifactId>
+						<version>1.5.3</version>
+					</dependency>
+				</dependencies>
+			</plugin>
+		</plugins>
 	</build>
 </project>
