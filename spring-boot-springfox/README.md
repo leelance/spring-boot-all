@@ -3,7 +3,7 @@
 * [Springfox](http://springfox.github.io/springfox/)
 * [Swagger](http://swagger.io/)
 
-![image](https://github.com/leelance/spring-boot-all/tree/master/spring-boot-springfox/spring-boot-springfox.jpg)
+![image](https://github.com/leelance/spring-boot-all/blob/master/spring-boot-springfox/spring-boot-springfox.jpg)
 
 > * 项目启动后输入：http://localhost/swagger-ui.html
 
