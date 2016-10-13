@@ -40,6 +40,10 @@ public class Swagger2MarkupTest {
         mockMvc = MockMvcBuilders.webAppContextSetup(context).build();
     }
 
+    /**
+     * 生成AsciiDoc文件
+     * @throws Exception
+     */
     @Test
     @Ignore
     public void convertSwaggerToAsciiDoc() throws Exception {
@@ -49,6 +53,10 @@ public class Swagger2MarkupTest {
                 .andExpect(MockMvcResultMatchers.status().isOk());
     }
 
+    /**
+     * 生成MarkDown文件
+     * @throws Exception
+     */
     @Test
     @Ignore
     public void convertSwaggerToMarkdown() throws Exception {
@@ -59,10 +67,13 @@ public class Swagger2MarkupTest {
                 .andExpect(MockMvcResultMatchers.status().isOk());
     }
     
+    /**
+     * 生成Swagger.json
+     * @throws Exception
+     */
     @Test
-    @Ignore
     public void createSpringfoxSwaggerJson() throws Exception {
-        String outputDir = "E:\\gitwork\\spring-boot-all\\spring-boot-springfox\\src\\docs\\";
+        String outputDir = "E:\\gitwork\\spring-boot-all\\spring-boot-springfox\\src\\main\\resources\\static\\api";
         MvcResult mvcResult = this.mockMvc.perform(MockMvcRequestBuilders.get("/v2/api-docs?group=Admin API")
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().isOk())
