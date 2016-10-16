@@ -1,4 +1,4 @@
-# spring-boot-springfox, 依赖spring-boot-parent
+# spring-boot-websocket-client, 依赖spring-boot-parent
 Spring Boot: user notifications with web socket
 
 This example will shows how to send notifications, via web socket, to specific logged-in users.
@@ -8,12 +8,54 @@ Could be useful, for example, if you are trying to implement a real-time user no
 ### Build and run
 
 #### Configurations
+```java
+@Configuration
+@EnableWebSocketMessageBroker
+public class WebSocketConfig extends AbstractWebSocketMessageBrokerConfigurer{
 
-Open the `application.properties` file and set your own configurations.
+	@Override
+	public void registerStompEndpoints(StompEndpointRegistry registry) {
+		registry.addEndpoint("/ws_notice").withSockJS();
+	}
+}
+```
 
+```js
+<script>
+function connect() {
+   var socket = new SockJS('/ws_notice');
+   var stompClient = Stomp.over(socket);
+
+   stompClient.connect({}, function(frame) {
+       stompClient.subscribe('/user/topic/message', function(message) {    	   
+           notify(message.body);
+       });
+   });
+   
+   return;
+}
+  
+function notify(message) {
+	var html = "";
+	$.each(eval(message), function(index, val){
+		html = html 
+			+ "<tr>"
+				+"<td>"+val.id+"</td>"	
+				+"<td>"+val.name+"</td>"
+			+ "</tr>"
+	});
+	
+	$('#tab').append(html);
+}
+
+$(document).ready(function() {
+  connect();  
+});
+</script>
+```
 #### Prerequisites
 
-- Java 8
+- Java 7
 - Maven > 3.0
 
 #### From terminal
@@ -21,7 +63,3 @@ Open the `application.properties` file and set your own configurations.
 Go on the project's root folder, then type:
 
     $ mvn spring-boot:run
-
-#### From Eclipse (Spring Tool Suite)
-
-Import as *Existing Maven Project* and run it as *Spring Boot App*.
