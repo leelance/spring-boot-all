@@ -2,6 +2,8 @@ package com.lance.websocket.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
+import org.springframework.messaging.support.ExecutorSubscribableChannel;
 import org.springframework.scheduling.concurrent.ConcurrentTaskScheduler;
 import org.springframework.web.socket.WebSocketHandler;
 import org.springframework.web.socket.config.annotation.WebSocketConfigurer;
@@ -38,5 +40,10 @@ public class WebSocketConfig implements WebSocketConfigurer{
 		ConcurrentTaskScheduler task = new ConcurrentTaskScheduler();
 		task.scheduleAtFixedRate(new SockTaskRunner(), 1000*60*SocketSessionInfo.SESSION_INVALID);
 		return task;
+	}
+	
+	@Bean
+	public SimpMessagingTemplate messageTemplate(){
+		return new SimpMessagingTemplate(new ExecutorSubscribableChannel());
 	}
 }
