@@ -53,9 +53,9 @@
 		<div class="row">
 			<div class="col-md-4"></div>
 			<div class="col-md-4 text-center">
-				<a class="btn btn-primary" href="/chat" role="button">Link</a> 
-				<a class="btn btn-success" href="#" role="button">Link</a> 
-				<a class="btn btn-info" href="#" role="button">Link</a>
+				<a class="btn btn-primary" href="/chat" role="button">Chat</a> 
+				<a class="btn btn-success" href="/notifications" role="button">Notifications</a> 
+				<a class="btn btn-info" href="/notifications-button" role="button" target="_blank">Link</a>
 			</div>
 			<div class="col-md-4"></div>
 		</div>
