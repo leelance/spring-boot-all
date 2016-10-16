@@ -18,6 +18,13 @@ public class WebSocketConfig extends AbstractWebSocketMessageBrokerConfigurer{
 		registry.addEndpoint("/ws_notice").withSockJS();
 	}
 }
+
+@ResponseBody
+@RequestMapping(value = "/sendMessage", method = RequestMethod.POST)
+public void sendMessage() {
+	List<MessageInfo> messages = getMessage();
+	messagingTemplate.convertAndSend("/user/topic/message", messages);
+}
 ```
 
 ```js
