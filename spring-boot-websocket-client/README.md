@@ -1,5 +1,5 @@
-## Spring Boot: user notifications with web socket ##
 # spring-boot-springfox, 依赖spring-boot-parent
+Spring Boot: user notifications with web socket
 
 This example will shows how to send notifications, via web socket, to specific logged-in users.
 
