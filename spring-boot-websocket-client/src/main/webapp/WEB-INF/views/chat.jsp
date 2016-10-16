@@ -1,6 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-	pageEncoding="utf-8"%>
-
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -97,6 +95,7 @@
 	<script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
 	<script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 	<script src="//cdn.jsdelivr.net/sockjs/1/sockjs.min.js"></script>
+	<script src="/stomp.min.js"></script>
 <script type="text/javascript">
 	var ws = null;
 	function setConnected(connected) {
