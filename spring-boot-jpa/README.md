@@ -1,159 +1,86 @@
-# spring-boot-crawler, 依赖spring-boot-parent
+# spring-boot-jpa, 依赖spring-boot-parent
 * [spring-boot](http://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/)
-* [OKHttp](http://square.github.io/okhttp/)
 
 
-
-> * 执行CrawlerTest, 测试抓取页面URL, 根据URL递归抓取
+> * 项目启动后输入：http://localhost/
 
 application.properties
 ```
 # IDENTITY (ContextIdApplicationContextInitializer)
-spring.application.index=Spring-Boot-Crawler.v1.1
-spring.application.name=Spring-Boot-Crawler
+spring.application.index=Spring-boot-Jpa.v1.1
+spring.application.name=Spring-boot-JPA
+
+#Server
+server.port=80
+server.jsp-servlet.class-name=org.apache.jasper.servlet.JspServlet
 
 security.basic.enabled=false
 management.security.enabled=false
 
+#MVC
+spring.mvc.view.prefix=/WEB-INF/views/
+
 #LOG
 logging.config=classpath:log4j2.xml
-```
-JUnitTest
-```java
-public class CrawlerTest {
-	Logger logger = LogManager.getLogger(getClass());
 
-	@Test
-	public void run() throws InterruptedException, ExecutionException{
-		String[] urls = {"https://www.baidu.com/"};
-		List<Future<String>> results = Crawler.getInstance().initUrl(urls).parallelDrainQueue(3);
-		for(Future<String> future: results) {
-			logger.info("result: {}", future.get());
-		}
-	}
+spring.datasource.url=jdbc:mysql://localhost/demo-schema
+spring.datasource.username=root
+spring.datasource.password=123456
+spring.datasource.driver-class-name=com.mysql.jdbc.Driver
+
+spring.jpa.properties.hibernate.hbm2ddl.auto=update
+```
+Entity
+```java
+@Entity
+@Table(name="t_teacher")
+public class Teacher implements Serializable {
+	private static final long serialVersionUID = 9181998751400657281L;
+
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private Integer id;
+	
+	private String name;
+	
+	private String sex;
+	
+	@JSONField(format="yyyy-MM-dd")
+	@DateTimeFormat(pattern="yyyy-MM-dd")
+	private Date createTime;
+	
+	@ManyToMany(cascade=CascadeType.ALL)
+	@JoinTable(name="t_teacher_student")
+	private Set<Student> students = new HashSet<Student>();
 }
-```
+public interface TeacherRepository extends JpaRepository<Teacher, Integer>{
 
-Crawler
-```java
-public class Crawler {
-	Logger logger = LogManager.getLogger(getClass());
-	private OkHttpClient client = null;
-	private final Set<HttpUrl> fetchedUrls = Collections.synchronizedSet(new LinkedHashSet<HttpUrl>());
-	private final BlockingQueue<HttpUrl> queue = new LinkedBlockingQueue<>();
-	private final ConcurrentMap<String, AtomicInteger> hostnames = new ConcurrentHashMap<>();
-
-	private static class CrawlerHolder {
-		private static final Crawler INSTANCE = new Crawler();
-	}
-
-	private Crawler() {
-		init();
-	}
-
-	public static final Crawler getInstance() {
-		return CrawlerHolder.INSTANCE;
-	}
-
-	public Crawler initUrl(String[] urls) {
-		for (String url: urls) {
-			queue.add(HttpUrl.parse(url));
-		}
-
-		return this;
-	}
-
-	private void init() {
-		long cacheByteCount = 1024 * 1024 * 100;
-		String dir = "C:\\test";
-		Cache cache = new Cache(new File(dir), cacheByteCount);
-		client = new OkHttpClient.Builder().cache(cache).build();
-	}
-
-	public List<Future<String>> parallelDrainQueue(int threadCount) {
-		ExecutorService executor = Executors.newFixedThreadPool(threadCount);
-		List<Future<String>> results = new ArrayList<>();
-		for (int i = 0; i < threadCount; i++) {
-			Future<String> future = executor.submit(new Callable<String>() {
-				@Override
-				public String call() throws Exception {
-					try {
-						drainQueue();
-					} catch (Exception e) {
-						e.printStackTrace();
-					}
-					return null;
-				}
-			});
-
-			results.add(future);
-		}
-		return results;
-	}
-
-	private void drainQueue() throws Exception {
-		for (HttpUrl url; (url = queue.take()) != null;) {
-			if (!fetchedUrls.add(url)) {
-				continue;
-			}
-
-			try {
-				fetch(url);
-			} catch (IOException e) {
-				logger.info("Error: {} {}", url, e);
-			}
-		}
-	}
-
-	private void fetch(HttpUrl url) throws IOException {
-		AtomicInteger hostnameCount = new AtomicInteger();
-		AtomicInteger previous = hostnames.putIfAbsent(url.host(), hostnameCount);
-		if (previous != null){
-			hostnameCount = previous;
-		}
-			
-		if (hostnameCount.incrementAndGet() > 100){
-			return;
-		}
-
-		Request request = new Request.Builder().url(url).build();
-		Response response = client.newCall(request).execute();
-		String responseSource = response.networkResponse() != null
-				? ("(network: " + response.networkResponse().code() + " over " + response.protocol() + ")") : "(cache)";
-		int responseCode = response.code();
-
-		// 打印log
-		logger.info("ThreadName:{},ResponseCode:{},URL:{},ResponseSource:{}", Thread.currentThread().getName(),
-				responseCode, url, responseSource);
-
-		String contentType = response.header("Content-Type");
-		if (responseCode != 200 || contentType == null) {
-			response.body().close();
-			return;
-		}
-
-		MediaType mediaType = MediaType.parse(contentType);
-		if (mediaType == null || !mediaType.subtype().equalsIgnoreCase("html")) {
-			response.body().close();
-			return;
-		}
-
-		// 获取页面的a[href], 加入LinkedBlockingQueue
-		Document document = Jsoup.parse(response.body().string(), url.toString());
-		for (Element element: document.select("a[href]")) {
-			String href = element.attr("href");
-			HttpUrl link = response.request().url().resolve(href);
-			if (link != null) {
-				queue.add(link);
-			}
-		}
-	}
+	/**
+	 * findByName
+	 * @param name
+	 * @return
+	 */
+	List<Teacher>findByName(String name);
 }
 ```
 SimpleApplication
 ```java
 @SpringBootApplication
 public class SimpleApplication {
+
+	@Bean
+	public EmbeddedServletContainerFactory servletContainer() {
+		TomcatEmbeddedServletContainerFactory factory = new TomcatEmbeddedServletContainerFactory();
+		TomcatContextCustomizer contextCustomizer = new TomcatContextCustomizer() {
+			@Override
+			public void customize(Context context) {
+				context.addWelcomeFile("index.jsp");
+				context.setWebappVersion("3.1");
+			}
+		};
+		factory.addContextCustomizers(contextCustomizer);
+		return factory;
+	}
 
 	public static void main(String[] args) {
 		SpringApplication.run(SimpleApplication.class, args);
