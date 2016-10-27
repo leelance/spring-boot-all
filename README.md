@@ -23,6 +23,8 @@
 <module>../spring-boot-easyui-kindeditor</module>
 <module>../spring-boot-quartz</module>
 <module>../spring-boot-springfox</module>
+<module>../spring-boot-crawler</module>
+<module>../spring-boot-jpa</module>
 	    	
 <parent>
 	<groupId>org.springframework.boot</groupId>
