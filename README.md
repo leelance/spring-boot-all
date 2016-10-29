@@ -25,6 +25,8 @@
 <module>../spring-boot-springfox</module>
 <module>../spring-boot-crawler</module>
 <module>../spring-boot-jpa</module>
+<module>../spring-boot-activiti</module>
+<module>../spring-boot-welcome-page</module>
 	    	
 <parent>
 	<groupId>org.springframework.boot</groupId>
