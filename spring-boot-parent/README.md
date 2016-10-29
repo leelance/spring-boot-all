@@ -1,23 +1,35 @@
 # spring-boot
-依赖1.3.5版本，http://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/
+依赖1.3.6版本，http://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/
 ## xml
  ```
-<module>../spring-boot-hello</module>
-<module>../spring-boot-devtools</module>
-<module>../spring-boot-mybatis</module>
-<module>../spring-boot-shiro</module>
-<module>../spring-boot-shiro-redis</module>
-<module>../spring-boot-cache-ehcache</module>
-<module>../spring-boot-cache-redis</module>
-<module>../spring-boot-activemq-producer</module>
-<module>../spring-boot-activemq-consumer</module>
-<module>../spring-boot-email</module>
-<module>../spring-boot-freemarker</module>
+<modules>
+	<module>../spring-boot-hello</module>
+    	<module>../spring-boot-devtools</module>
+    	<module>../spring-boot-mybatis</module>
+    	<module>../spring-boot-shiro</module>
+    	<module>../spring-boot-shiro-redis</module>
+    	<module>../spring-boot-cache-ehcache</module>
+    	<module>../spring-boot-cache-redis</module>
+    	<module>../spring-boot-activemq-producer</module>
+    	<module>../spring-boot-activemq-consumer</module>
+    	<module>../spring-boot-email</module>
+    	<module>../spring-boot-freemarker</module>
+    	<module>../spring-boot-websocket</module>
+    	<module>../spring-boot-websocket-client</module>
+    	<module>../spring-boot-sitemesh</module>
+    	<module>../spring-boot-easyui-kindeditor</module>
+    	<module>../spring-boot-quartz</module>
+    	<module>../spring-boot-springfox</module>
+    	<module>../spring-boot-crawler</module>
+    	<module>../spring-boot-jpa</module>
+    	<module>../spring-boot-activiti</module>
+    	<module>../spring-boot-welcome-page</module>
+  </modules>
 	    	
 <parent>
 	<groupId>org.springframework.boot</groupId>
 	<artifactId>spring-boot-starter-parent</artifactId>
-	<version>1.3.5.RELEASE</version>
+	<version>1.3.6.RELEASE</version>
 </parent>
 ```
 | Name          			| Description           								|
