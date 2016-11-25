@@ -1,5 +1,5 @@
 # spring-boot
-依赖1.3.6版本，http://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/
+依赖1.4.1版本，http://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/
 ## xml
  ```
 <modules>
@@ -29,7 +29,7 @@
 <parent>
 	<groupId>org.springframework.boot</groupId>
 	<artifactId>spring-boot-starter-parent</artifactId>
-	<version>1.3.6.RELEASE</version>
+	<version>1.4.1.RELEASE</version>
 </parent>
 ```
 | Name          			| Description           								|
