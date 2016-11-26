@@ -1,14 +1,33 @@
-# spring-boot-jpa, 依赖spring-boot-parent
+# spring-boot-hibernate5, 依赖spring-boot-parent
 * [spring-boot](http://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/)
 
 
 > * 项目启动后输入：http://localhost/
 
+```xml
+<hibernate.version>5.2.4.Final</hibernate.version>
+<dependency>
+	<groupId>org.springframework.boot</groupId>
+	<artifactId>spring-boot-starter-data-jpa</artifactId>
+	<exclusions>
+		<exclusion>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-entitymanager</artifactId>
+		</exclusion>
+	</exclusions>
+</dependency>
+<!-- MYSQL -->
+<dependency>
+	<groupId>mysql</groupId>
+	<artifactId>mysql-connector-java</artifactId>
+</dependency>
+```
+
 application.properties
 ```
 # IDENTITY (ContextIdApplicationContextInitializer)
-spring.application.index=Spring-boot-Jpa.v1.1
-spring.application.name=Spring-boot-JPA
+spring.application.index=Spring-boot-Hibernate.v1.1
+spring.application.name=Spring-boot-Hibernate
 
 #Server
 server.port=80
@@ -28,60 +47,45 @@ spring.datasource.username=root
 spring.datasource.password=123456
 spring.datasource.driver-class-name=com.mysql.jdbc.Driver
 
-spring.jpa.properties.hibernate.hbm2ddl.auto=update
+# JPA (JpaBaseConfiguration, HibernateJpaAutoConfiguration)
+spring.data.jpa.repositories.enabled=true
+spring.jpa.generate-ddl=false
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.open-in-view=true 
+spring.jpa.show-sql=true
 ```
 Entity
 ```java
 @Entity
-@Table(name="t_teacher")
-public class Teacher implements Serializable {
-	private static final long serialVersionUID = 9181998751400657281L;
+@Table(name="t_city")
+public class CityEntity implements Serializable {
+	private static final long serialVersionUID = -2451005683000059023L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	private Integer id;
-	
-	private String name;
-	
-	private String sex;
-	
-	@JSONField(format="yyyy-MM-dd")
-	@DateTimeFormat(pattern="yyyy-MM-dd")
-	private Date createTime;
-	
-	@ManyToMany(cascade=CascadeType.ALL)
-	@JoinTable(name="t_teacher_student")
-	private Set<Student> students = new HashSet<Student>();
-}
-public interface TeacherRepository extends JpaRepository<Teacher, Integer>{
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
 
-	/**
-	 * findByName
-	 * @param name
-	 * @return
-	 */
-	List<Teacher>findByName(String name);
+	@Column(nullable = false)
+	private String name;
+
+	private String state;
+
+	private String country;
+
+	private String map;
+	//get/set Method
 }
 ```
 SimpleApplication
 ```java
 @SpringBootApplication
-public class SimpleApplication {
-
-	@Bean
-	public EmbeddedServletContainerFactory servletContainer() {
-		TomcatEmbeddedServletContainerFactory factory = new TomcatEmbeddedServletContainerFactory();
-		TomcatContextCustomizer contextCustomizer = new TomcatContextCustomizer() {
-			@Override
-			public void customize(Context context) {
-				context.addWelcomeFile("index.jsp");
-				context.setWebappVersion("3.1");
-			}
-		};
-		factory.addContextCustomizers(contextCustomizer);
-		return factory;
+public class SimpleApplication extends SpringBootServletInitializer{
+	
+	@Override
+	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
+		return application.sources(SimpleApplication.class);
 	}
-
+	
 	public static void main(String[] args) {
 		SpringApplication.run(SimpleApplication.class, args);
 	}
