@@ -22,8 +22,8 @@
     	<module>../spring-boot-springfox</module>
     	<module>../spring-boot-crawler</module>
     	<module>../spring-boot-jpa</module>
-    	<module>../spring-boot-activiti</module>
     	<module>../spring-boot-welcome-page</module>
+	<module>../spring-boot-hibernate5</module>
   </modules>
 	    	
 <parent>
