@@ -1,5 +1,7 @@
 # spring-boot-hibernate5, 依赖spring-boot-parent
 * [spring-boot](http://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/)
+* [spring-data-jpa](http://docs.spring.io/spring-data/jpa/docs/1.10.5.RELEASE/reference/html/)
+* [hibernate5](http://hibernate.org/orm/)
 
 
 > * 项目启动后输入：http://localhost/
