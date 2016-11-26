@@ -6,6 +6,8 @@
 
 > * 项目启动后输入：http://localhost/
 
+![image](https://github.com/leelance/spring-boot-all/blob/master/spring-boot-hibernate5/demo.jpg)
+
 ```xml
 <hibernate.version>5.2.4.Final</hibernate.version>
 <dependency>
