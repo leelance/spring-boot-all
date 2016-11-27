@@ -39,8 +39,8 @@ public List<CityEntity> findAll(String hotelName) {
 application.properties
 ```
 # IDENTITY (ContextIdApplicationContextInitializer)
-spring.application.index=Spring-boot-Hibernate.v1.1
-spring.application.name=Spring-boot-Hibernate
+spring.application.index=Spring-boot-JPA-QueryDSL.v1.1
+spring.application.name=Spring-boot-JPA-QueryDSL
 
 #Server
 server.port=80
