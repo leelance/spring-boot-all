@@ -1,29 +1,24 @@
-# spring-boot-hibernate5, 依赖spring-boot-parent
+# spring-boot-jpa-querydsl, 依赖spring-boot-parent
 * [spring-boot](http://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/)
 * [spring-data-jpa](http://docs.spring.io/spring-data/jpa/docs/1.10.5.RELEASE/reference/html/)
 * [hibernate5](http://hibernate.org/orm/)
+* [QueryDSL](http://www.querydsl.com/)
 
 
 > * 项目启动后输入：http://localhost/
 
-![image](https://github.com/leelance/spring-boot-all/blob/master/spring-boot-hibernate5/demo.jpg)
+![image](https://github.com/leelance/spring-boot-all/blob/master/spring-boot-jpa-querydsl/querydsl.jpg)
 
 ```xml
 <hibernate.version>5.2.4.Final</hibernate.version>
+<!-- QueryDSL -->
 <dependency>
-	<groupId>org.springframework.boot</groupId>
-	<artifactId>spring-boot-starter-data-jpa</artifactId>
-	<exclusions>
-		<exclusion>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-entitymanager</artifactId>
-		</exclusion>
-	</exclusions>
+	<groupId>com.querydsl</groupId>
+	<artifactId>querydsl-core</artifactId>
 </dependency>
-<!-- MYSQL -->
 <dependency>
-	<groupId>mysql</groupId>
-	<artifactId>mysql-connector-java</artifactId>
+	<groupId>com.querydsl</groupId>
+	<artifactId>querydsl-jpa</artifactId>
 </dependency>
 ```
 
@@ -77,21 +72,22 @@ public class CityEntity implements Serializable {
 	private String country;
 
 	private String map;
+	
+	@OneToMany(mappedBy="city", cascade=CascadeType.ALL, fetch=FetchType.EAGER, orphanRemoval=true)
+	private Set<HotelEntity>hotels = new HashSet<>();
 	//get/set Method
 }
 ```
-SimpleApplication
+QueryDSL 
 ```java
-@SpringBootApplication
-public class SimpleApplication extends SpringBootServletInitializer{
-	
-	@Override
-	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-		return application.sources(SimpleApplication.class);
+public List<CityEntity> findAll(String hotelName) {
+	QCityEntity cityEntity = QCityEntity.cityEntity;
+	JPAQuery<CityEntity>query = new JPAQuery<>(em);
+	BooleanExpression express = cityEntity.state.eq("1");
+
+	if(StringUtils.hasText(hotelName)) {
+		express = express.and(cityEntity.hotels.any().name.likeIgnoreCase('%'+hotelName+'%'));
 	}
-	
-	public static void main(String[] args) {
-		SpringApplication.run(SimpleApplication.class, args);
-	}
+	return query.select(cityEntity).from(cityEntity).where(express).fetch();
 }
 ```
