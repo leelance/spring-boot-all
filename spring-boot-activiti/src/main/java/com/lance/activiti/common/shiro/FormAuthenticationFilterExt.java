@@ -12,7 +12,7 @@ import org.apache.shiro.web.filter.authc.FormAuthenticationFilter;
 import org.apache.shiro.web.util.WebUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.lance.activiti.model.UserInfo;
+import com.lance.activiti.model.system.UserInfo;
 import com.lance.activiti.service.user.UserService;
 import com.lance.activiti.utils.ShiroSessionUtils;
 

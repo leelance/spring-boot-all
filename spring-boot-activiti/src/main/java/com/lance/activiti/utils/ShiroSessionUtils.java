@@ -9,7 +9,7 @@ import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
 
 import com.lance.activiti.common.SystemConstants;
-import com.lance.activiti.model.UserInfo;
+import com.lance.activiti.model.system.UserInfo;
 
 public final class ShiroSessionUtils {
 	 /**

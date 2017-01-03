@@ -16,7 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.lance.activiti.common.SystemConstants;
-import com.lance.activiti.model.UserInfo;
+import com.lance.activiti.model.system.UserInfo;
 import com.lance.activiti.service.user.UserService;
 import com.lance.activiti.utils.ShiroSessionUtils;
 
