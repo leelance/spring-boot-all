@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lance.activiti.mapper.system.RoleMapper">
+
+	<!-- findAll -->
+    <select id="findAll" resultType="RoleInfo">
+        select *from t_role
+    </select>
+    
+    <!-- findOne -->
+    <select id="findOne" resultType="RoleInfo">
+    	select *from t_role where id=#{value}
+    </select>
+    
+    <!-- save -->
+    <insert id="save" parameterType="RoleInfo">
+    	insert into t_role(role_name,description,create_time)values(
+    		#{roleName},#{description},now()
+    	)
+    </insert>
+    
+    <!-- update -->
+    <update id="update" parameterType="RoleInfo">
+    	update t_role SET
+			role_name=#{roleName},
+			description=#{description}
+		where id=#{id}
+    </update>
+    
+    <!-- delete -->
+    <delete id="delete">
+    	delete from t_role where id=#{value}
+    </delete>
+</mapper>

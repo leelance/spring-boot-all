@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lance.activiti.mapper.process.ProcessDefineMapper">
+
+	<!-- findAll -->
+    <select id="findAll" resultType="ProcessDefineInfo">
+        select *from t_process_define
+    </select>
+    
+    <!-- findOne -->
+    <select id="findOne" resultType="ProcessDefineInfo">
+    	select *from t_process_define where id=#{value}
+    </select>
+    
+    <!-- save -->
+    <insert id="save" parameterType="ProcessDefineInfo">
+    	insert into t_process_define(process_name,process_key,process_file, create_time)values(
+    		#{processName},#{processKey},#{processFile},now()
+    	)
+    </insert>
+    
+    <!-- update -->
+    <update id="update" parameterType="ProcessDefineInfo">
+    	update t_process_define SET
+			process_name=#{processName},
+			process_key=#{processKey},
+			process_file=#{processFile},
+			update_time=now()
+		where id=#{id}
+    </update>
+    
+    <!-- delete -->
+    <delete id="delete">
+    	delete from t_process_define where id=#{value}
+    </delete>
+</mapper>
