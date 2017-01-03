@@ -3,6 +3,8 @@ package com.lance.activiti.model.process;
 import java.io.Serializable;
 import java.util.Date;
 
+import com.alibaba.fastjson.annotation.JSONField;
+
 /**
  * 定义流程
  * @author Administrator
@@ -23,6 +25,7 @@ public class ProcessDefineInfo implements Serializable{
 	private String processFile;
 	
 	/**创建时间*/
+	@JSONField(format="yyyy-MM-dd HH:mm:ss")
 	private Date createTime;
 
 	public int getId() {

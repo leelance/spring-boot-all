@@ -5,8 +5,13 @@
 <mapper namespace="com.lance.activiti.mapper.process.ProcessDefineMapper">
 
 	<!-- findAll -->
-    <select id="findAll" resultType="ProcessDefineInfo">
+    <select id="findAll" resultType="ProcessDefineInfo" parameterType="Map">
         select *from t_process_define
+        <where>
+        	<if test="processName!=null and processName!=''">
+        		and process_name=#{processName}
+        	</if>
+        </where>
     </select>
     
     <!-- findOne -->

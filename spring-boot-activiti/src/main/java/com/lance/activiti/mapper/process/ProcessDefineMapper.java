@@ -1,6 +1,7 @@
 package com.lance.activiti.mapper.process;
 
 import java.util.List;
+import java.util.Map;
 
 import com.lance.activiti.model.process.ProcessDefineInfo;
 
@@ -9,7 +10,7 @@ public interface ProcessDefineMapper {
 	 * 查询所有流程
 	 * @return
 	 */
-	List<ProcessDefineInfo> findAll();
+	List<ProcessDefineInfo> findAll(Map<String, Object> params);
 	
 	/**
 	* 保存对象
