@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://activiti.org/bpmn20" id="adhoc-definitions">
+  <process id="activitiAdhoc" name="Adhoc Activiti Process" isExecutable="true">
+    <startEvent id="start" activiti:formKey="wf:submitAdhocTask"></startEvent>
+    <sequenceFlow id="flow1" sourceRef="start" targetRef="adhocTask"></sequenceFlow>
+    <userTask id="adhocTask" name="Adhoc Task" activiti:assignee="admin1" activiti:formKey="wf:adhocTask">
+      <extensionElements>
+        <activiti:taskListener event="create" class="org.alfresco.repo.workflow.activiti.tasklistener.ScriptTaskListener">
+          <activiti:field name="script">
+            <activiti:string><![CDATA[if (typeof bpm_workflowDueDate != 'undefined') task.setVariableLocal('bpm_dueDate', bpm_workflowDueDate);
+                      if (typeof bpm_workflowPriority != 'undefined') task.priority = bpm_workflowPriority;]]></activiti:string>
+          </activiti:field>
+        </activiti:taskListener>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="flow2" sourceRef="adhocTask" targetRef="verifyTaskDone"></sequenceFlow>
+    <userTask id="verifyTaskDone" name="Verify Adhoc Task Completed." activiti:assignee="admin2" activiti:formKey="wf:completedAdhocTask">
+      <documentation>Verify the arbitrary task was completed.</documentation>
+      <extensionElements>
+        <activiti:taskListener event="create" class="org.alfresco.repo.workflow.activiti.tasklistener.ScriptTaskListener">
+          <activiti:field name="script">
+            <activiti:string><![CDATA[if (typeof bpm_workflowDueDate != 'undefined') task.setVariableLocal('bpm_dueDate', bpm_workflowDueDate);
+                        if (typeof bpm_workflowPriority != 'undefined') task.priority = bpm_workflowPriority;
+                        
+                        if (wf_notifyMe)
+			            {
+			               var mail = actions.create("mail");
+			               mail.parameters.to = initiator.properties.email;
+			               mail.parameters.subject = "Adhoc Task " + bpm_workflowDescription;
+			               mail.parameters.from = bpm_assignee.properties.email;
+			               mail.parameters.text = "It's done";
+			               mail.execute(bpm_package);
+			            }]]></activiti:string>
+          </activiti:field>
+        </activiti:taskListener>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="flow3" sourceRef="verifyTaskDone" targetRef="theEnd"></sequenceFlow>
+    <endEvent id="theEnd"></endEvent>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_activitiAdhoc">
+    <bpmndi:BPMNPlane bpmnElement="activitiAdhoc" id="BPMNPlane_activitiAdhoc">
+      <bpmndi:BPMNShape bpmnElement="start" id="BPMNShape_start">
+        <omgdc:Bounds height="35.0" width="35.0" x="32.0" y="200.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="adhocTask" id="BPMNShape_adhocTask">
+        <omgdc:Bounds height="55.0" width="105.0" x="140.0" y="190.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="verifyTaskDone" id="BPMNShape_verifyTaskDone">
+        <omgdc:Bounds height="55.0" width="105.0" x="310.0" y="190.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="theEnd" id="BPMNShape_theEnd">
+        <omgdc:Bounds height="35.0" width="35.0" x="490.0" y="200.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="flow1" id="BPMNEdge_flow1">
+        <omgdi:waypoint x="67.0" y="217.0"></omgdi:waypoint>
+        <omgdi:waypoint x="140.0" y="217.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow2" id="BPMNEdge_flow2">
+        <omgdi:waypoint x="245.0" y="217.0"></omgdi:waypoint>
+        <omgdi:waypoint x="310.0" y="217.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow3" id="BPMNEdge_flow3">
+        <omgdi:waypoint x="415.0" y="217.0"></omgdi:waypoint>
+        <omgdi:waypoint x="490.0" y="217.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>

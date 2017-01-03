@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lance.activiti.mapper.system.UserMapper">
+
+	<!-- findAll -->
+    <select id="findAll" resultType="UserInfo">
+        select *from t_user
+    </select>
+    
+    <!-- findByAccount -->
+    <select id="findByAccount" resultType="UserInfo">
+    	select *from t_user where account=#{value}
+    </select>
+    
+    <!-- findOne -->
+    <select id="findOne" resultType="UserInfo">
+    	select *from t_user where id=#{value}
+    </select>
+    
+    <!-- save -->
+    <insert id="save" parameterType="UserInfo">
+    	insert into t_user(account,password,name,phone,email,create_time)values(
+    		#{account},#{password},#{name},#{phone},#{email},now()
+    	)
+    </insert>
+    
+    <!-- update -->
+    <update id="update" parameterType="UserInfo">
+    	update t_user SET
+			account=#{account},
+			password=#{password},
+			name=#{name},
+			phone=#{phone},
+			email=#{email}
+		where id=#{id}
+    </update>
+    
+    <!-- delete -->
+    <delete id="delete">
+    	delete from t_user where id=#{value}
+    </delete>
+</mapper>
