@@ -11,7 +11,7 @@ import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.filter.authc.AnonymousFilter;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.apache.shiro.web.session.mgt.DefaultWebSessionManager;
-import org.springframework.boot.context.embedded.FilterRegistrationBean;
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.DependsOn;
@@ -59,7 +59,7 @@ public class ShiroConfig {
 		chains.put("/base/**", "anon");
 		chains.put("/css/**", "anon");
 		chains.put("/layer/**", "anon");
-		chains.put("/**", "authc,perms");
+		chains.put("/**", "perms");
 		bean.setFilterChainDefinitionMap(chains);
 		return bean;
 	}
