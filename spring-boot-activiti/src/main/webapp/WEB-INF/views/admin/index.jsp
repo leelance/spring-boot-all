@@ -36,7 +36,7 @@
 			</div>
 			<div title="管理流程">
 				<ul class="easyui-tree">
-					<li>发布流程</li>
+					<li><a class="menu-li" href="/admin/process/deploy/list">发布流程</a></li>
 					<li><a class="menu-li" href="/admin/process/manage/list">流程管理</a></li>
 				</ul>
 			</div>

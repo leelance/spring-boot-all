@@ -21,8 +21,8 @@
     
     <!-- save -->
     <insert id="save" parameterType="ProcessDefineInfo">
-    	insert into t_process_define(process_name,process_key,process_file, create_time)values(
-    		#{processName},#{processKey},#{processFile},now()
+    	insert into t_process_define(process_name,process_key,process_file,process_status, create_time)values(
+    		#{processName},#{processKey},#{processFile},#{processStatus},now()
     	)
     </insert>
     
@@ -32,6 +32,12 @@
 			process_name=#{processName},
 			process_key=#{processKey},
 			process_file=#{processFile},
+			<if test="processStatus!=null and processStatus!=''">
+				process_status=#{processStatus},
+			</if>
+			<if test="deploymentId!=null and deploymentId!=''">
+				deployment_id=#{deploymentId},
+			</if>
 			update_time=now()
 		where id=#{id}
     </update>

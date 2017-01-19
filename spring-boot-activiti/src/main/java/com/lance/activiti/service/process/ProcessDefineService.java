@@ -1,5 +1,6 @@
 package com.lance.activiti.service.process;
 
+import java.io.InputStream;
 import java.util.List;
 import java.util.Map;
 
@@ -30,4 +31,23 @@ public interface ProcessDefineService {
 	 * @param id
 	 */
 	void delete(int id);
+	
+	/**
+	 * 流程发布
+	 * @param id
+	 */
+	void deploy(int id);
+	
+	/**
+	 * 关闭发布流程
+	 * @param id
+	 */
+	void closeDeploy(int id);
+	
+	/**
+	 * 根据流程发布id获取流程图
+	 * @param deploymentId
+	 * @return
+	 */
+	InputStream getProcessDefineIS(String deploymentId);
 }

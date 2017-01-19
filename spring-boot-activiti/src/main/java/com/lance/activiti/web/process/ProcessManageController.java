@@ -1,8 +1,14 @@
 package com.lance.activiti.web.process;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -86,5 +92,51 @@ public class ProcessManageController {
 			return ResultInfo.error(-1, e.getMessage());
 		}
 		return ResultInfo.success();
+	}
+	
+	/**
+	 * 流程发布
+	 * @param id
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping(value="deploy/{id}", produces = "application/json; charset=UTF-8")
+	public String deploy(@PathVariable int id) {
+		try {
+			processDefineService.deploy(id);
+		} catch (ServiceException e) {
+			return ResultInfo.error(-1, e.getMessage());
+		}
+		return ResultInfo.success();
+	}
+	
+	/**
+	 * 关闭流程
+	 * @param id
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping(value="closeDeploy/{id}", produces = "application/json; charset=UTF-8")
+	public String closeDeploy(@PathVariable int id) {
+		try {
+			processDefineService.closeDeploy(id);
+		} catch (ServiceException e) {
+			return ResultInfo.error(-1, e.getMessage());
+		}
+		return ResultInfo.success();
+	}
+	
+	@RequestMapping(value="showDeployImg/{deploymentId}", produces = "application/json; charset=UTF-8")
+	public void showDeployImg(@PathVariable String deploymentId, HttpServletResponse response) {
+		InputStream is = null;
+		try {
+			ServletOutputStream output = response.getOutputStream();
+			is = processDefineService.getProcessDefineIS(deploymentId);
+			IOUtils.copy(is, output);
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			IOUtils.closeQuietly(is);
+		}
 	}
 }

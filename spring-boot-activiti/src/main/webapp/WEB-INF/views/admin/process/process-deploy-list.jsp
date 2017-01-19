@@ -38,11 +38,8 @@
 				</tr>
 			</table>
 		</form>
-	</div>
-	
-	<!-- 展示流程定义图 -->
-	<div id="process-showImg-dialog"><img alt="" src=""></div>							
+	</div>						
 </div>
 
 <script type="text/javascript" src="/plugin/commons.js"></script>
-<script type="text/javascript" src="/js/process/process-manage-list.js"></script>
+<script type="text/javascript" src="/js/process/process-deploy-list.js"></script>

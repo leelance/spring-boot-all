@@ -79,80 +79,9 @@ var ProcessManage = {
 				{field:'processName',title:'流程名称',width:80},
 				{field:'processKey',title:'流程Key',width:80},
 				{field:'processFile',title:'流程文件',width:120},
-				{field:'processStatus',title:'流程状态',width:70, formatter:function(value){
-					return value == 1? '未发布':'已发布';
-				}},
-				{field:'createTime',title:'创建时间',width:80},
-				{field:'opr',title:'操作',width:80, formatter: function(value,row,index){
-					var opr = '';
-					switch(row.processStatus){
-						case 1: opr = '<a href="javascript:void(0)" onclick="ProcessManage.deploy('+index+')">发布流程</a>';break;
-						case 2: 
-							opr = '<a href="javascript:void(0)" onclick="ProcessManage.closeDeploy('+index+')">关闭流程</a>&nbsp;&nbsp;'
-								+ '<a href="javascript:void(0)" onclick="ProcessManage.showImg('+index+')">查看详情</a>';
-							break;
-					}
-					
-					return opr;
-				}},
+				{field:'createTime',title:'创建时间',width:80}
 		    ]]
 		});	
-	},
-	
-	//流程发布
-	deploy: function(i) {
-		$(thiz.grid).datagrid('selectRow', i);
-		Ext.confirm('您确认要发布该流程吗?', function(){
-			Ext.progress('正在发布流程...');
-			var row = Ext.getRecord(thiz.grid);
-			$.get("/admin/process/manage/deploy/"+row.id, function(result){
-				if(result.errorCode==0){
-					$(thiz.grid).datagrid("reload")
-				}else{
-					Ext.alert(result.errorText);
-				}
-				Ext.progressClose();
-			});
-		});
-	},
-	
-	//关闭流程
-	closeDeploy: function(i) {
-		$(thiz.grid).datagrid('selectRow', i);
-		Ext.confirm('您确认要关闭该流程吗?', function(){
-			Ext.progress('正在关闭流程...');
-			var row = Ext.getRecord(thiz.grid);
-			$.get("/admin/process/manage/closeDeploy/"+row.id, function(result){
-				if(result.errorCode==0){
-					$(thiz.grid).datagrid("reload")
-				}else{
-					Ext.alert(result.errorText);
-				}
-				Ext.progressClose();
-			});
-		});
-	},
-	
-	showImg: function(i) {
-		$(thiz.grid).datagrid('selectRow', i);
-		var d = $('#process-showImg-dialog').dialog({
-		    width:600,
-		    height: 350,
-		    minimizable: false,
-		    maximizable: false,
-		    collapsible: false,
-		    resizable: false,
-		    modal: true,
-		    iconCls: 'icon-win',
-		    title:	'查看图片',
-		    buttons: [
-		       {text: '关 闭', handler: function(){d.dialog('close');}}
-		    ] 
-		});
-		
-		var row = Ext.getRecord(thiz.grid);
-		$('#process-showImg-dialog').find('img').attr('src', "/admin/process/manage/showDeployImg/"+row.deploymentId);
-		d.dialog('open');
 	},
 	
 	//创建新增对话框
