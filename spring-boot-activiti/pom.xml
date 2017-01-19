@@ -21,7 +21,7 @@
 		<ehcache.version>2.6.11</ehcache.version>
 		<kaptcha.version>0.0.9</kaptcha.version>
 		<guava.version>20.0</guava.version>
-		
+
 		<java.version>1.7</java.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
@@ -35,7 +35,7 @@
 			<groupId>commons-codec</groupId>
 			<artifactId>commons-codec</artifactId>
 		</dependency>
-		
+
 		<!-- Mybatis -->
 		<dependency>
 			<groupId>org.mybatis.spring.boot</groupId>
@@ -62,7 +62,7 @@
 			<artifactId>activiti-spring-boot-starter-basic</artifactId>
 			<version>${activiti.version}</version>
 		</dependency>
-		
+
 		<!-- Shiro -->
 		<dependency>
 			<groupId>org.apache.shiro</groupId>
@@ -84,14 +84,14 @@
 			<artifactId>shiro-ehcache</artifactId>
 			<version>${shiro.version}</version>
 		</dependency>
-		
+
 		<!-- CACHE -->
 		<dependency>
 			<groupId>net.sf.ehcache</groupId>
 			<artifactId>ehcache-core</artifactId>
 			<version>${ehcache.version}</version>
 		</dependency>
-		
+
 		<!-- SiteMesh -->
 		<dependency>
 			<groupId>org.sitemesh</groupId>
@@ -109,6 +109,13 @@
 			<groupId>com.google.guava</groupId>
 			<artifactId>guava</artifactId>
 			<version>${guava.version}</version>
+		</dependency>
+
+		<!-- 增强POJO -->
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.16.12</version>
 		</dependency>
 	</dependencies>
 
