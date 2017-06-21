@@ -10,7 +10,7 @@ import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -29,7 +29,7 @@ import springfox.documentation.staticdocs.Swagger2MarkupResultHandler;
 
 @WebAppConfiguration
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes={SimpleApplication.class, SwaggerConfig.class})
+@SpringBootTest(classes={SimpleApplication.class, SwaggerConfig.class})
 public class Swagger2MarkupTest {
 	@Autowired
     private WebApplicationContext context;
@@ -79,10 +79,11 @@ public class Swagger2MarkupTest {
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andReturn();
 
+        
         MockHttpServletResponse response = mvcResult.getResponse();
         String swaggerJson = response.getContentAsString();
         Files.createDirectories(Paths.get(outputDir));
-        try (BufferedWriter writer = Files.newBufferedWriter(Paths.get(outputDir, "swagger.json"), StandardCharsets.UTF_8)){
+        try (BufferedWriter writer = Files.newBufferedWriter(Paths.get(outputDir, "swagger1.json"), StandardCharsets.UTF_8)){
             writer.write(swaggerJson);
         }
     }
