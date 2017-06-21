@@ -13,12 +13,12 @@ import com.lance.net.server.common.ChatServer;
 import io.netty.channel.ChannelFuture;
 
 @SpringBootApplication
-public class SimplePushApplication implements CommandLineRunner{
+public class NettyWebSocketServerApplication implements CommandLineRunner{
 	@Autowired
 	private ChatServer chatServer;
 
     public static void main(String[] args) {
-        SpringApplication.run(SimplePushApplication.class, args);
+        SpringApplication.run(NettyWebSocketServerApplication.class, args);
     }
     
     @Bean
