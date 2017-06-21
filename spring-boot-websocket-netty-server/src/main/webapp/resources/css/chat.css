@@ -1,0 +1,124 @@
+@charset "utf-8";
+/*科e互联特效基本框架CSS*/
+body, ul, dl, dd, dt, ol, li, p, h1, h2, h3, h4, h5, h6, textarea, form, select, fieldset, table, td, div, input { margin: 0; padding: 0; -webkit-text-size-adjust: none }
+h1, h2, h3, h4, h5, h6 { font-size: 12px; font-weight: normal }
+body>div { margin: 0 auto }
+div { text-align: left }
+a img { border: 0 }
+body { color: #333; text-align: center; font: 12px "宋体"; }
+ul, ol, li { list-style-type: none; vertical-align: 0 }
+a { outline-style: none; color: #535353; text-decoration: none }
+a:hover { color: #D40000; text-decoration: none }
+.button { display: inline-block; zoom: 1; *display: inline;
+vertical-align: baseline; margin: 0 2px; outline: none; cursor: pointer; text-align: center; text-decoration: none; font: 14px/100% Arial, Helvetica, sans-serif; padding: 0.25em 0.6em 0.3em; text-shadow: 0 1px 1px rgba(0,0,0,.3); -webkit-border-radius: .5em; -moz-border-radius: .5em; border-radius: .5em; -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.2); -moz-box-shadow: 0 1px 2px rgba(0,0,0,.2); box-shadow: 0 1px 2px rgba(0,0,0,.2); }
+.red { color: #faddde; border: solid 1px #980c10; background: #d81b21; background: -webkit-gradient(linear, left top, left bottom, from(#ed1c24), to(#A51715)); background: -moz-linear-gradient(top, #ed1c24, #A51715); filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#ed1c24', endColorstr='#aa1317');
+}
+.red:hover { background: #b61318; background: -webkit-gradient(linear, left top, left bottom, from(#c9151b), to(#a11115)); background: -moz-linear-gradient(top, #c9151b, #a11115); filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#c9151b', endColorstr='#a11115');
+color: #fff; }
+.red:active { color: #de898c; background: -webkit-gradient(linear, left top, left bottom, from(#aa1317), to(#ed1c24)); background: -moz-linear-gradient(top, #aa1317, #ed1c24); filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#aa1317', endColorstr='#ed1c24');
+}
+.cor_bs, .cor_bs:hover { color: #ffffff; }
+.keBody { background: url(../images/bodyBg.jpg) repeat #333; }
+.keTitle { height: 100px; line-height: 100px; font-size: 30px; font-family: '微软雅黑'; color: #FFF; text-align: center; background: url(../images/bodyBg3.jpg) repeat-x bottom left; font-weight: normal }
+.kePublic { background: #FFF; padding: 50px; }
+.keBottom { color: #FFF; padding-top: 25px; line-height: 28px; text-align: center; font-family: '微软雅黑'; background: url(../images/bodyBg2.jpg) repeat-x top left; padding-bottom: 25px }
+.keTxtP { font-size: 16px; color: #ffffff; }
+.keUrl { color: #FFF; font-size: 30px; }
+.keUrl:hover { text-decoration: underline; color: #FFF; }
+.mKeBanner, .mKeBanner div { text-align: center; }
+/*科e互联特效基本框架CSS结束，应用特效时，以上样式可删除*/
+/* 效果CSS开始 */
+
+.content { width: 1000px; height: auto; margin: 0 auto; text-align: center; }
+.chatBox { width: 730px; border: 1px #666666 solid; height: auto; margin: 0 auto; position: relative; }
+.chatLeft { border-right: 1px #bebebe solid; width: 562px; height: auto; float: left; }
+.chatRight { width: 166px; height: auto; float: right; }
+.chat01_title, .chat03_title { background: url('../img/title_bg.jpg') repeat-x 0 0; height: 30px; position: relative; }
+.talkTo { }
+.talkTo li { background: url('../img/title-bg.png') no-repeat 0px -1px; _background-position: 0 0; line-height: 17px; float: left; padding-left: 6px; margin: 5px 20px; _margin-left: 9px; }
+.talkTo li a { background: url('../img/title-bg.png') no-repeat bottom right; padding: 4px 11px 4px 7px; _padding-top: 0px; _padding-bottom: 0px; height: 19px; font-size: 12px; font-weight: bold; color: #333; text-decoration: none; }
+.close_btn { background: url('../img/icon.png') no-repeat 0 0; position: absolute; top: 10px; right: 8px; display: block; width: 15px; height: 15px; }
+.chat02_title { background: url('../img/chat_title_bg.jpg') repeat-x 0 0; height: 25px; position: relative; }
+.chat02_bar { background: url('../img/chat_bar_bg.jpg') repeat-x 0 0; height: 35px; position: relative; }
+/* .chat02_bar ul { height: 100%; background: url('../img/binliy_logo.png') no-repeat 10px 8px; } */
+.chat02_bar li { position: absolute; }
+.chat03_title_t { background: url('../img/icon.png') no-repeat 0px -370px; position: absolute; padding-left: 25px; top: 8px; left: 20px; display: block; width: auto; height: 15px; font-size: 12px; font-weight: bold; }
+.chat01_content { height: 220px; overflow-x: none; overflow-y: auto; resize: vertical; }
+.chat02_content { height: auto; }
+.chat03_content { text-align: left; font-size: 12px; color: #333; margin: 8px 0px; }
+.chat02_content textarea { border: medium none; display: block; width: 552px; height: 96px; overflow-y: auto; padding: 5px; resize: vertical; }
+.chat03_name { color: #333; position: absolute; top: 9px; left: 40px; display: block; }
+.chat03_content ul { }
+.chat03_content ul li { position: relative; padding: 3px 6px; height: 31px; _padding-bottom: 0px; }
+.chat03_content ul li.hover { background: #ebeef3; }
+.chat03_content ul li.choosed { background: #ebeef3; }
+.chat03_content ul li a { }
+.chat03_content ul img { width: 30px; height: 30px; }
+.chat02_title_btn { background: url('../img/icon.png') no-repeat 0 0; cursor: pointer; float: left; display: block; width: 15px; height: 15px; margin: 5px 6px; }
+.ctb01 { background-position: 0 -90px; margin-left: 18px; _margin-left: 8px; }
+.ctb02 { background-position: 0 -152px; }
+.ctb03 { background-position: 0 -216px; }
+.chat02_title_t { background: url('../img/icon.png') no-repeat 0px -487px; position: absolute; padding-left: 25px; top: 8px; right: 20px; display: block; width: auto; height: 15px; }
+.chat02_title_t a { color: #333; font-size: 12px; text-decoration: none; }
+.chat02_title_t a:hover { color: #f60; text-decoration: underline; }
+input.f1, input.f2 { display: none; }
+.message_box { display: none; _width: 550px; }
+.message { border-bottom: 1px solid #EEE; clear: both; padding: 10px 10px 10px 0; position: relative; margin: 0px 10px; }
+.message .user-logo { float: left; width: 50px; height: 50px; resize: none; }
+.message .wrap-text { float: left; margin-left: 10px; display: inline; width: 360px; overflow: hidden; resize: none; }
+.message h5 { color: #369; font-weight: bold; }
+.message .wrap-text div { margin: 5px 0; word-break: break-all; word-wrap: break-word; height: auto; overflow: hidden; }
+.message .wrap-ri { float: right; width: 110px; overflow: hidden; resize: none; }
+.message .wrap-ri div { text-align: right; color: #999; height: 18px; line-height: 18px; overflow: hidden; clear: both; position: absolute; bottom: 10px; right: 5px; }
+.message .wrap-ri div span { display: inline-block; line-height: 18px; vertical-align: bottom; zoom: 1; }
+.wl_faces_box { background: url('../img/wlf_bg.png') repeat 0 0; position: absolute; width: 428px; height: 225px; bottom: 22px; left: -50px; display: none; }
+.wl_faces_content { background: #fff; border: 1px #ccc solid; width: 417px; height: 216px; margin: 3px 4px; }
+.wl_faces_content .title { background: url('../img/wlf_title_bg.jpg') repeat-x 0 0; height: 40px; position: relative; }
+.wl_faces_content .title ul { }
+.wl_faces_content .title ul li { position: absolute; display: block; }
+.wl_faces_content .title ul li.title_name { background: url('../img/wlf_title_btn.jpg') no-repeat 0 0; width: 82px; height: 30px; bottom: 0; _bottom: -2px; left: 15px; text-align: center; line-height: 32px; font-weight: bold; color: #333; }
+.wl_faces_content .title ul li.wl_faces_close { right: 8px; top: 15px; }
+.wl_faces_content .title ul li.wl_faces_close span { background: url('../img/icon.png') repeat-x 0 0; cursor: pointer; display: block; width: 15px; height: 15px; }
+.wl_faces_main { }
+.wl_faces_main ul { margin: 12px 28px; overflow: hidden; border-top: 1px #CCC solid; border-left: 1px #CCC solid; width: 360px; }
+.wl_faces_main ul li { float: left; border-right: 1px #CCC solid; border-bottom: 1px #CCC solid; height: 22px; width: 26px; margin: -1px 0 0 -1px; padding: 4px 2px; text-align: center; }
+.wl_faces_main ul li img { width: 22px; height: 22px; }
+.wlf_icon { background: url('../img/layer_arrow.png') no-repeat 0 0; position: absolute; width: 22px; height: 9px; bottom: -4px; _bottom: -11px; left: 61px; }
+.chat03_content li label { display: block; position: absolute; width: 9px; height: 9px; left: 27px; }
+label.online { background: url('../img/status.gif') no-repeat 0 0; _background: url('../img/status.gif') no-repeat 0 5px; bottom: 4px; _bottom: 2px; }
+label.offline { background: url('../img/status.gif') no-repeat 0 -11px; bottom: 4px; _top: 25px; }
+
+.cur_message{
+	background-color: #7bcfff;
+}
+.bubble{  
+    position: relative;  
+    line-height: 25px;
+    padding-left: 5px;  
+    border-radius: 7px;  
+    padding-right: 5px;  
+    display: inline-block;  
+    margin-top: 4px;
+}
+.leftBubble{  
+    position: relative;  
+    margin-left: 15px;
+    border: 1px solid #00b6b6;  
+    background-color: #f8fdfc;  
+}  
+.leftBubble .bottomLevel{  
+    position: absolute;  
+    top: 10px;  
+    left: -10px;  
+    border-top: 10px solid #00b6b6;  
+    border-left: 10px solid transparent;  
+}  
+.leftBubble .topLevel{  
+    position: absolute;  
+    top: 11px;  
+    left: -8px;  
+    border-top: 10px solid #f8fdfc;  
+    border-left: 10px solid transparent;  
+    z-index: 100;  
+}  
+/* 效果CSS结束 */
