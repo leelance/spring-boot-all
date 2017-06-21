@@ -9,6 +9,7 @@ This example will shows how to send notifications, via web socket, to specific l
 Could be useful, for example, if you are trying to implement a real-time user notification system.
 
 ### Build and run
+springboot启动后： http://localhost/
 
 ![image](https://github.com/leelance/spring-boot-all/blob/master/spring-boot-websocket-netty-server/1.png)
 ![image](https://github.com/leelance/spring-boot-all/blob/master/spring-boot-websocket-netty-server/2.png)
