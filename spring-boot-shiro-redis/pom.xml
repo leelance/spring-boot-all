@@ -16,12 +16,14 @@
 	<url>http://maven.apache.org</url>
 
 	<properties>
-		<shiro.version>1.2.5</shiro.version>
+		<shiro.version>1.2.6</shiro.version>
+		<java.version>1.8</java.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 	<dependencies>
 		<dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-redis</artifactId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
         </dependency>
 		<dependency>
 			<groupId>org.springframework.session</groupId>
