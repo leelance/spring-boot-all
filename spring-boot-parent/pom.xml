@@ -5,7 +5,8 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>1.4.1.RELEASE</version>
+		<version>1.5.6.RELEASE</version>
+		<relativePath/>
 	</parent>
 	<groupId>com.lance</groupId>
 	<artifactId>spring-boot-parent</artifactId>
@@ -115,7 +116,7 @@
     	<module>../spring-boot-shiro</module>
     	<module>../spring-boot-shiro-redis</module>
     	<module>../spring-boot-cache-ehcache</module>
-    	<module>../spring-boot-cache-redis</module>
+        <module>../spring-boot-cache-redis</module>
     	<module>../spring-boot-activemq-producer</module>
     	<module>../spring-boot-activemq-consumer</module>
     	<module>../spring-boot-email</module>
