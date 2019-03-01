@@ -29,7 +29,7 @@ import java.util.stream.IntStream;
 @SpringBootTest
 @RunWith(SpringRunner.class)
 public class ShardingTableTests {
-    ExecutorService service = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors() * 2);
+    private ExecutorService service = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors() * 2);
     @Autowired
     private UserInfoMapper userInfoMapper;
 
