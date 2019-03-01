@@ -42,7 +42,7 @@ public class ShardingTableTests {
 
     @Test
     public void batchSave() {
-        BigInteger companyId = BigInteger.valueOf(1000);
+        BigInteger companyId = BigInteger.valueOf(2000);
         List<CompletableFuture<Void>> futures = IntStream.range(0, 100).mapToObj(j->CompletableFuture.runAsync(()->{
                 List<UserInfo> list = IntStream.range(0, 500)
                         .mapToObj(i -> createUser(companyId, i))
