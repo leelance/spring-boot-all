@@ -10,6 +10,16 @@
 		#{companyId},#{userName},#{account},#{password})
 	</insert>
 
+	<insert id="batchSave" parameterType="java.util.List">
+		insert into t_user_info(company_id,user_name,account,password)
+		values
+		<foreach collection ="list" item="o" index= "index" separator =",">
+			(
+			#{o.companyId},#{o.userName},#{o.account},#{o.password}
+			)
+		</foreach >
+	</insert>
+
 	<!-- Update对象 -->
 	<update id="update" parameterType="UserInfo">
 		update t_user_info set

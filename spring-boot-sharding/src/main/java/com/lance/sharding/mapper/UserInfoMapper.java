@@ -21,6 +21,9 @@ public interface UserInfoMapper {
 	*/
 	int save(UserInfo info);
 
+
+	int batchSave(List<UserInfo> list);
+
 	/**
 	* 修改对象
 	* @param info  待修改对象
