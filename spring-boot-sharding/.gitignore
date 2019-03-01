@@ -1,3 +1,4 @@
+HELP.md
 /target/
 !.mvn/wrapper/maven-wrapper.jar
 
@@ -15,8 +16,6 @@
 *.iws
 *.iml
 *.ipr
-.mvn
-mvnw*
 
 ### NetBeans ###
 /nbproject/private/
@@ -25,4 +24,3 @@ mvnw*
 /nbdist/
 /.nb-gradle/
 /build/
-logs/
