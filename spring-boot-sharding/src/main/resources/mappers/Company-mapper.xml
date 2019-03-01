@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lance.sharding.mapper.CompanyMapper">
+	<!--  -->
+
+	<!-- Save对象 -->
+	<insert id="save" useGeneratedKeys="true" keyProperty="companyId" parameterType="Company">
+		insert into t_company(company_name,address,create_time)
+		values(
+		#{companyName},#{address},#{createTime})
+	</insert>
+
+	<!-- Update对象 -->
+	<update id="update" parameterType="Company">
+		update t_company set 
+		company_name = #{companyName},
+		address = #{address},
+		create_time = #{createTime} where company_id=#{companyId}
+	</update>
+
+	<!-- 根据ID删除对象 -->
+	<delete id="delete">
+		delete from t_company where company_id=#{value}
+	</delete>
+
+	<!-- 根据ID查询对象 -->
+	<select id="findById" resultType="Company">
+		select 
+		company_id,company_name,address,create_time
+		from t_company
+		where company_id=#{value}
+	</select>
+
+	<!-- 根据ID查询对象 -->
+	<select id="findAll" resultType="Company" parameterType="map">
+		select 
+		company_id,company_name,address,create_time
+		from t_company
+	</select>
+
+	<!-- 根据ID查询对象 -->
+	<select id="findCount" resultType="int" parameterType="map">
+		select count(1) from t_company
+	</select>
+</mapper>

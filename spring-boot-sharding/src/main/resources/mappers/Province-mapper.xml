@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lance.sharding.mapper.ProvinceMapper">
+	<!--  -->
+
+	<!-- Save对象 -->
+	<insert id="save" useGeneratedKeys="true" keyProperty="id" parameterType="Province">
+		insert into t_province(prov_id,prov_name,prov_type,prov_state)
+		values(
+		#{provId},#{provName},#{provType},#{provState})
+	</insert>
+
+	<!-- Update对象 -->
+	<update id="update" parameterType="Province">
+		update t_province set 
+		prov_id = #{provId},
+		prov_name = #{provName},
+		prov_type = #{provType},
+		prov_state = #{provState} where id=#{id}
+	</update>
+
+	<!-- 根据ID删除对象 -->
+	<delete id="delete">
+		delete from t_province where id=#{value}
+	</delete>
+
+	<!-- 根据ID查询对象 -->
+	<select id="findById" resultType="Province">
+		select 
+		id,prov_id,prov_name,prov_type,prov_state
+		from t_province
+		where id=#{value}
+	</select>
+
+	<!-- 根据ID查询对象 -->
+	<select id="findAll" resultType="Province" parameterType="map">
+		select 
+		id,prov_id,prov_name,prov_type,prov_state
+		from t_province
+	</select>
+
+	<!-- 根据ID查询对象 -->
+	<select id="findCount" resultType="int" parameterType="map">
+		select count(1) from t_province
+	</select>
+</mapper>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lance.sharding.mapper.UserInfoMapper">
+	<!--  -->
+
+	<!-- Save对象 -->
+	<insert id="save" useGeneratedKeys="true" keyProperty="userId" parameterType="UserInfo">
+		insert into t_user_info(company_id,user_name,account,password)
+		values(
+		#{companyId},#{userName},#{account},#{password})
+	</insert>
+
+	<!-- Update对象 -->
+	<update id="update" parameterType="UserInfo">
+		update t_user_info set
+		company_id = #{companyId},
+		user_name = #{userName},
+		account = #{account},
+		password = #{password} where user_id=#{userId}
+	</update>
+
+	<!-- 根据ID删除对象 -->
+	<delete id="delete">
+		delete from t_user_info where user_id=#{value}
+	</delete>
+
+	<!-- 根据ID查询对象 -->
+	<select id="findById" resultType="UserInfo">
+		select 
+		user_id,company_id,user_name,account,password
+		from t_user_info
+		where user_id=#{value}
+	</select>
+
+	<!-- 根据ID查询对象 -->
+	<select id="findAll" resultType="UserInfo" parameterType="map">
+		select 
+		user_id,company_id,user_name,account,password
+		from t_user_info
+	</select>
+
+	<!-- 根据ID查询对象 -->
+	<select id="findCount" resultType="int" parameterType="map">
+		select count(1) from t_user_info
+	</select>
+</mapper>
