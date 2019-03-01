@@ -1,0 +1,27 @@
+#分库分表
+1.单库分表配置：
+```properties
+#------------------------------------------------------------------------
+#                           单库分片                                     #
+#------------------------------------------------------------------------
+sharding.jdbc.datasource.names=ds_0
+
+sharding.jdbc.datasource.ds_0.type=com.zaxxer.hikari.HikariDataSource
+sharding.jdbc.datasource.ds_0.driver-class-name=com.mysql.jdbc.Driver
+sharding.jdbc.datasource.ds_0.jdbcUrl=jdbc:mysql://localhost:3306/ops_0?useSSL=false&serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8
+sharding.jdbc.datasource.ds_0.username=root
+sharding.jdbc.datasource.ds_0.password=li123456
+sharding.jdbc.datasource.ds_0.maximumPoolSize=50
+sharding.jdbc.datasource.ds_0.minimumIdle=10
+sharding.jdbc.datasource.ds_0.connectionTestQuery=select 1
+
+sharding.jdbc.config.sharding.tables.t_user_info.actual-data-nodes=ds_0.t_user_info_$->{0..4}
+sharding.jdbc.config.sharding.tables.t_user_info.table-strategy.inline.sharding-column=user_id
+sharding.jdbc.config.sharding.tables.t_user_info.table-strategy.inline.algorithm-expression=t_user_info_$->{user_id % 5}
+sharding.jdbc.config.sharding.tables.t_user_info.key-generator-column-name=user_id
+
+sharding.jdbc.config.sharding.binding-tables=t_user_info
+sharding.jdbc.config.sharding.default-data-source-name=ds_0
+sharding.jdbc.config.sharding.props.sql.show=true
+
+```
