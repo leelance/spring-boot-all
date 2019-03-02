@@ -1,6 +1,8 @@
 package com.lance.sharding;
 
+import com.lance.sharding.mapper.CompanyMapper;
 import com.lance.sharding.mapper.UserInfoMapper;
+import com.lance.sharding.model.Company;
 import com.lance.sharding.model.UserInfo;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.RandomStringUtils;
@@ -12,6 +14,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.math.BigInteger;
+import java.util.Date;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
@@ -32,6 +35,8 @@ public class ShardingTableTests {
     private ExecutorService service = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors() * 2);
     @Autowired
     private UserInfoMapper userInfoMapper;
+    @Autowired
+    private CompanyMapper companyMapper;
 
     @Test
     @Ignore
@@ -41,6 +46,7 @@ public class ShardingTableTests {
     }
 
     @Test
+    @Ignore
     public void batchSave() {
         BigInteger companyId = BigInteger.valueOf(2000);
         List<CompletableFuture<Void>> futures = IntStream.range(0, 100).mapToObj(j->CompletableFuture.runAsync(()->{
@@ -52,6 +58,18 @@ public class ShardingTableTests {
         ).collect(Collectors.toList());
 
         CompletableFuture.allOf(futures.toArray(new CompletableFuture[]{})).join();
+    }
+
+    @Test
+    public void saveCompany(){
+        Company company = Company.builder()
+                .companyId(new BigInteger(RandomStringUtils.randomNumeric(4)))
+                .companyName("33")
+                .address("222")
+                .createTime(new Date())
+                .build();
+
+        companyMapper.save(company);
     }
 
     private UserInfo createUser(BigInteger companyId, int index){
