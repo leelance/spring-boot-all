@@ -1,5 +1,5 @@
 # spring-boot
-依赖1.5.6版本，http://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/
+依赖1.5.19版本，http://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/
 
 ### spring-boot-parent
 所有Module均依赖[spring-boot-parent](https://github.com/leelance/spring-boot-all/tree/master/spring-boot-parent)
@@ -27,11 +27,12 @@
 <module>../spring-boot-jpa</module>
 <module>../spring-boot-activiti</module>
 <module>../spring-boot-welcome-page</module>
+<module>../spring-boot-sharding</module>
 	    	
 <parent>
 	<groupId>org.springframework.boot</groupId>
 	<artifactId>spring-boot-starter-parent</artifactId>
-	<version>1.5.6.RELEASE</version>
+	<version>1.5.19.RELEASE</version>
 </parent>
 ```
 | Name          			| Description           								|
