@@ -6,6 +6,7 @@ import com.lance.sharding.model.Company;
 import com.lance.sharding.model.UserInfo;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.RandomStringUtils;
+import org.assertj.core.util.Maps;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -16,8 +17,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.math.BigInteger;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.stream.Collectors;
@@ -41,8 +42,17 @@ public class ShardingTableTests {
     @Test
     @Ignore
     public void save() {
-        BigInteger companyId = BigInteger.valueOf(1000);
+        BigInteger companyId = BigInteger.valueOf(2000);
         userInfoMapper.save(createUser(companyId,0));
+    }
+
+    @Test
+    @Ignore
+    public void list(){
+        BigInteger companyId = BigInteger.valueOf(3000);
+        Map<String, Object>map = Maps.newHashMap("companyId", companyId);
+
+        userInfoMapper.findAll(map);
     }
 
     @Test
@@ -61,6 +71,7 @@ public class ShardingTableTests {
     }
 
     @Test
+    @Ignore
     public void saveCompany(){
         Company company = Company.builder()
                 .companyId(new BigInteger(RandomStringUtils.randomNumeric(4)))

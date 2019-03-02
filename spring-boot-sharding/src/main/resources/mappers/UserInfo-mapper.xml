@@ -47,6 +47,11 @@
 		select 
 		user_id,company_id,user_name,account,password
 		from t_user_info
+		<where>
+			<if test="companyId!=null">
+				and company_id=#{companyId}
+			</if>
+		</where>
 	</select>
 
 	<!-- 根据ID查询对象 -->

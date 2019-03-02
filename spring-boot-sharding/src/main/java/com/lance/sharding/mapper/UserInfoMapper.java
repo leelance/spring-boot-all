@@ -21,7 +21,11 @@ public interface UserInfoMapper {
 	*/
 	int save(UserInfo info);
 
-
+	/**
+	 * 批量保存
+	 * @param list
+	 * @return
+	 */
 	int batchSave(List<UserInfo> list);
 
 	/**

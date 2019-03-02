@@ -16,7 +16,7 @@ import java.util.Collection;
 public class UserPreciseShardingAlgorithm implements PreciseShardingAlgorithm<Long> {
     @Override
     public String doSharding(Collection<String>availableTargetNames, PreciseShardingValue<Long>shardingValue) {
-        log.info("ShardingTables: {}, preciseShardingValue: {}",  JSON.toJSONString(availableTargetNames), JSON.toJSONString(shardingValue));
+        log.info("Tables: {}, preciseValue: {}",  JSON.toJSONString(availableTargetNames), JSON.toJSONString(shardingValue));
         return availableTargetNames.stream()
                 .filter(t -> t.endsWith(shardingValue.getValue() % availableTargetNames.size()+""))
                 .findFirst()
