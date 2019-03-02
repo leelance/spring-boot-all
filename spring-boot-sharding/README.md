@@ -156,3 +156,29 @@ sharding.jdbc.config.sharding.master-slave-rules.ds_1.slave-data-source-names=ds
 sharding.jdbc.config.sharding.master-slave-rules.ds_2.master-data-source-name=ds_master_2
 sharding.jdbc.config.sharding.master-slave-rules.ds_2.slave-data-source-names=ds_master_2_slave_0
 ```
+
+4.单库多列分表(订单根据年份+orderId%4生成表)
+```properties
+#------------------------------------------------------------------------
+#                           单库多列分片                                  #
+#------------------------------------------------------------------------
+sharding.jdbc.datasource.names=ds_0
+
+sharding.jdbc.datasource.ds_0.type=com.zaxxer.hikari.HikariDataSource
+sharding.jdbc.datasource.ds_0.driver-class-name=com.mysql.jdbc.Driver
+sharding.jdbc.datasource.ds_0.jdbcUrl=jdbc:mysql://localhost:3306/ops_0?useSSL=false&useUnicode=true&characterEncoding=utf-8
+sharding.jdbc.datasource.ds_0.username=root
+sharding.jdbc.datasource.ds_0.password=li123456
+sharding.jdbc.datasource.ds_0.maximumPoolSize=50
+sharding.jdbc.datasource.ds_0.minimumIdle=10
+sharding.jdbc.datasource.ds_0.connectionTestQuery=select 1
+
+sharding.jdbc.config.sharding.tables.t_order.key-generator-column-name=order_id
+sharding.jdbc.config.sharding.tables.t_order.table-strategy.complex.sharding-columns=create_time,order_id
+sharding.jdbc.config.sharding.tables.t_order.table-strategy.complex.algorithm-class-name=com.lance.sharding.config.OrderComplexShardingStrategy
+
+sharding.jdbc.config.sharding.binding-tables=t_order
+sharding.jdbc.config.sharding.default-data-source-name=ds_0
+sharding.jdbc.config.sharding.props.sql.show=true
+
+```

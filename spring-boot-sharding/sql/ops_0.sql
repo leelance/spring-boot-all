@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50721
 File Encoding         : 65001
 
-Date: 2019-03-02 00:06:41
+Date: 2019-03-02 22:38:27
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -25,11 +25,95 @@ CREATE TABLE `t_company` (
   `address` varchar(100) DEFAULT NULL,
   `create_time` datetime DEFAULT NULL,
   PRIMARY KEY (`company_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Records of t_company
+-- Table structure for t_order_2019_0
 -- ----------------------------
+DROP TABLE IF EXISTS `t_order_2019_0`;
+CREATE TABLE `t_order_2019_0` (
+  `order_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `order_name` varchar(100) DEFAULT NULL,
+  `create_time` datetime DEFAULT NULL,
+  PRIMARY KEY (`order_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=308733038697644529 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Table structure for t_order_2019_1
+-- ----------------------------
+DROP TABLE IF EXISTS `t_order_2019_1`;
+CREATE TABLE `t_order_2019_1` (
+  `order_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `order_name` varchar(100) DEFAULT NULL,
+  `create_time` datetime DEFAULT NULL,
+  PRIMARY KEY (`order_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=308733038697644530 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Table structure for t_order_2019_2
+-- ----------------------------
+DROP TABLE IF EXISTS `t_order_2019_2`;
+CREATE TABLE `t_order_2019_2` (
+  `order_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `order_name` varchar(100) DEFAULT NULL,
+  `create_time` datetime DEFAULT NULL,
+  PRIMARY KEY (`order_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=308733038697644531 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Table structure for t_order_2019_3
+-- ----------------------------
+DROP TABLE IF EXISTS `t_order_2019_3`;
+CREATE TABLE `t_order_2019_3` (
+  `order_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `order_name` varchar(100) DEFAULT NULL,
+  `create_time` datetime DEFAULT NULL,
+  PRIMARY KEY (`order_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=308733038697644532 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Table structure for t_order_2020_0
+-- ----------------------------
+DROP TABLE IF EXISTS `t_order_2020_0`;
+CREATE TABLE `t_order_2020_0` (
+  `order_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `order_name` varchar(100) DEFAULT NULL,
+  `create_time` datetime DEFAULT NULL,
+  PRIMARY KEY (`order_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=308733820285223909 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Table structure for t_order_2020_1
+-- ----------------------------
+DROP TABLE IF EXISTS `t_order_2020_1`;
+CREATE TABLE `t_order_2020_1` (
+  `order_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `order_name` varchar(100) DEFAULT NULL,
+  `create_time` datetime DEFAULT NULL,
+  PRIMARY KEY (`order_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=308733820285223910 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Table structure for t_order_2020_2
+-- ----------------------------
+DROP TABLE IF EXISTS `t_order_2020_2`;
+CREATE TABLE `t_order_2020_2` (
+  `order_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `order_name` varchar(100) DEFAULT NULL,
+  `create_time` datetime DEFAULT NULL,
+  PRIMARY KEY (`order_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=308733820285223911 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Table structure for t_order_2020_3
+-- ----------------------------
+DROP TABLE IF EXISTS `t_order_2020_3`;
+CREATE TABLE `t_order_2020_3` (
+  `order_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `order_name` varchar(100) DEFAULT NULL,
+  `create_time` datetime DEFAULT NULL,
+  PRIMARY KEY (`order_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=308733820285223912 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for t_province
@@ -45,45 +129,6 @@ CREATE TABLE `t_province` (
 ) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Records of t_province
--- ----------------------------
-INSERT INTO `t_province` VALUES ('1', '1', '国外', '5', '1');
-INSERT INTO `t_province` VALUES ('2', '10', '北京', '1', '1');
-INSERT INTO `t_province` VALUES ('3', '11', '上海', '1', '1');
-INSERT INTO `t_province` VALUES ('4', '12', '天津', '1', '1');
-INSERT INTO `t_province` VALUES ('5', '13', '重庆', '1', '1');
-INSERT INTO `t_province` VALUES ('6', '14', '河北', '2', '1');
-INSERT INTO `t_province` VALUES ('7', '15', '山西', '2', '1');
-INSERT INTO `t_province` VALUES ('8', '16', '内蒙古 ', '3', '1');
-INSERT INTO `t_province` VALUES ('9', '17', '辽宁', '2', '1');
-INSERT INTO `t_province` VALUES ('10', '18', '吉林', '2', '1');
-INSERT INTO `t_province` VALUES ('11', '19', '黑龙江', '2', '1');
-INSERT INTO `t_province` VALUES ('12', '20', '江苏', '2', '1');
-INSERT INTO `t_province` VALUES ('13', '21', '浙江', '2', '1');
-INSERT INTO `t_province` VALUES ('14', '22', '安徽', '2', '1');
-INSERT INTO `t_province` VALUES ('15', '23', '福建', '2', '1');
-INSERT INTO `t_province` VALUES ('16', '24', '江西', '2', '1');
-INSERT INTO `t_province` VALUES ('17', '25', '山东', '2', '1');
-INSERT INTO `t_province` VALUES ('18', '26', '河南', '2', '1');
-INSERT INTO `t_province` VALUES ('19', '27', '湖北', '2', '1');
-INSERT INTO `t_province` VALUES ('20', '28', '湖南', '2', '1');
-INSERT INTO `t_province` VALUES ('21', '29', '广东', '2', '1');
-INSERT INTO `t_province` VALUES ('22', '30', '广西', '3', '1');
-INSERT INTO `t_province` VALUES ('23', '31', '海南', '2', '1');
-INSERT INTO `t_province` VALUES ('24', '32', '四川', '2', '1');
-INSERT INTO `t_province` VALUES ('25', '33', '贵州', '2', '1');
-INSERT INTO `t_province` VALUES ('26', '34', '云南', '2', '1');
-INSERT INTO `t_province` VALUES ('27', '35', '西藏', '3', '1');
-INSERT INTO `t_province` VALUES ('28', '36', '陕西', '2', '1');
-INSERT INTO `t_province` VALUES ('29', '37', '甘肃', '2', '1');
-INSERT INTO `t_province` VALUES ('30', '38', '青海', '2', '1');
-INSERT INTO `t_province` VALUES ('31', '39', '宁夏', '3', '1');
-INSERT INTO `t_province` VALUES ('32', '40', '新疆', '3', '1');
-INSERT INTO `t_province` VALUES ('33', '41', '香港', '4', '1');
-INSERT INTO `t_province` VALUES ('34', '42', '澳门', '4', '1');
-INSERT INTO `t_province` VALUES ('35', '43', '台湾', '2', '1');
-
--- ----------------------------
 -- Table structure for t_user_info_0
 -- ----------------------------
 DROP TABLE IF EXISTS `t_user_info_0`;
@@ -94,11 +139,7 @@ CREATE TABLE `t_user_info_0` (
   `account` varchar(45) NOT NULL,
   `password` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=308389433512559091 DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of t_user_info_0
--- ----------------------------
+) ENGINE=InnoDB AUTO_INCREMENT=308397331563151856 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for t_user_info_1
@@ -111,11 +152,7 @@ CREATE TABLE `t_user_info_1` (
   `account` varchar(45) NOT NULL,
   `password` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=308389433512559092 DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of t_user_info_1
--- ----------------------------
+) ENGINE=InnoDB AUTO_INCREMENT=308617883624144897 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for t_user_info_2
@@ -128,11 +165,7 @@ CREATE TABLE `t_user_info_2` (
   `account` varchar(45) NOT NULL,
   `password` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=308389433512559088 DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of t_user_info_2
--- ----------------------------
+) ENGINE=InnoDB AUTO_INCREMENT=308712319800573953 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for t_user_info_3
@@ -145,11 +178,7 @@ CREATE TABLE `t_user_info_3` (
   `account` varchar(45) NOT NULL,
   `password` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=308389433512559089 DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of t_user_info_3
--- ----------------------------
+) ENGINE=InnoDB AUTO_INCREMENT=308397331563151859 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for t_user_info_4
@@ -162,8 +191,4 @@ CREATE TABLE `t_user_info_4` (
   `account` varchar(45) NOT NULL,
   `password` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=308389433512559090 DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of t_user_info_4
--- ----------------------------
+) ENGINE=InnoDB AUTO_INCREMENT=308397331563151860 DEFAULT CHARSET=utf8;
